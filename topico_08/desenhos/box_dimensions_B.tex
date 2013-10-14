@@ -1,0 +1,49 @@
+		\begin{tikzpicture}
+	
+			% A letra "g" e sua caixa
+			\node [letter] (g) at (2,0) {\scalebox{\scalefactor}
+				{\color{gray!30}g}};
+			\draw [box] (g.south west) rectangle (g.north east);
+			
+			\coordinate (base line left)  at ($(g.base west) - (5mm,0)$);
+			\coordinate (base line right) at ($(g.base east) + (5mm,0)$);
+			
+			% A linha-base
+			\draw [baseline] (base line left) -- (base line right);
+								
+			% O ponto-de-referência
+			\fill [black] (g.base west) circle (3pt);
+			
+			% Flecha da altura
+			\draw [<->] ($ (g.base west) + (-3mm,+0.5mm) $) --
+			            ($ (g.north west) + (-3mm,0) $);
+			
+			% Flecha da profundidade
+			\draw [<->] ($ (g.south west) + (-3mm,0) $) -- 
+			            ($ (g.base west) + (-3mm,-0.5mm) $);
+	
+			% Flecha da largura
+			\draw [<->] ($ (g.north west) + (0,3mm) $) --
+			            ($ (g.north east) + (0,3mm) $);
+			            
+			% Flecha da altura total
+			\draw [<->] ($ (g.south east) + (3mm,0) $) --
+			            ($ (g.north east) + (3mm,0) $);
+			
+			% Rótulo "Altura"
+			\node [inner sep=3mm, label=left:\cs{height}]
+				at ($ (g.base west)  ! 0.5 ! (g.north west) $) {};
+			
+			% Rótulo "Profundidade"
+			\node [inner sep=3mm, label=left:\cs{depth}]
+				at ($ (g.base west)  ! 0.5 ! (g.south west) $) {};
+			
+			% Rótulo "Largura"
+			\node [inner sep=3mm, label=above:\cs{width}]
+				at ($ (g.north west) ! 0.5 ! (g.north east) $) {};
+			
+			% Rótulo "Altura total"
+			\node [inner sep=3mm, label=right:\cs{totalheight}]
+				at ($ (g.south east)  ! 0.5 ! (g.north east) $) {};
+						
+		\end{tikzpicture}

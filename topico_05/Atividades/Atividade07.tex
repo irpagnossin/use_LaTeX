@@ -1,0 +1,19 @@
+\documentclass{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{amsmath}
+	
+	\DeclareMathOperator{\sen}{sen} % <-- Só no preâmbulo. Requer o pacote amsmath.
+	
+\begin{document}
+	
+	\[ \sin\left( A + B \right) = \sin A \cos B + \sin B \cos A \]
+	% Observe que o argumento da função seno (cosseno) não tem nada a ver com
+	% o comando \sin (\cos). Isto é, ele não faz parte do comando: você pode
+	% escrever \(\sin\) sem problema algum, embora isto geralmente não ocorra.
+
+	
+	\[\sen^2 \theta + \cos^2 \theta = 1\] % <-- "sen" ao invés de "sin"
+	
+\end{document}

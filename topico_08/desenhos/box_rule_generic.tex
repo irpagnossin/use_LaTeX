@@ -1,0 +1,43 @@
+\begin{tikzpicture}[scale=1]
+	
+	\coordinate (ll) at (0,0);
+	\coordinate (ul) at (0,2);
+	\coordinate (lr) at (1,0);
+	\coordinate (ur) at (1,2);
+	\coordinate (dx) at (0.05,0);
+	\coordinate (dy) at (0,0.05);
+	
+	% A caixa-preta (\rule)
+	\fill (ll) rectangle (ur);
+	
+	% A linha-base
+	\draw [blue] ($(ll)-(0,1)-10*(dx)$) -- ($(lr)-(0,1)+10*(dx)$);
+	
+	% A caixa
+	\draw [red] ($(0,-1)-(dx)$) rectangle ($(ur)+(dx)+(dy)$);		
+	
+	% O ponto-de-referência final
+	\fill ($(0,-1)$) circle (0.1);
+	
+	% O ponto-de-referência inicial
+	\fill [draw=black,fill=gray] (ll) circle (0.1);
+	
+	% A flecha da altura
+	\draw [<->] ($(lr)+4*(dx)$) -- ($(ur)+4*(dx)$);
+	
+	% A flecha da largura
+	\draw [<->] ($(ul)+4*(dy)$) -- ($(ur)+4*(dy)$);
+	
+	% A flecha da elevação
+	\draw [<->] ($(0,-1)-4*(dx)$) -- ($(ll)-4*(dx)$);
+	
+	% Rótulo "Altura"
+	\node [label=right:Altura] at ($(lr) ! 0.5 ! (ur)$) {};
+	
+	% Rótulo "Largura"
+	\node [label=above:Largura] at ($(ul) ! 0.5 ! (ur)$) {};
+	
+	% Rótulo "Elevação"
+	\node [label=left:Elevação] at ($(0,-1) ! 0.5 ! (ll)$) {};
+	
+\end{tikzpicture}

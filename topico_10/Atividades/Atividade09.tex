@@ -1,0 +1,49 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{lipsum}
+	\usepackage{xcolor}	
+	\usepackage{rotating} % <-- Permite a rotação de figuras e tabelas flutuantes
+				
+	\graphicspath{
+		{Figuras/EPS/}
+		{Figuras/JPG/}
+		{Figuras/PDF/}
+		{Figuras/PNG/}
+		}
+		
+\begin{document}
+
+	% Este arquivo ilustra a rotação (de 90 graus no sentido antihorário) de figuras e tabelas flutuantes através do pacote rotating.
+
+	\lipsum[1-3]
+
+	%--------------------------------------------
+	% EXEMPLO 1: rotação de tabela.
+	%--------------------------------------------
+	\begin{sidewaystable}
+		\centering
+		\begin{tabular}{ccccc}
+		Coluna 1 & Coluna 2 & Coluna 3 & Coluna 4 & Coluna 5 \\
+		Coluna 1 & Coluna 2 & Coluna 3 & Coluna 4 & Coluna 5 \\
+		Coluna 1 & Coluna 2 & Coluna 3 & Coluna 4 & Coluna 5 \\
+		Coluna 1 & Coluna 2 & Coluna 3 & Coluna 4 & Coluna 5 \\
+		Coluna 1 & Coluna 2 & Coluna 3 & Coluna 4 & Coluna 5 \\
+		Coluna 1 & Coluna 2 & Coluna 3 & Coluna 4 & Coluna 5 \\
+		\end{tabular}
+		\caption{legenda da tabela.}
+	\end{sidewaystable}
+	
+	\lipsum[4-7]
+	
+	%--------------------------------------------
+	% EXEMPLO 2: rotação de figuras.
+	%--------------------------------------------	
+	\begin{sidewaysfigure}
+		\centering
+		\includegraphics[width=0.5\textwidth]{Tei-Gi}
+		\caption{legenda da figura.}
+	\end{sidewaysfigure}
+	
+\end{document}

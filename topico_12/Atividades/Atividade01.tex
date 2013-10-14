@@ -1,0 +1,75 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{hyperref}
+	\usepackage{usandoLaTeX}
+	
+\begin{document}
+
+	A forma mais simples de se montar uma lista de referências bibliográficas
+no \LaTeX\ é à mão, através do ambiente \env{thebibliography} e dos
+comandos \cs{bibitem} (\foreign{bibliographic item}) e \cs{cite}.
+
+	O ambiente \env{thebibliography} define uma lista cujos itens são
+nomeados e, por isso, podem ser referenciados ao longo do texto:
+		
+	\begin{thebibliography}{-}
+	
+	  \bibitem{Kopka:1999}          % Rótulo
+	    H. Kopka e P. W. Daly,      % Autor(es)
+	    \textsl{A guide to \LaTeX}, % Título
+	    Addison-Wesley              % Editora
+	    (1999).                     % Ano
+	    
+	  \bibitem{Gratzer:1996}        % Rótulo
+	   	G. Grätzer,                 % Autor(es)
+	   	\textbf{Math into \LaTeX},  % Título
+	   	\textit{Birkhäuser}         % Editora
+	   	(1996).                     % Ano
+	   	
+		\bibitem{e-mail}
+			Contato: e-m@il.com
+			
+	\end{thebibliography}
+
+	Cada item da lista \env{thebibliography} é iniciado pelo comando
+\cs{bibitem}, que recebe como argumento compulsório o rótulo, ou nome,
+que se lhe quer atribuir. Este comando é análogo ao \cs{label}, que
+utilizamos para nomear equações, figuras, tabelas, seções, etc.
+
+	Com a lista definida, podemos citar qualquer um de seus itens utilizando
+o comando \cs{cite}, cujo argumento obrigatório é o rótulo do item
+que ser quer referenciar. Por exemplo, o comando \cs[Gratzer:1996]{cite} gera
+uma referência para o item \cite{Gratzer:1996} da lista, isto é, o livro de
+G.~Grätzer. É simples assim. E como no caso de equações, figuras, etc, qualquer
+alteração na lista de referências é automaticamente tratada pelo \LaTeX\ (você
+deve apenas lembrar-se de compilar duas vezes).
+	
+	% Observe que na primeira compilação e após qualquer alteração nos
+	% rótulos da lista, você obtém o aviso
+	%
+	% LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+	
+	Note que o conteúdo do (bib)item é totalmente arbitrário, como ilustra o
+item \cite{e-mail}. Realmente: você pode ainda inserir figuras, tabelas
+etc, embora isto não seja usual. Além disso, o título ``Referências'' é
+inserido automaticamente.
+
+	% Você obterá "References" se tiver esquecido de carregar o pacote babel
+	% (opção "brazil").
+
+	Finalmente, observe que o ambiente \env{thebibliography} requer um
+parâmetro obrigatório (um ``\texttt{-}\rlap{,}'' no caso). Trata-se de uma
+\emph{estimativa} do espaço horizontal ocupado por cada rótulo que precede o
+item \emph{no documento de saída}. Dito de outra forma, é uma estimativa do
+espaço ocupado pelo ``1'' em ``[1]'' etc (uma regra prática é usar 9 para
+até nove referências, 99 para até noventa e nove, e assim sucessivamente).
+
+	\vfill % Análogo a \hfill, só que na vertical: "vertical fill"
+	
+\noindent\textbf{dica:} se você estiver utilizando o pacote \texttt{hyperref}
+(veja o preâmbulo), o comando \cs{cite} gerará também um \foreign{hiperlink}
+para o item da lista. Experimente: insira o pacote e recompile!
+
+\end{document}

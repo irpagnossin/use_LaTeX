@@ -1,0 +1,52 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}	
+	\usepackage[brazil]{babel}
+	\usepackage{ragged2e}
+	\usepackage{xcolor}
+	\usepackage{SIunits}
+	
+	% Você já sabe para que serve isso? Uma dica: exceto pelos comandos \RaggedRight e cia, que estão sendo demonstrados aqui, onde NO TEXTO há comandos como \textit, \slshape etc?
+	\newcommand{\ambiente}[1]{{\normalfont\color{orange!70!black} #1}}
+	\newcommand{\arquivo}[1]{{\normalfont\color{green!50!black} #1}}
+	\newcommand{\cola}[1]{{\normalfont\ttfamily #1}}
+	\newcommand{\comando}[1]{{\normalfont\sffamily\textbackslash\color{blue!30!black} #1}}
+	\newcommand{\pacote}[1]{{\normalfont\color{red!70!black} #1}}
+	
+	% Espaço extra entre parágrafos. Note que se trata de um comprimento elástico.
+	\setlength{\parskip}{0.5\baselineskip plus 0.5\baselineskip}
+	
+	% Este comprimento foi criado para restaurar a endentação quando usarmos \raggedright. Ao utilizarmos este comando, ele automaticamente define \parindent = 0pt.
+	\newlength{\myparindent}
+	\setlength{\myparindent}{\parindent}
+		
+	% Parâmetros do pacote ragged2e.
+	%\setlength{\RaggedRightRightskip}{0em plus 3em}
+	\setlength{\RaggedRightParindent}{\parindent}
+	
+\begin{document}
+	
+	Neste curso você aprendeu como alinhar seu texto pela margem esquerda, pela direita ou pelo centro da página. Para isso você utiliza ou as declarações \comando{raggedright} (texto ``rugoso à direita''), \comando{raggedleft} e \comando{centering}, ou ainda os ambientes \ambiente{center}, \ambiente{flushright} e \ambiente{flushleft} (``empurrar o texto para a esquerda'').
+	
+	\raggedright % <-- Utiliza a versão padrão do alinhamento à esquerda.
+	\setlength{\parindent}{\myparindent} % <-- Recupera a endentação neste parágrafo.
+	Mas esses comandos têm um problema: eles praticamente inibem a separação silábica. Como resultado, o texto torna-se demasiadamente ``rugoso''; visualmente desagradável. Isto acontece porque é inserido no final (e/ou no começo) de cada linha um espaço com comprimento arbitrariamente elástico (\comando{fill}) que torna muito mais favorável para o \TeX\ expandí-lo à vontade (para preencher a linha) a separar alguma palavra. Este parágrafo, em especial, sofre este efeito!
+		
+	\hfill$\unit{3}{em} = \text{largura de MMM}$ % <-- Compare a extensão horizontal de MM com a rugosidade à direita do texto.
+	
+	\RaggedRight % <-- Utiliza a versão do pacote ragged2e do alinhamento à esquerda.
+	Uma maneira de contornar este problema é utilizar o pacote \pacote{ragged2e}, que define as declarações \comando{RaggedRight}, \comando{RaggedLeft} e \comando{Centering} (note as letras maiúsculas), que funcionam da mesma forma que as declarações que você conhece, com a diferença de que o espaço no final (e/ou no começo) de cada linha pode expandir até certo ponto (\unit{2}{em} é o padrão). E o resultado torna-se bem melhor, como você pode ver aqui.
+		
+	No caso do \comando{RaggedRight} este espaço tem comprimento definido por \comando{RaggedRightRightskip}, e você pode alterá-lo com o comando \comando{setlength} \emph{no preâmbulo}. Por exemplo, vá até o preâmbulo deste documento e descomente a instrução que torna este parâmetro igual a \cola{0em plus 3em}. O comprimento natural é nulo, o que significa que nosso objetivo é que o \LaTeX\ produza linhas de comprimento \comando{textwidth}: nesta situação não é necessário adicionar espaço algum à direita da linha para preenchê-la. Por outro lado, a componente elástica deste comprimento (\cola{plus 3em}) dá ao \LaTeX\ liberdade de inserir algum espaço ali \emph{se precisar}, mas só até \unit{3}{em}. Então, o resultado é um texto com rugosidade de \emph{até} \unit{3}{em}.
+	
+	Experimente também alterar o comprimento natural desta cola e veja o resultado: para valores positivos o texto fica menor que \comando{textwidth}; para valores negativos, fica maior. Mas é o caráter elástico da cola que resulta na rugosidade.
+		
+	\justifying % <-- Retorna o texto ao alinhamento à esquerda e à direita (justificado).
+	Outro ``problema'' da abordagem padrão do LaTeX é que não existe um comando que retorne o texto ao alinhamento à esquerda e à direita (texto justificado). Para fazer isso você deve controlar o escopo das declarações e dos ambientes. Isto também pode ser feito com os comandos do pacote \pacote{ragged2e}, mas ele define também a declaração \comando{justifying}, que faz isso muito mais facilmente: basta digitá-lo para retornar ao texto justificado.
+	
+	Além das declarações, existem também os ambientes: \ambiente{FlushLeft}, \ambiente{FlushRight} e \ambiente{Center} (note as letras maiúsculas). A diferença entre os ambientes e as declarações é que aqueles inserem um espaço vertical extra antes e após o ambiente.
+	
+	Junto com este arquivo você recebeu a documentação do pacote \pacote{ragged2e}: o arquivo \arquivo{ragged2e.pdf}. Leia as seções 1 a 4 para conhecer outras facilidades que este pacote lhe oferece. E aproveite para acostumar-se a olhar a documentação de cada pacote, que é o recurso mais detalhado sobre eles.
+	
+\end{document}
+

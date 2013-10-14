@@ -1,0 +1,62 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	%\usepackage[brazil]{babel} % <-- Traduz "References" para "Referências"
+	\usepackage{xcolor}	
+\begin{document}
+
+	% Este é um exemplo de lista de referências bibliográficas. Ela é um pouco
+	% diferente das anteriores, mas a idéia é a mesma. Sua vantagem é que o
+	% comando \bibitem, análogo ao \item, recebe um argumento obrigatório que é
+	% justamente o rótulo daquele item (ou daquela referência, se você preferir).
+	% Isto evita que você tenha de ficar digitando \label para cada item.
+	
+	Citando Kopka: \cite{Kopka:1999}.
+	
+	\begin{thebibliography}{+}
+	
+	  \bibitem{Kopka:1999}          % Rótulo
+	    H. Kopka e P. W. Daly,      % Autor(es)
+	    \textsl{A guide to \LaTeX}, % Título
+	    Addison-Wesley              % Editora
+	    (1999).                     % Ano
+	    
+	  \bibitem{Gratzer:1996}        % Rótulo
+	   	G. Grätzer,                 % Autor(es)
+	   	\textbf{Math into \LaTeX},  % Título
+	   	\textit{Birkhüaser}         % Editora
+	   	(1996).                     % Ano
+	   	
+		\bibitem{e-mail}
+			Talvez meu e-mail e telefone para contato.
+			
+	\end{thebibliography}	
+
+	% Perceba que o ambiente thebibliography recebe um argumento ("+", no caso).
+	% Trata-se apenas de um ou mais caracteres cuja dimensão aproxima-se daquela
+	% utilizada pelos símbolos que precedem os ítens. Ele serve para que o LaTeX
+	% possa reservar a quantidade certa de espaço para esses símbolos, visando
+	% manter os ítens alinhados. É comum você ver "9" ou "99" no lugar de "+" e
+	% talvez seja o mais indicao. Isto é, use "9" se você tem até 9 referências,
+	% "99" se você tem até 99 e assim por diante.
+	
+	% Você percebeu que, embora o ambiente thebibliography ajude a construir uma
+	% lista de referências bibliográficas, o leiaute de cada item é organizado
+	% por você, o autor? Isto vai de encontro com os princípios de organização
+	% lógica do LaTeX e há uma maneira melhor de gerenciar referências: através
+	% de um programa chamado BibTeX. Mas isto uma história para outra ocasião.
+	
+	
+	
+	% ------------------------------------------------------------------------
+	% obs.: ao comentar e descomentar a linha que carrega o pacote babel, você
+	% pode obter o seguinte erro na compilação:
+	%
+	% Package babel Error: you haven't defined the language ??? yet.
+	%
+	% Se isto acontecer, simplesmente recompile que o erro desaparecerá.
+	% Pergunte-me por que isso acontece.
+	% ------------------------------------------------------------------------
+	
+	
+\end{document}

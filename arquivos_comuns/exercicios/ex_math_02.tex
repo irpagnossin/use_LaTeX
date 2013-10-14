@@ -1,0 +1,180 @@
+\documentclass[a4paper,10pt,twocolumn,landscape]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	\usepackage{calc}
+	\usepackage{wallpaper}
+	\usepackage[margin=2cm]{geometry}
+	\usepackage{SIunits}
+	\usepackage{amsmath}
+	\usepackage{paralist}
+
+	% Minhas definições
+	\input{defs}
+
+	\newcounter{passo}	
+	\newenvironment{passo}{%
+		\refstepcounter{passo}%
+		\penalty-200
+		\noindent\colorbox{yellow!60!black}{\makebox[\columnwidth-\fboxsep*2][c]{\textbf{\color{white}Passo~\thepasso}}}\par\smallskip
+	}{\par\medskip}
+
+	% Papel de parede
+	\CenterWallPaper{1}{../figuras/leao-pensador-wattermark.png}
+
+	% Configuração extra: espaço entre as colunas.
+	\setlength{\columnsep}{2cm}
+	
+	\renewcommand{\footnoterule}{{\null\hfill\rule{0.5\columnwidth}{0.5pt}\hfill\null}}
+	
+\begin{document}
+
+	\begin{center}\includegraphics[width=0.8\columnwidth]{../figuras/LogotipoCursoLaTeX_v2}\end{center}
+
+	\section*{Expressões matemáticas no \LaTeX\ --- Série 2}	
+	\begin{center}
+		\bfseries\color{red}
+		Atenção: antes de fazer esta série, faça a primeira.
+	\end{center}
+		
+	\begin{exercicio}
+	Vamos complicar um pouco? Seu objetivo agora é construir a equação
+	\[
+	K_\nu (z) = \sqrt{\frac{\pi}{2z}} \frac{e^{-z}}{\left( \nu - \frac{1}{2} \right)!} \sum_{r = 0}^\infty
+		\frac{ \left(\nu - \frac{1}{2}\right)! }{ r! \left( \nu - r - \frac{1}{2} \right)! } \left(2z\right)^{-r}
+			\int\limits_0^\infty e^{-t}\, t^{\nu + r - 1/2}\, dt,
+	\]
+	mas você não fará isto sozinho, pelo menos não agora\rlap{.}\footnote{Você notou como a equação faz parte da oração? Além da vírgula após a equação, o parágrafo continua normalmente (a palavra ``mas'' não sofreu tabulação).} Depois de terminado, envie seu arquivo de instruções com a expressão acima para o professor através do moodle (você \emph{não} precisa enviar cada um dos passos abaixo).
+	
+	Independentemente do tamanho, toda expressão matemática é construída aos poucos. Então vamos juntos: siga as instruções dos passos abaixo e muito em breve você perceberá o macete.
+	
+	Mas antes, duas dicas: primeira, utilize \verb|\[| e \verb|\]| (estilo de exibição) ao invés de \verb|\(| e \verb|\)| (estilo de texto) para melhorar a aparência;\footnote{Você não está sob nenhum tipo de restrição vertical, então por que restringir sua expressão?} segunda, recompile seu arquivo a cada nova alteração e tenha certeza de ter acertado antes de continuar.
+	
+	Fique atento a dois erros que você fatalmente cometerá: primeiro, esquecer de abrir ou de fechar alguma chave. Segundo, errar o nome de um comando. Obserque que o TeXnicCenter coloca em azul os comandos que ele conhece. Isto serve para te ajudar. Portanto, use!
+	
+	Sem mais delongas, vamos lá! Crie um novo arquivo \texttt{tex} e\dots
+	
+	\bigskip
+	
+	%---------------------------------------------------------
+	\begin{passo}\label{ex:A} Construa a seguinte expressão, que corresponde à extrema esquerda da equação acima:
+	\[K_\nu(z) = \sqrt{\frac{\pi}{2z}}\]
+	\end{passo}
+	
+	%---------------------------------------------------------
+	\begin{passo}\label{ex:nu-1/2} Comece uma nova expressão (isto é, digite \verb|\[|\dots\verb|\]|) e reproduza o resultado abaixo.
+	
+	\[\left( \nu - \frac{1}{2} \right)!\]
+	
+	\noindent obs.\smallskip: não se esqueça de usar \verb|\left| e \verb|\right|.
+	\end{passo}	
+	
+	%---------------------------------------------------------	
+	\begin{passo}\label{ex:B}
+	
+	Comece outra nova expressão, mas desta vez, ao invés de digitá-la toda, copie o passo \ref{ex:nu-1/2} para o denominador (segundo argumento de \verb|\frac|):	
+	\[
+		\frac{e^{-z}}{\left( \nu - \frac{1}{2} \right)!}
+	\]	
+	\noindent obs.: observe como os parênteses se adequam automaticamente à nova situação.
+	\end{passo}
+	%---------------------------------------------------------
+	
+	\bigskip
+	
+	Perceba que a todo momento eu lhe peço para começar uma nova expressão. Deste modo você mantém a expressão simples e, por conseguinte, reduz a possibilidade de erros. Além disso, caso você cometa algum erro, é muito mais fácil encontrá-lo.
+	
+	\bigskip
+	
+	%---------------------------------------------------------
+	\begin{passo}
+	
+	Comece esta nova expressão assim: \verb|\[\frac{}{}\]|. Em seguida, copie o passo \ref{ex:nu-1/2} para os \emph{dois} argumentos de \verb|\frac| e altere o segundo (denominador) para obter	
+	\[
+		\frac{ \left(\nu - \frac{1}{2}\right)! }{ r! \left( \nu - r - \frac{1}{2} \right)! }
+	\]
+	\end{passo}
+	
+	%---------------------------------------------------------		
+	\begin{passo}
+	
+	Vamos trabalhar um pouco em cima da expressão que você criou no passo anterior.
+	Simplesmente adicione $\sum_{r=0}^\infty$ à esquerda para obter	
+	\[
+	\sum_{r = 0}^\infty \frac{ \left(\nu - \frac{1}{2}\right)! }{ r! \left( \nu - r - \frac{1}{2} \right)! }
+	\]
+	\end{passo}	
+	
+	%---------------------------------------------------------	
+	\begin{passo}\label{ex:C}
+	
+	À direita, coloque $(2z)^{-r}$:
+	\[
+		\sum_{r = 0}^\infty\frac{ \left(\nu - \frac{1}{2}\right)! }{ r! \left( \nu - r - \frac{1}{2} \right)! } (2z)^{-r}
+	\]	
+	\end{passo}
+	%---------------------------------------------------------
+	
+	\bigskip
+	
+	Veja: esta é outra maneira de construir uma expressão. Você não precisa criar inúmeras expressões para depois copiá-las para outras\dots\ estamos fazendo isto simplesmente porque é mais fácil. Com um pouco de prática você passará a determinar as etapas de uma expressão mentalmente, mas enquanto isto não acontece, vamos por partes.
+	
+	\bigskip
+	
+	%---------------------------------------------------------
+	\begin{passo}	
+	Reproduza o resultado abaixo numa nova expressão (não se esqueça das chaves e observe que $1/2$ não usa \verb|\frac|)
+	\[
+	t^{\nu + r - 1/2}
+	\]	
+	\end{passo}	
+		
+	%---------------------------------------------------------
+	\begin{passo} Na expressão do passo anterior, coloque $e^{-t}$ à esquerda:	
+	\[
+		e^{-t}\, t^{\nu + r - 1/2}
+	\]
+	dica: coloque o comando \verb|\,| (um pequeno espaço) entre $e^{-t}$ e $t^{\nu + \cdots}$.
+	\end{passo}
+	
+	%---------------------------------------------------------	
+	\begin{passo} Ainda à esquerda, use \verb|\int| para produzir	
+	\[
+		\int\limits_0^\infty e^{-t}\, t^{\nu + r - 1/2}
+	\]	
+	obs.: fica a seu critério utilizar \verb|\limits| ou não.
+	\end{passo}
+	
+	%---------------------------------------------------------
+	\begin{passo} Agora, adicione $dt$ à direita da expressão:	
+	\[
+	\int\limits_0^\infty e^{-t}\, t^{\nu + r - 1/2}\, dt
+	\]	
+	obs.: aqui é importante utilizar \verb|\,| antes de $dt$.
+	\end{passo}	
+	
+	%---------------------------------------------------------
+	\begin{passo} Agora, coloque o passo \ref{ex:C} à esquerda da integral:
+	\[
+		\sum_{r = 0}^\infty\frac{ \left(\nu - \frac{1}{2}\right)! }{ r! \left( \nu - r - \frac{1}{2} \right)! }
+		(2z)^{-r} \int\limits_0^\infty e^{-t}\, t^{\nu + r - 1/2}\, dt
+	\]
+	dica: lembre-se de que o \LaTeX\ ignora os espaços que você digita. Use-os para organizar a expressão.
+	\end{passo}
+	
+	%---------------------------------------------------------
+	\begin{passo} Para terminar, copie os passos \ref{ex:A} e \ref{ex:B}, nesta ordem, para a esquerda:
+	\[
+		K_\nu(z) = \sqrt{\frac{\pi}{2z}} \frac{e^{-z}}{\left( \nu - \frac{1}{2} \right)!} \sum_{r = 0}^\infty\frac{
+		\left(\nu - \frac{1}{2}\right)! }{ r! \left( \nu - r - \frac{1}{2} \right)! } (2z)^{-r}
+		\int\limits_0^\infty e^{-t}\, t^{\nu + r - 1/2}\, dt
+	\]
+	\end{passo}
+	
+	\bigskip
+	
+	É isso aí! Não é tão difícil, é? Não se esqueça de enviar seu arquivo \texttt{tex}.
+	\end{exercicio}
+	
+\end{document}

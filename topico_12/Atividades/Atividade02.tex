@@ -1,0 +1,18 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+\begin{document}
+
+	Estou citando os livros do Helmut Kopka \cite{Kopka:1999} e
+	do George Grätzer \cite{Gratzer:1996}. Eu também posso citá-los
+	de uma só vez: \cite{Kopka:1999,Gratzer:1996}.
+
+	\bibliography{Referencias} % Arquivo .bib
+	\bibliographystyle{plain} % Arquivo .bst
+	
+	% EXPERIÊNCIA: descubra quais são os leiautes de bibliografia
+	% que já estão disponíveis na sua distribuição LaTeX (isto é,
+	% faça uma busca por arquivos .bst). Experimente alguns deles.
+\end{document}
+

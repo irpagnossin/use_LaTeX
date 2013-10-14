@@ -1,0 +1,8 @@
+Keyboard character used is undefined in input encoding xxxxx
+
+Exemplo mínimo:
+\documentclass{article}
+  \usepackage[ascii]{inputenc}
+\begin{document}
+  é
+\end{document}

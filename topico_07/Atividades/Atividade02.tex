@@ -1,0 +1,71 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+\begin{document}
+
+	%----- COMANDOS SEM ARGUMENTOS -----
+	
+	% A instrução abaixo cria o comando \xvec. O primeiro argumento de \newcommand é o nome do comando que queremos criar. O segundo é a definição dele, isto é, a sequência de instruções que será inserida toda vez que digitarmos este novo comando.
+	\newcommand{\xvec}{ x_1, \ldots, x_n }
+
+	% Assim, toda vez que digitarmos \xvec no arquivo de instruções, ele será SUBSTITUÍDO por sua definição (segundo argumento de \newcommand). Dito de outra forma, $\xvec$ é precisamente a mesma coisa que $x_1,\ldots,x_n$:	
+	\[ \xvec \]
+	
+	% Observe que precisamos tomar o cuidado de utilizar \xvec apenas no modo matemático, haja vista que a instrução _ (sublinhado) só pode ser utilizada nele. Para podermos utilizar \xvec indistintamente nos modos parágrafo (texto) e matemático, precisamos redefiní-lo usando o comando \ensuremath:
+	\renewcommand{\xvec}{\ensuremath{ x_1, \ldots, x_n }}
+	
+	% Agora podemos usar \xvec com ou sem $, \( etc:
+	\xvec\ ou \(\xvec\)
+	
+	% Observe que na redefinição de \xvec utilizamos o comando \renewcommand, apropriado para REdefinir comandos já existentes. Se utilizassemos o comando \newcommand, a compilação geraria o erro "command \xvec already defined."
+	
+	%----- COMANDOS COM ARGUMENTOS (OBRIGATÓRIOS) -----
+	
+	% Agora você pode querer definir os comandos \yvec, \zvec, etc. Mas há uma maneira melhor: podemos criar um comando \avec ("a" de arbitrário) que recebe como argumento o nome do vetor:
+	\newcommand{\avec}[1]{\ensuremath{ #1_1, \ldots, #1_n }}
+	
+	% O número 1 entre colchetes indica que há UM argumento compulsório e #1 representa esse argumento na definição. Note que [1] É um argumento opcional do comando \newcommand, já que podemos definir um comando sem argumentos, como \xvec. No entanto, ele REPRESENTA um argumento compulsório (ou opcional; a seguir) de \avec.
+	
+	% Agora podemos criar um vetor arbitrário:
+	\[  \avec{y}     \]
+	
+	\[  \avec{z}     \]
+	
+	\[  \avec \alpha  \]
+
+
+	% No LaTeX, você pode criar comandos com até 9 argumentos. Procure compreender a redefinição de \avec abaixo, um exemplo com 3 argumentos.
+	\renewcommand{\avec}[3]{\ensuremath{ {#1}_{#2}, \ldots, {#1}_{#3} }}
+	
+	\[  \avec \alpha {3} {20}  \]
+
+	% PERGUNTA: por que na última redefinição de \avec há chaves entre #1, #2 e #3?
+
+	%----- COMANDOS COM ARGUMENTOS OPCIONAIS -----
+	
+	% Talvez uma forma ainda mais conveninente de \avec seria a seguinte (note o "x" entre colchetes):
+	\renewcommand{\avec}[3][x]{\ensuremath{ {#1}_{#2}, \ldots, {#1}_{#3} }}
+	
+	% O [x] representa o valor padrão do ÚNICO argumento OPCIONAL de \avec, que aparece em primeiro lugar, por definição do LaTeX.
+	
+	Compare \avec1n com \avec[\alpha]1n.
+	
+	% Isto é, se não passarmos o primeiro argumento entre colchetes (opcional, portanto),  o comando assumirá o valor padrão "x", produzindo x_1,\ldots,x_n. Mas se passarmos um argumento opcional, ele será o nome do vetor.
+	
+	% ---------------------------------------------------------------------------
+	% Resumindo, você pode criar comandos LaTeX com até 9 argumentos obrigatórios
+	% ou com 1 opcional e até 8 obrigatórios (a soma ainda é nove). Assim:
+	%
+	% \newcommand{\comando}{definição}    <-- s/ argumento
+	% \newcommand{\comando}[1]{definição} <-- 1 argumento compulsório
+	% \newcommand{\comando}[2]{definição} <-- 2 argumentos compulsórios
+	% ...
+	% \newcommand{\comando}[9]{definição} <-- 9 argumentos compulsórios
+	%
+	% \newcommand{\comando}[9][padrao]{definição} <-- 1 argumento opcional e 8
+	%                                             compulsórios. Se o parâmetro
+	%                                             opcional não for passado,
+	%                                             assume o valor "padrao."
+	% ---------------------------------------------------------------------------
+	
+\end{document}

@@ -1,0 +1,41 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}	
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+\begin{document}
+
+	Este é um pedaço de texto com uma expressão matemática no meio, em estilo de
+	texto: \(\frac{1}{2}\). Observe que neste estilo o parágrafo prossegue 
+	normalmente. Para que isto aconteça, o \LaTeX\ pode precisar reduzir a
+	dimensão vertical da expressão, um comportamento ao qual você \emph{não} deve
+	resistir.
+		
+	Este é um pedaço de texto com uma expressão matemática no meio, em estilo de
+	exibição: \[\frac{1}{2}.\] Neste estilo a expressão toma uma linha inteira
+	para si, ``quebrando'' o parágrafo no meio, mas não terminando-o (veja que 
+	não há endentação aqui). Perceba ainda que, diferentemente do estilo de 
+	texto, neste o ponto-final imediatamente após a expressão deve ser colocado
+	\emph{dentro} do modo matemático (experimente colocar fora e veja o que 
+	acontece).
+	
+	Ainda que você não deva fazer isso frequentemente, é possível suprimir a
+	redução do espaço vertical ocupado por uma expressão no estilo de texto.
+	Para isso, utilize o comando \verb|\displaystyle|, como aqui: \(\displaystyle
+	\frac{1}{2}\). O parágrafo ainda prossegue normalmente, mas para acomodar
+	esta expressão a distância entre as linhas teve de ser aumentada. Esta ação
+	perturba a distribuição dos tipos no parágrafo, prejudicando a visualização.
+	Às vezes é necessário, mas procure evitar fazê-lo.
+	
+	Analogamente, você pode requerer que a dimensão vertical de uma expressão
+	matemática isolada numa linha seja reduzida, como aqui: \[\textstyle\frac{1}
+	{2}.\] O comando para fazer isso é o \verb|\textstyle|.
+	
+	% O comando \verb impede a interpretação de seu argumento pelo LaTeX, 
+	% permitindo-lhe escrever caracteres especiais, como a barra invertida,
+	% sem utilizar comandos do LaTeX (\textbackslash, por exemplo). 
+	% Diferentemente de qualquer outro comando, o argumento de \verb não é
+	% delimitado por chaves, mas por qualquer caráter não-alfabético: você
+	% só precisa utilizá-lo no início e no fim do argumento. Mas atenção: o
+	% comando \verb NÃO pode ser utilizado como argumento de outros comandos.	
+	
+\end{document}

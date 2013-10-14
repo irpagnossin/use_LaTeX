@@ -1,0 +1,72 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	
+	\newcommand{\ambiente}[1]{{\normalfont\color{orange!70!black} #1}}
+	\newcommand{\comando}[1]{{\normalfont\sffamily\textbackslash\color{blue!30!black} #1}}
+	\newcommand{\foreign}[1]{\textsl{#1}}
+\begin{document}
+
+	O \LaTeX\ oferece três listas pré-definidas. A primeira e mais usual delas é a \ambiente{itemize}, na qual cada item é precedido por um símbolo:
+
+	\begin{itemize}	
+		\item Maçã é vermelha		
+		\item Uva é roxa
+		\item Banana é amarela
+		\item Laranja é\dots\ laranja!
+	\end{itemize}
+
+	A segunda lista, também bastante utilizada, é a \ambiente{enumerate}, que precede	cada item por um número \emph{arábico} e cuja sequência é automaticamente	gerenciada (experimente alterar a posição de algum dos itens e recompile):
+
+	\begin{enumerate}
+		\item Maçã é vermelha
+		\item Uva é roxa
+		\item Banana é amarela
+		\item Laranja é\dots\ laranja!
+	\end{enumerate}
+
+	Finalmente, a lista \ambiente{description} serve para descrever seus itens. Por isso ela utiliza como símbolo o argumento \emph{opcional} do comando \comando{item}:
+
+	\begin{description}
+		\item [Maçã] é vermelha
+		\item [Uva] é roxa
+		\item [Banana] é amarela
+		\item [Laranja] é\dots\ laranja!
+	\end{description}
+
+	O argumento opcional do comando \comando{item}, quando fornecido, substitui o	símbolo-padrão das duas primeiras listas. Por exemplo:
+
+	\begin{enumerate}
+		\item[a)] Maçã é vermelha
+		\item[b)] Uva é roxa
+		\item[c)] Banana é amarela
+		\item[d)] Laranja é\dots\ laranja!
+	\end{enumerate}
+
+	Mas este não é um exemplo de uso recomendado. Como regra geral, forneça o	argumento opcional de \comando{item} apenas na lista \ambiente{description}. Em outras situações, prefira redefinir os símbolos da lista para todo o documento ou crie a sua própria lista, conforme veremos.
+
+	Você pode inserir listas dentro de outras listas, criando assim ítens e sub-itens, até quatro níveis de ``profundidade.'' Por exemplo:
+
+	\begin{enumerate}
+		\item Item 1 do nível 1
+		\begin{enumerate}
+			\item Item 1 do nível 2
+			\begin{enumerate}
+				\item Item 1 do nível 3
+				\begin{enumerate}
+					\item Item 1 do nível 4
+				\end{enumerate}
+			\end{enumerate}
+		\end{enumerate}
+
+		\item Item 2 do nível 1
+		\item etc
+	\end{enumerate}
+
+	Se você precisar de mais do que isso, reveja a organização do seu documento. E se insistir em inserir mais uma lista, qualquer que seja ela, a compilação	apresentará o erro \foreign{too deeply nested}. Mas se a necessidade for legítima, você precisará criar suas próprias listas (não veremos isto aqui).
+
+	Uma observação: toda lista começa com um item, isto é, com um \comando{item}! Se você se esquecer disso ou começar a escrever antes de digitar \comando{item}, obterá o erro de compilação \foreign{something's wrong -- perhaps missing item}.
+
+\end{document}

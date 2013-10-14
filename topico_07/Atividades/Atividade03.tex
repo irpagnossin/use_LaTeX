@@ -1,0 +1,39 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}	
+	\usepackage{xcolor} % <-- O pacote "xcolor" é uma evolução do "color".
+\begin{document}
+
+	% Os símbolos da lista "itemize" são definidos pelos comandos \labelitemi,
+	% \labelitemii, \labelitemiii e \labelitemiv, cujas definições são apenas o
+	% símbolo a ser introduzido por \item.
+	
+	% Experimente redefiní-los, como abaixo, e veja o resultado.
+
+	\renewcommand{\labelitemi}  {\( \Rightarrow \)}
+	\renewcommand{\labelitemii} {\( \to         \)}
+	\renewcommand{\labelitemiii}{\( +           \)}
+	\renewcommand{\labelitemiv} {\textcolor{red}{:-)}}
+
+
+	\begin{itemize}
+		\item Item 1 do nível 1
+
+		\begin{itemize}
+			\item Item 1 do nível 2
+
+			\begin{itemize}
+				\item Item 1 do nível 3
+
+				\begin{itemize}
+					\item Item 1 do nível 4
+				\end{itemize}
+			\end{itemize}
+		\end{itemize}
+
+		\item Item 2 do nível 1
+		\item etc
+	\end{itemize}
+
+\end{document}

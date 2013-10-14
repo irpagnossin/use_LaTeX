@@ -1,0 +1,19 @@
+%----------------------------------------------------------------------------
+\savebox{\meuparbox}{
+	\begin{minipage}[t]{1.9\textwidth}
+		\setlength{\parindent}{0.1\textwidth}
+		\tiny\lipsum[1-3]
+	\end{minipage}}
+%----------------------------------------------------------------------------
+\begin{tikzpicture}
+	\node (L) {\scalebox{0.5}{\usebox{\meuparbox}}};
+	\draw [box] (L.south west) rectangle (L.north east);	
+	
+	% A linha-base
+	\draw [baseline] ($(L.base west) - (0.05\textwidth,0)$) --
+				($(L.base east) + (0.05\textwidth,0)$);
+				
+	% Ponto-de-referência
+	\fill (L.base west) circle (0.015\textwidth);
+			
+\end{tikzpicture}

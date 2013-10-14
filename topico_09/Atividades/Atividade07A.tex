@@ -1,0 +1,54 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{lipsum}
+	\usepackage{xcolor}
+	\usepackage{graphicx}	
+	\usepackage{subfigure} % O pacote sugfigure facilita a criação de estruturas como fig.1, fig.1(a) etc
+	
+	\graphicspath{
+		{Figuras/EPS/}
+		{Figuras/JPG/}
+		{Figuras/PDF/}
+		{Figuras/PNG/}
+		}
+	
+	\input{minhasconfiguracoes}
+	
+\begin{document}
+
+	\lipsum[1]
+	
+	\begin{figure}[tb]
+		\hfill\subfigure
+				[Esta é a legenda da figura à esquerda, figura~\ref{fig:figA}. Observe que com o pacote \pacote{subfigure} não é mais necessário utilizar \ambiente{minipage}s, tornando a sintaxe mais simples.]
+				{\label{fig:figA}\includegraphics[width=0.45\textwidth]{Tei-Gi}}% <-- Para quê serve este comentário?
+		\hfill
+		\subfigure
+				[Esta é a legenda da figura à direita, figura~\ref{fig:figB}. O tamanho da fonte, o alinhamento do texto e outras configurações das legendas são parametrizadas pelo pacote \pacote{subfigure}, de modo que podem ser facilmente modificadas.]
+				{\label{fig:figB}\includegraphics[width=0.45\textwidth]{Tei-Gi}}% <-- Para quê serve este comentário?
+		\hfill\null % <-- Você pode trocar \hfill\null por \hspace*{\fill}
+		
+		\caption{esta é a legenda comum às duas figuras. Observe que se atribuirmos um rótulo (comando \comando{label}) a cada uma das sub-figuras (no comando \comando{subfigure}) e à figura como um todo (no ambiente \ambiente{figure}), podemos utilizar o comando \comando{ref} para gerar as referências \ref{fig:figA}, \ref{fig:figB} e~\ref{fig:figAeB}.}
+		\label{fig:figAeB}
+	\end{figure}
+		
+	% Tarefas extras:
+	% 1) Modifique os \hfill acima de modo que as duas figuras distem entre si de 2em (dica: use o comando \qquad).
+	% 2) Faça outra alteração de modo que a figura à esquerda fique encostada na margem esquerda e a da direita, na margem direita.
+	% 3) Na sub-figura deste exemplo, a legenda aparece assim:
+	%
+	%           (a) legenda legenda legenda legenda
+	%           legenda  legenda   legenda  legenda
+	%           legenda  legenda  legenda  legenda.
+	%
+	% Consulte a documentação do pacote subfigure e altere este arquivo de modo que a legenda apareça assim:
+	%
+	%           (a) legenda legenda  legenda legenda
+	%               legenda  legenda legenda legenda
+	%               legenda legenda legenda legenda.
+	%
+	% Isto é, faça com que (a) e (b) fique "fora" do corpo da legenda. Dica: veja a figura 8 e a seção 2 da documentação.
+	
+\end{document}

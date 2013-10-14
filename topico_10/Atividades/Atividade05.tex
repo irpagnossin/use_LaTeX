@@ -1,0 +1,33 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	\usepackage{multirow} % <-- Define o comando \multirow.
+	
+	\input{minhasconfiguracoes}
+	
+	\setlength\parskip\baselineskip
+\begin{document}
+	
+	Este arquivo ilustra a utilização do comando \comando{multirow}, definido pelo pacote \pacote{multirow}, que facilita a unificação de células de uma mesma \emph{coluna}.
+
+	% O pacote multirow define o comando \multirow, que facilita a união de células verticais. Sem ele você teria de utilizar o comando \raisebox para SIMULAR esta união. A sintaxe do comando \multirow é a seguinte:
+	%
+	% \multirow{número de linhas}{largura}{conteúdo}
+	
+	\linhabase\hfill
+	\begin{tabular}[c]{|c|c|c|}
+		\hline
+		\multirow{2}{10em}{\centering Células 11 e 21} & Célula 12 & Célula 13 \\
+		\cline{2-3}
+		                                               & C. 22     & C. 23     \\
+		\hline
+		\multirow{2}{10em}{\centering Células 31 e 41} & Célula 32 & Célula 33 \\
+		\cline{2-3}
+		                                               & 42        & 43        \\
+		\hline
+	\end{tabular}%
+	\hfill\null
+			
+\end{document}

@@ -1,0 +1,2 @@
+
+Aplicativo de demonstração de rotação de uma caixa no LaTeX: https://github.com/cepa-usp/AI-0184

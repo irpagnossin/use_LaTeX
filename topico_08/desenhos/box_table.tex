@@ -1,0 +1,39 @@
+%----------------------------------------------------------------------------
+\savebox{\meuparbox}{\tiny\color{black!40}%
+	\begin{tabular}{c|c|c}
+		Camadas	&	Espessuras (\nano\metre) & Observações \\	\hline \hline
+		GaAs & \multicolumn{2}{c}{Substrato semi-isolante (001)} \\ \hline
+		GaAs & 50 & \foreign{Buffer} \\
+		\hline
+		$[(\text{AlAs})_5(\text{GaAs})_{10}]\times10$	&	84	&	Super-rede (SR)	\\
+		\hline
+		GaAs & 20 & \foreign{Buffer} \\
+		\hline
+		\color{blue!40} GaAs:Si & $\sim\unit{1}{mc}$ & 	
+			$n_\text{Si}=\unit{4}{\times\terad\centi\rpsquare\metre}$ \\
+		\hline
+		\color{blue!40} GaAs & 30 & Barreira anterior \\
+		\hline
+		$\color{blue!40}\mathrm{In_yGa_{1-y}As}$ & 10 & QW
+		 ($\mathrm{y}=16,534\%$)\\
+		\hline
+		\color{blue!40} GaAs & 7 & Barreira posterior \\
+		\hline
+		\color{blue!40} GaAs & 170 & \foreign{Buffer} \\
+		\hline
+		GaAs:Si & 10 & $\unit{3,0\times10^{17}}{\centi\rpcubic\metre}$ \\
+		\hline
+	\end{tabular}}		
+%----------------------------------------------------------------------------
+\begin{tikzpicture}
+	\node (L) {\scalebox{0.85}{\usebox{\meuparbox}}};
+	\draw [box] (L.south west) rectangle (L.north east);							
+
+	% A linha-base
+	\draw [baseline] ($(L.base west) - (0.05\textwidth,0)$) --
+		($(L.base east) + (0.05\textwidth,0)$);
+
+	% Ponto-de-referência
+	\fill (L.base west) circle (0.015\textwidth);
+	
+\end{tikzpicture}

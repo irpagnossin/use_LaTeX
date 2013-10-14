@@ -1,0 +1,32 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}	
+\begin{document}
+
+	Adição: \( a + b \).
+	
+	Subtração: \( a - b \).
+	
+	Multiplicação: \( a b \) ou \( a\cdot b \) ou \( a \times b \).
+	% Não use ponto-final, asterisco ou xis representar a multiplicação no LaTeX:
+	% Isso é muito feio: \( a.b \) ou \(a * b\) ou \( a x b\). % Descomente esta linha para ver.
+	
+	Divisão: \(a/b\) ou \(\frac{a}{b}\).
+	% obs.: existe também o comando TeX \over. EVITE UTILIZÁ-LO.
+	
+	Radiciação: \( \sqrt{a + b} \) e \(\sqrt[n]{a + b}\).
+
+	Sobrescritos e expoentes: \( a^{b} \), \(a^{bc}\), \(a^{b^{c}}\).
+	% Cuidado para não atribuir mais de um expoente ou sobrescrito a um mesmo símbolo:
+	% \( a^b^c \) gerará um erro ao ser compilado (descomente esta linha e veja).
+		
+	Subscritos e índices: \( a_{b} \), \(a_{bc}\), \(a_{b_{c}}\).
+	% Cuidado para não atribuir mais de um índice ou subscrito a um mesmo símbolo:
+	% \( a_b_c \) gerará um erro ao ser compilado (descomente esta linha e veja).
+	
+	\bigskip % <-- Este comando do TeX aumenta um pouco a distância entre os parágrafos acima e abaixo.
+
+	Note que \(a^bc\) é diferente de \(a^{bc}\). Analogamente, \(a_bc \ne a_{bc}\).
+
+\end{document}

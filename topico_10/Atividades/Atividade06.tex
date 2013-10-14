@@ -1,0 +1,53 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	\usepackage{multirow} % <-- Define comandos como \toprule e \midrule, além de melhorar a aparência de tabelas.
+	\usepackage{booktabs}
+		
+	\input{minhasconfiguracoes}
+	
+	\setlength\parskip\baselineskip	
+\begin{document}
+
+	Este arquivo ilustra a utilização do pacote \pacote{booktabs}, que melhora a aparência de tabelas tanto por modificar o espaçamento vertical entre as linhas como por definir comandos como \comando{toprule}, \comando{midrule} e \comando{bottomrule}, que imprimem linhas de espessuras diferentes, cada qual apropriada para um local diferente na tabela.
+
+	% Ao invés de \hline e \cline, procure utilizar os comandos \toprule, \midrule e/ou \cmidrule, e \bottomrule, definidos pelo pacote booktabs. Eles produzem linhas de espessura diferente que melhoram a aparência da tabela. Além disso, o pacote melhora o espaçamento entre as linhas.
+
+	\linhabase\hfill
+	\begin{tabular}[c]{ccc}
+		\toprule
+		\multirow{4}{5em}{\centering União\\vertical} & Célula 12 & Célula 13 \\
+		\cmidrule{2-3}
+		                         & C. 22     & C. 23     \\
+		\cmidrule{2-2}
+		                         & 32        & 33        \\
+		                         & 42        & 43        \\
+		\bottomrule
+	\end{tabular}%
+	\hfill\null
+		
+	% Dicas para construir uma tabela inteligível, segundo S. Fear, em "Publication quality tables in LaTeX" (arquivo booktabs.pdf no CTAN (Comprehensive TeX Archive Network, www.ctan.org):
+	%
+	% 1) NUNCA utilize linhas verticais;
+	% 2) NUNCA utilize linhas duplas;
+	% 3) Coloque unidades de medidas no título da coluna;
+	% 4) Não utilize " ou "idem" para indicar uma repetição. Ao invés disso, deixe a célula vazia ou repita a anterior.
+			
+	Compare com a mesma tabela, sem utilizar \pacote{booktabs} (ie, sem utilizar os comandos \comando{toprule} e cia):
+
+	\linhabase\hfill
+	\begin{tabular}[c]{ccc}
+		\hline
+		\multirow{4}{5em}{\centering União\\vertical} & Célula 12 & Célula 13 \\
+		\cline{2-3}
+		                         & C. 22     & C. 23     \\
+		\cline{2-2}
+		                         & 32        & 33        \\
+		                         & 42        & 43        \\
+		\hline
+	\end{tabular}%
+	\hfill\null
+				
+\end{document}

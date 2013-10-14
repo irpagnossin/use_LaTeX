@@ -1,0 +1,64 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	\usepackage{lipsum} % Lorem ipsum
+\begin{document}
+
+	\newcounter{meucontador}
+	
+	% O comando \newenvironment cria um ambiente novo. O primeiro argumento
+	% é o nome deste ambiente, o segundo contém as instruções que devem ser
+	% executadas no \begin, enquanto o terceiro contém as instruções que devem
+	% ser executadas no \end.
+	\newenvironment
+		% ------------------
+		% Primeiro argumento		
+		% ------------------
+		{minhalista}
+		% -----------------
+		% Segundo argumento
+		% -----------------
+		{\begin{list}
+			{(\roman{meucontador})}
+			{\usecounter{meucontador}
+			 \setlength{\itemindent}{\parindent}
+			 \setlength{\itemsep}{0pt}
+			 \setlength{\rightmargin}{\leftmargin}
+			}
+		}
+		% ------------------
+		% Terceiro argumento
+		% ------------------
+		{\end{list}}
+	
+	
+	
+	
+	% Agora que a "minhalista" está definida, podemos utilizá-la!
+	\lipsum[1]
+	
+	\begin{minhalista}
+		\item \label{paragrafo 2}
+					\lipsum[2] % Item 1.
+		
+		\item \lipsum[3] % Item 2.
+					
+		\item \lipsum[4] % Item 3.
+		
+		\item Maçã é vermelha		
+		\item Uva é roxa
+		\item Banana é amarela
+		\item Laranja é\dots\ laranja!		
+	\end{minhalista}
+	
+	
+	O segundo parágrafo do texto \textit{Lorem ipsum} está no item
+	\ref{paragrafo 2} da lista acima.
+
+	% obs.: analogamente ao \newcommand, existe também o \renewenvironment,
+	% cuja sintaxe é exatamente a mesma do \newenvironment e cuja utilização
+	% você pode deduzir.
+
+\end{document}

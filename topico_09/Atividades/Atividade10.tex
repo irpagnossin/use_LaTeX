@@ -1,0 +1,28 @@
+% Este arquivo mostra como inserir uma imagem de fundo no documento através do pacote tikz
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage{lipsum}	
+	\usepackage[margin=3cm]{geometry}
+		
+	% O pacote tikz é um conjunto de macros para a construção de figuras. Particularmente, ele permite o posicionamento arbitrário de elementos gráficos no documento, como centralizar uma figura, à imagem do que faz o pacote wallpaper.
+	\usepackage{tikz}
+	
+	\graphicspath{
+		{Figuras/EPS/}
+		{Figuras/JPG/}
+		{Figuras/PDF/}
+		{Figuras/PNG/}
+		}
+		
+\begin{document}
+
+	\begin{tikzpicture}[remember picture,overlay]
+		\node [opacity=0.50] at (current page.center) {\includegraphics[height=\paperheight,width=\paperwidth]{Tei-Gi}};
+	\end{tikzpicture}
+	
+	\lipsum[1-10]
+	
+	% Note que o ambiente acima equivale ao comando \ThisCenterWallPaper, haja vista que insere a figura apenas na página que contém o ambiente tikzpicture. Além disso, cabe ressaltar que ao efetuar posicionamento arbitrário de elementos gráficos, como acima, frequentemente são necessárias duas compilações para obter o efeito desejado.
+	
+\end{document}

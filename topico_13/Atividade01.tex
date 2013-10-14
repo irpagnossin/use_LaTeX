@@ -1,0 +1,340 @@
+\documentclass[a4paper,12pt]{amsart}
+	\usepackage[ansinew]{inputenc}
+	\usepackage[T1]{fontenc}
+	\usepackage[sc]{mathpazo}
+	\linespread{1.05} % Palatino needs more leading (space between lines)
+	\usepackage[brazil]{babel}
+	\usepackage{amsmath}
+	\usepackage{paralist}
+	\usepackage{usandoLaTeX}
+	\usepackage{calc}
+	\usepackage{xspace}
+	\usepackage{graphicx}
+	\usepackage{microtype}
+	\usepackage[squaren]{SIunits}
+	\usepackage{tikz}
+	\usepackage[colorlinks=true,bookmarks=false]{hyperref}
+	
+	\graphicspath{{../arquivos_comuns/figuras/}}
+	
+	\newcommand{\amslatex}{$\mathcal {AMS}$-\LaTeX\xspace}
+	\newcommand{\vetor}[1]{\ensuremath{\mathbf{#1}}}
+	
+	\newsavebox\atencaobox
+	\savebox\atencaobox{%
+		\raisebox{-\height+1ex}[0pt][0pt]{%
+		\begin{tikzpicture}
+			\draw [very thick,rounded corners=0.2ex,fill=yellow] (0,0) -- (.3,.3) -- (.6,0) -- (.3,-.3) -- cycle;
+			\node at (0.3,0) {\textbf{!}};
+		\end{tikzpicture}
+	}}
+	
+	\newlength\atencaowidth
+	\settowidth\atencaowidth{\usebox{\atencaobox}}
+		
+	\newenvironment{atencao}{%
+		\medskip%
+		\noindent\hangindent=\atencaowidth\hangafter=-2%
+		\hspace{-\atencaowidth}%
+		\usebox{\atencaobox}\footnotesize
+		\setlength\parindent\atencaowidth}{\par\medskip}
+	
+\begin{document}
+
+	% Este é um exemplo de reutilização de caixas: por algum motivo, o comando \author não aceita a inclusão de uma figura. Para contornar isso, salvamos a figura numa caixa, que nomeamos \authorbox, e a utilizamos como argumento de \author. Como no momento da interpretação deste comando a caixa já está formada, o LaTeX não a distingue de um texto qualquer, haja vista que são todos caixas. Aí funciona.
+	\newsavebox{\authorbox}
+	\savebox{\authorbox}{\includegraphics[width=0.3\textwidth]{LogotipoCursoLaTeX_v2}}
+
+	\title{Expressões matemática com o \amslatex}
+	\author{\usebox{\authorbox}}
+	
+	\begin{abstract}
+	Este é o único arquivo de atividade deste tópico, mas ele trata de vários recursos para a produção de expressões matemáticas. Muitos deles foram introduzidos pelo \amslatex, enquanto outros foram melhorados por ele. Qualquer que seja o caso, atualmente os melhores resultados você obterá com esses recursos. Por isso, acostume-se a utilizar os pacotes do \amslatex: o \pkg{amsmath} ao menos. A classe utilizada para produzir este artigo, \cls{amsart}, também faz parte do \amslatex.
+	\end{abstract}
+	
+	\maketitle
+	
+	\section{O ambiente \env{gather}}
+		\label{sec:gather}
+	
+	O ambiente \env{gather} deve ser utilizado para agrupar (\foreign{gather}) \emph{várias} expressões matemáticas centralizadas, cada qual numa linha:
+	\begin{gather}
+		a_0 x^0 + a_1 x^1 + \cdots + a_n x^n \text{,} \label{ax}\\
+		a_0 x^0 y^0 + a_1 x^1 y^1 + \cdots + a_n x^n y^n \text{.} \label{axy}
+	\end{gather}
+	
+	Observe que as mudanças de linha (e, por conseguinte, de expressão) são comandadas por \cs{\textbackslash}. E que cada expressão recebe um número, que pode ser acessado através de \cs{ref} ou \cs{eqref}, bastando para isso nomeá-las com \cs{label}.
+	
+	Para remover a numeração de algumas, mas não de todas as expressões, acrescente o comando \cs{nonumber} ou \cs{notag} nas linhas, ou expressões, apropriadas (não se esqueça de remover os comandos \cs{label}s correspondentes):
+	\begin{gather}
+		a_0 x^0 + a_1 x^1 + \cdots + a_n x^n \text{,} \nonumber\\
+		a_0 x^0 y^0 + a_1 x^1 y^1 + \cdots + a_n x^n y^n \text{.}
+	\end{gather}
+	
+	Mas se \emph{nenhuma} das expressões deve ser enumerada, simplesmente utilize \env{gather*} ao invés de \env{gather}:
+	\begin{gather*}
+		a_0 x^0 + a_1 x^1 + \cdots + a_n x^n \text{,} \\
+		a_0 x^0 y^0 + a_1 x^1 y^1 + \cdots + a_n x^n y^n \text{.}
+	\end{gather*}
+		
+	\begin{atencao}%
+	Um erro comum ao utilizar o ambiente \env{gather} é colocar \cs{\textbackslash} na última linha. Isto produzirá uma linha vazia, mas com um número associado a ela. Outro erro é deixar uma linha em branco entre o parágrafo anterior e o ambiente \env{gather}, produzindo espaço vertical demais ali. Lembre-se: a expressão faz parte do texto!
+	\end{atencao}
+
+	Há ainda o ambiente \env{gathered}. Diferentemente de \env{gather} e \env{gather*}, que promovem automaticamente a transição entre os modos parágrafo e matemático, este novo ambiente só pode ser utilizado \emph{no} modo matemático. Isto é, entre \cs{[} e \cs{]} ou num ambiente \env{equation}, por exemplo. Sua utilidade ficará mais clara quando conhecermos outros ambientes matemáticos.
+
+	\section{O comando \cs{tag}}
+
+	Um recurso interessante introduzido pelo \amslatex (\foreign{American Mathematical Society}) é o comando \cs{tag}, que permite inserir um rótulo absoluto na expressão. Ele substitui a numeração sequencial e serve para produzir variações nela. Por exemplo, veja como foi construída a numeração da segunda expressão abaixo:
+	\begin{gather}	
+	a^2 = b^2 + c^2 \text{\quad e}\label{eq:pitagoras}\\
+	a^2 = b^2 + c^2 - 2\, b c \cos\theta\text{.} \tag{\ref{eq:pitagoras}$'$}\label{eq:lei-cosseno}
+	\end{gather}
+
+	Existe ainda a versão com asterísco, \cs{tag*}, que \emph{não} insere os parênteses. Experimente: troque \cs{tag} por \cs{tag*} na expressão acima.
+
+	Um exemplo mais complexo de utilidade de \cs{tag} é o seguinte: imagine que você queira produzir duas sequências de numeração de expressões matemáticas. Por exemplo, as expressões de uma sequência são numeradas assim: (i), (ii) etc; enquanto as da segunda, (I), (II) etc\footnote{Não me pergunte por que você faria isso!}.
+	
+	A solução é simples: basta escrevermos \cs[(i)]{tag}, \cs[(ii)]{tag} etc num ambiente \env{equation*} para a primeira sequência, e \cs[(I)]{tag}, \cs[(II)]{tag} etc para a segunda. E é claro que não faremos isso manualmente; usaremos contadores. Para isso, criamos um ambiente \env{eqroman} que será responsável por:
+	\begin{compactenum}
+	\item incrementar o contador \ctr{eqroman} (você pode dar o mesmo nome ao ambiente e ao contador),
+	\item iniciar e terminar o ambiente \env{equation*} e, finalmente,
+	\item inserir \cs[{\cs[eqroman]{roman}}]{tag}
+	\end{compactenum}
+	
+	\newcounter{eqroman}
+	\newenvironment{eqroman}{%
+		\refstepcounter{eqroman}%
+		\begin{equation*}%
+	}{%
+		\tag{\roman{eqroman}}%
+		\end{equation*}%
+	}
+	
+	\newcounter{eqRoman}
+	\newenvironment{eqRoman}{%
+		\refstepcounter{eqRoman}%
+		\begin{equation*}%
+	}{%
+		\tag{\Roman{eqRoman}}%
+		\end{equation*}%
+	}
+	
+	Analogamente, definimos um ambiente \env{eqRoman} que incrementa o contador \ctr{eqRoman}, inicia e termina o ambiente \env{equation*}, e acrescenta o rótulo \cs[{\cs[eqRoman]{Roman}}]{tag} imediatamente antes de terminar o ambiente \env{equation*}. Esta é uma equação criada com \env{eqroman} (com ``r'' minúsculo):
+	\begin{eqroman}\label{eq:pitagoras2}
+	a^2 = b^2 + c^2\text{,}
+	\end{eqroman}%
+e esta, com o ambiente \env{eqRoman} (com ``R'' maiúsculo):
+	\begin{eqRoman}
+	a^2 = b^2 + c^2 - 2\, b c \cos\theta\text{.}
+	\end{eqRoman}%
+	Assim, a numeração torna-se automática e você pode inclusive atribuir rótulos (comando \cs{label}) a essas expressões e citá-las com \cs{ref} ou \cs{eqref}.
+	
+	Talvez uma aplicação mais útil dos comandos \cs{tag} e \cs{tag*} seja a de você reapresentar uma expressão qualquer, mantendo a numeração original. Por exemplo, o número da expressão
+	\begin{equation*}\tag{\ref{axy}}
+	a_0 x^0 y^0 + a_1 x^1 y^1 + \cdots + a_n x^n y^n
+	\end{equation*}
+	é o mesmo da primeira exibição dela, na seção \ref{sec:gather}. Para fazer isso eu defini o rótulo absoluto da equação como sendo igual à numeração da equação \ref{axy} num ambiente \env{equation*}. O asterísco é importante para que não incrementemos o contador \ctr{equation}, prejudicando a contagem das expressões seguintes.
+	
+	\section{O ambiente \env{multline}}
+	
+	Diferentemente do \env{gather}, o ambiente \env{multline} deve ser utilizado \emph{numa única expressão} longa, que não cabe em uma linha. Por exemplo,	
+	\begin{multline}\label{eq:(a+b)^10}
+		(a + b)^{10} = \sum_{i = 0}^{10} \binom{10 - i}{i} a^i b^{10 - i} =
+		    a^{10} b^{ 0} + \\
+		 10 a^{ 9} b^{ 1} +
+		 45 a^{ 8} b^{ 2} +
+		100 a^{ 7} b^{ 3} +
+		190 a^{ 6} b^{ 4} +
+		252 a^{ 5} b^{ 5} + \\
+		190 a^{ 4} b^{ 6} +
+		100 a^{ 3} b^{ 7} +
+		 45 a^{ 2} b^{ 8} +
+		 10 a^{ 1} b^{ 9} +
+	      a^{ 0} b^{10}
+	\end{multline}
+	é uma equação longa demais para caber em uma linha apenas. Então, usamos \env{multline} para quebrá-la em várias linhas. E note que, novamente, a mudança de linha é devida ao \cs{\textbackslash}, que pode ser colocado em qualquer lugar da equação. No exemplo acima (e provavelmente em todas as situações onde você utilizará \env{multline}) este comando foi posicionado por tentativa e erro.
+	
+	Observe ainda que, como se trata de apenas uma equação, há somente um número (e \cs{label} e/ou \cs{tag}) associado a ela. Mas você pode suprimir a numeração utilizando a versão com asterísco do ambiente: \env{multline*}.
+	
+	\begin{atencao}%
+	Um erro bastante comum ao utilizar o ambiente \env{multline} é errar a digitação do nome dele: é multline, com ``t'' mudo, não mult\emph{i}line. Este ambiente não existe (mas você pode criá-lo, se quiser).
+	\end{atencao}
+	
+	Observe a equação~\eqref{eq:(a+b)^10}: a primeira linha aparece alinhada à esquerda e a última, à direita. E as linhas intermediárias estão centralizadas. Este é o comportamento padrão do ambiente \env{multline}, mas você pode modificá-lo. Primeiramente, o comprimento \cs{multlinegap} define a endentação da primeira e da última linha... \unit{1}{\centi\metre} neste exemplo:
+	\begin{setlength}{\multlinegap}{1cm}
+		\begin{multline*}
+			(a + b)^{10} = \sum_{i = 0}^{10} \binom{10 - i}{i} a^i b^{10 - i} =
+			    a^{10} b^{ 0} + \\
+			 10 a^{ 9} b^{ 1} +
+			 45 a^{ 8} b^{ 2} +
+			100 a^{ 7} b^{ 3} +
+			190 a^{ 6} b^{ 4} +
+			252 a^{ 5} b^{ 5} + \\
+			190 a^{ 4} b^{ 6} +
+			100 a^{ 3} b^{ 7} +
+			 45 a^{ 2} b^{ 8} +
+			 10 a^{ 1} b^{ 9} +
+		      a^{ 0} b^{10}
+		\end{multline*}
+	\end{setlength}
+	
+	\begin{atencao}%
+		Se você utilizar o ambiente \env{multline*} (com asterísco), o efeito da endentação será nulo na primeira linha da equação. Note também que utilizamos o \emph{ambiente} \env{setlength} para alterar \cs{multlinegap} e, ao mesmo tempo, definir o escopo de validade desta alteração. É uma alternativa ao comando \cs{setlength}.
+	\end{atencao}
+	
+	E para as linhas intermediárias você pode utilizar os comandos \cs{shoveleft} e \cs{shoveright}, que assemelham-se aos \cs{raggedleft} e \cs{raggedright}, respectivamente\footnote{Atenção: \cs{shoveleft} e \cs{shoveright} são comandos ordinários, que agem sobre seus argumentos, enquanto \cs{raggedleft} e \cs{raggedright} são declarações.}. Neste exemplo,
+	\begin{multline*}
+		(a + b)^{10} = \sum_{i = 0}^{10} \binom{10 - i}{i} a^i b^{10 - i} =
+		    a^{10} b^{ 0} + \\
+		 \shoveright{ % <--- O argumento de \shoveright começa aqui...
+		 10 a^{ 9} b^{ 1} +
+		 45 a^{ 8} b^{ 2} +
+		100 a^{ 7} b^{ 3} +
+		190 a^{ 6} b^{ 4} +
+		252 a^{ 5} b^{ 5} +} \\ % <-- ... e termina aqui.
+		190 a^{ 4} b^{ 6} +
+		100 a^{ 3} b^{ 7} +
+		 45 a^{ 2} b^{ 8} +
+		 10 a^{ 1} b^{ 9} +
+	      a^{ 0} b^{10},
+	\end{multline*}
+	a linha intermediária foi empurrada para a direita com \cs{shoveright}. Experimente utilizar \cs{shoveleft} e, simultaneamente, alterar o comprimento \cs{multlinegap}.
+	
+	\begin{atencao}%	
+	A presença do comando \cs{\textbackslash} em expressões matemáticas com mais de uma linha acarreta um compliação extra, que costuma ocorrer especialmente em conjunção com os comandos \cs{left} e \cs{right}. Tenha em mente o seguinte: \emph{não pode haver um \cs{\textbackslash} entre um par de chaves ou entre um \cs{left} e um \cs{right}}.
+	
+	Uma maneira de avaliar se você está cumprindo com esta regra consiste em colocar cada linha da sua expressão em ambientes matemáticos separados e compilar. Se tudo transcorrer sem erros, então tudo bem. Mas se o \LaTeX\ informar o erro	
+	\begin{center}\ttfamily
+		Missing \cs{right}. inserted
+	\end{center}
+	é porque você desrespeitou esta regra.	
+	
+	Utilize a equação abaixo para explorar, com o professor e com seus colegas, esta questão. O ojetivo é quebrar esta equação em duas, mudando de linha logo após a parcela $\partial B_x/\partial x$:
+	\begin{gather*}
+		\vetor F = p_m \left( \frac{\partial B_x}{\partial x} + \frac{\partial B_y}{\partial x} + \frac{\partial B_z}{\partial x}\right)
+	\end{gather*}
+	
+	\end{atencao}
+	
+	\section{O ambiente \env{subequations}}
+	
+	Ainda mais comum que numerar expressões como em \eqref{eq:lei-cosseno} é escrever (\ref{eq:pitagoras}a), (\ref{eq:pitagoras}b) etc. Para esta situação existe o ambiente \env{subequations}:
+	\begin{subequations}\label{eq:subequations}
+		\begin{gather}
+			a^2 = b^2 + c^2 \label{eq:pitagoras-subequations}\\
+			a^2 = b^2 + c^2 - 2\, b c \cos\theta\text{.} \label{eq:lei-cosseno-subequations}
+		\end{gather}
+	\end{subequations}
+	
+	Com esta construção você pode citar o grupo de equações, como em \eqref{eq:subequations}, ou cada uma delas isoladamente: \eqref{eq:pitagoras-subequations} e \eqref{eq:lei-cosseno-subequations}. Note que não precisamos digitar as letras ``a'', ``b'' etc. Isto é feito automaticamente (com contadores, como você certamente imaginou).
+	
+	\begin{atencao}%
+	Observe que \env{subequations} não é um ambiente que inicia/termina o modo matemático. Ele apenas define o conjunto de expressões que, por algum motivo, estão relacionadas. Isto significa que você pode colocar não apenas \env{gather}s dentro de \env{subequations}, mas qualquer outro ambiente matemático! Veja:	
+	\begin{subequations}\label{eq:eqs-compridas}
+		\begin{gather}
+			a^2 = b^2 + c^2 \\
+			a^2 = b^2 + c^2 - 2\, b c \cos\theta\text{.}
+		\end{gather}
+		\begin{multline}
+		(a + b)^{10} = \sum_{i = 0}^{10} \binom{10 - i}{i} a^i b^{10 - i} =
+		    a^{10} b^{ 0} + \\
+		 10 a^{ 9} b^{ 1} +
+		 45 a^{ 8} b^{ 2} +
+		100 a^{ 7} b^{ 3} +
+		190 a^{ 6} b^{ 4} +
+		252 a^{ 5} b^{ 5} + \\
+		190 a^{ 4} b^{ 6} +
+		100 a^{ 3} b^{ 7} +
+		 45 a^{ 2} b^{ 8} +
+		 10 a^{ 1} b^{ 9} +
+	      a^{ 0} b^{10}
+		\end{multline}
+		\[
+		I = I_0 e^{-t/\tau_{RL}} + \frac{\mathcal{E}}{R} \left(1 - e^{-t/\tau_{RL}}\right)
+		\]
+	\end{subequations}
+	
+	As duas primeiras equações foram criadas com \env{gather} e a terceira, com \env{multline}. A última equação foi construída com \cs{[} e \cs{]} e, por isso, sequer recebem um número. Trata-se de uma situação atípica, mas serve para ilustrar a utilização do ambiente \env{subequations}.	
+	\end{atencao}
+	
+	\section{O ambiente \env{align}}
+	
+	Outro tipo de construção comum são equações alinhadas por algum símbolo. Por exemplo, as equações
+	\begin{align}
+	x &= \frac{a^2 - b^2}{a + b} \\
+	  &= \frac{(a - b)(a + b)}{a + b} \\
+	  &= a - b
+	\end{align}
+	estão todas alinhadas pelo símbolo de igual. Isto é feito com o ambiente \env{align} ou \env{align*} do pacote \pkg{amsmath}. \cs{\textbackslash} promove a mudança de linha e \& indica a posição do alinhamento que, no caso, é à esquerda do símbolo de igual.
+	
+	Na verdade, o \& tem dupla função: de marcar a posição do alinhamento e de inserir uma tabulação. É mais fácil compreender isto com um exemplo:
+	\begin{align*}
+	f(x) &= ax^2 + bx + c        &    g(x) &= ax^3 + bx^2 + cx + d \\
+	     &= a (x - x_1)(x - x_2) &         &= a (x - x_1)(x - x_2)(x - x_3).
+	\end{align*}
+	
+	Considere apenas a primeira linha: o primeiro \& marca o alinhamento em $f(x)$, o segundo marca uma tabulação, que separa $f(x)$ de $g(x)$, e o terceiro \& marca o alinhamento em $g(x)$. A mesma análise vale para a segunda linha. Na verdade, os \& de índice ímpar (o primeiro e o terceiro, no exemplo) têm função de alinhamento, enquanto os de índice par (segundo) tem função de tabulação, como nas tabelas.	A quantidade de \& numa mesma linha é limitada apenas pelo tamanho da linha.
+	
+	\begin{atencao}%
+	O \LaTeX\ define o ambiente \env{eqnarray}, cuja função é a mesma do \env{align}. No entanto, este último faz um trabalho bem melhor e, por conta disso, atualmente não é mais recomendado o uso do \env{eqnarray} ou \env{eqnarray*}. Quando você o vir por aí, substitua-o por \env{align} (os porquês de se evitar \env{eqnarray} podem ser vistos \href{http://www.tug.org/pracjourn/2006-4/madsen/madsen.pdf}{aqui}).
+	\end{atencao}
+	
+	\section{Matrizes}
+	
+	Da mesma forma que o ambiente \env{align} hoje em dia substitui o \env{eqnarray}, o pacote \pkg{amsmath} define o ambiente \env{matrix}, que deve substituir o \env{array}. Veja só: uma matriz...
+	
+	\medskip
+	
+	\noindent\hfill
+	\begin{minipage}[t]{0.45\textwidth}
+		\centering
+		... com \env{matrix}:		
+		\begin{equation*}
+			\left\langle\begin{matrix}
+				 \cos\phi & \sin\phi \\
+				-\sin\phi & \cos\phi
+			\end{matrix}\right\rangle
+		\end{equation*}
+	\end{minipage}\hfill
+	\begin{minipage}[t]{0.45\textwidth}
+		\centering
+		... com \env{array}:
+		\begin{equation*}
+			\left\langle\begin{array}{cc}
+				 \cos\phi & \sin\phi \\
+				-\sin\phi & \cos\phi
+			\end{array}\right\rangle
+		\end{equation*}
+	\end{minipage}%
+	\hfill\null
+	
+	\medskip
+	
+	Note que, com \env{matrix}, você não precisa definir a quantidade de colunas da sua ``tabela''; basta seguir adicionando \& conforme a necessidade.
+	
+	No caso particular de matrizes com parênteses, o ambiente \env{pmatrix} torna o trabalho ainda mais fácil, pois ele os insere automaticamente:
+	\begin{equation*}
+		\begin{pmatrix}
+			 \cos\phi & \sin\phi \\
+			-\sin\phi & \cos\phi
+		\end{pmatrix}
+	\end{equation*}
+	
+	\section{Equações condicionais}
+	
+	Para terminar, vejamos o ambiente \env{cases}, que permite a construção de equações com condições, como esta:
+	\begin{equation*}
+		\theta(x) =
+		\begin{cases}
+			0\text{,}           & \text{se $x < 0$} \\
+			\frac{1}{2}\text{,} & \text{se $x = 0$} \\
+			1\text{,}           & \text{se $x > 0$}
+		\end{cases}
+	\end{equation*}
+	
+	\section*{Conclusão}
+	
+	Como vimos, o pacote \pkg{amsmath} trouxe recursos que simplificam enormemente a produção de expressões matemáticas de alta qualidade. Fazer o que fizemos aqui sem elas seria muito trabalhoso com os recursos básicos do \LaTeX. Por isso, é útil conhecer algumas das inúmeras ferramentas que este pacote disponibiliza. O que vimos aqui é o básico, para não dizer o mínimo. Baixe o manual do \amslatex \href{http://www.ams.org/tex/amslatex.html}{aqui}. Outro documento interessante é o \href{http://www.perce.de/LaTeX/}{Math mode}, de Herbert Vo\ss. Há também o livro ``Math into \LaTeX'', de George Grätzer.
+	
+\end{document}

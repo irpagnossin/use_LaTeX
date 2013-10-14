@@ -1,0 +1,24 @@
+\documentclass{article}
+
+	\usepackage[ansinew]{inputenc} % <-- Este arquivo foi escrito com a codificação CP-1252.
+	\usepackage[T1]{fontenc}       % <-- Instrui o LaTeX a utilizar fontes de 8 bits.
+	\usepackage{utopia}            % <-- Substitui a fonte Computer Modern Roman por Utopia NO TEXTO.
+	%\usepackage{fourier}           % <-- Substitui a fonte Computer Modern Roman por Utopia NO TEXTO E NO MODO MATEMÁTICO.
+	\usepackage[brazil]{babel}     % <-- Carrega os padrões de separação silábica do português.
+	
+\begin{document}
+
+	A qualidade na integração entre texto e expressões matemáticas, característica do \LaTeX, reside na configuração harmônica entre as famílias de fontes utilizadas no texto e nas expressões. Por exemplo, neste arquivo nós utilizamos o pacote ``utopia'' para substituir a Computer Modern Roman pela família Utopia \emph{no texto}. Mas no modo matemático, como em $a^2 = b^2 + c^2$, a fonte continua sendo a Computer Modern Roman. Outro exemplo:		
+	\[ % <-- Entra no modo matemático.
+	\frac{d}{dt}\int_0^t \lambda^2\, d\lambda.
+	\] % <-- Sai do modo matemático.
+
+	Assim, utilizar o pacote ``utopia'' destrói a harmonia entre as fontes do modo texto e do modo matemático. É por isso que este pacote é considerado obsoleto, conforme a mensagem de aviso do \LaTeX.
+	
+	No caso da família Utopia, para corrigir isto basta substituir o pacote ``utopia'' pelo ``fourier,'' que encarrega-se de definir também a fonte do modo matemático como Utopia. Faça o teste!\footnote{Não se preocupe com os avisos que aparecerão durante a compilação.}
+	
+	A família de fontes Utopia pertence ao estilo chamado Romano ou antigo. Famílias deste estilo têm serifas curvilíneas e traçados que apresentam a chamada transição grosso-fino, isto é, transições contínuas e suaves entre grosso e fino, como se tivessem sido desenhados à mão. Outros exemplos de famílias deste \emph{estilo} são a própria Computer Modern Roman, a Times New Roman, a Palatino, dentre muitas outras. Este é o estilo de fontes mais recomendado para a impressão de longos trabalhos.
+	
+	Contudo, note que o \emph{estilo} de uma família de fontes não faz parte da classificação segundo o New Font Selection Scheme (NFSS).
+
+\end{document}

@@ -1,0 +1,42 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{color}
+	\usepackage{amsmath}
+	%\usepackage{hyperref}
+	
+	\newcommand{\pacote}[1]{{\normalfont\ttfamily#1}}
+	\newcommand{\ambiente}[1]{{\normalfont\sffamily#1}}
+	
+	\pagestyle{empty} % <-- Remove o número da página.
+		
+\begin{document}
+		
+	Uma equção sem número ou nome:	
+	\begin{equation*} % <----- O ambiente equation* requer o pacote amsmath.
+	e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots
+	\end{equation*}
+	
+	Agora, uma equação com número e nome:
+	\begin{equation}\label{eq:serie-cos}
+	\cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots
+	\end{equation}
+	
+	Para referir-me à equação acima, basta utilizar o comando	
+	\begin{center}	
+	\verb|\ref{eq:serie-cos}|,
+	\end{center}	
+	onde \texttt{eq:serie-cos} é o \emph{nome} da equação a qual estou me referindo.
+	Neste caso, o comando produz \textcolor{red}{\ref{eq:serie-cos}}.
+	
+	Agora, na primeira expressão troque o ambiente \ambiente{equation*} por
+	\ambiente{equation} e recompile este arquivo \emph{duas vezes}. Observe
+	como o \LaTeX\ atualiza automaticamente o número da segunda equação no
+	final do parágrafo anterior (isto é: antes era 1, agora é 2).
+	
+	Se você estiver produzindo um documento pdf, experimente utilizar o pacote
+	\pacote{hyperref}. Ele criará automaticamente um link entre \verb|\ref| e a
+	expressão (ou seção, figura, tabela, etc).
+	
+\end{document}

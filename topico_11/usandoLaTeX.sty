@@ -1,0 +1,37 @@
+%-------------------------------------------------------------------------
+% Ao invés de inserir o arquivo usandoLaTeX.tex com suas próprias definições
+% de comandos através do \input, você pode definir seu próprio pacote! Para
+% isto, basta trocar os \usepackage (do arquivo usandoLaTeX.tex) por
+% \RequirePackage e colocar, no começo do arquivo, o comando
+% \ProvidesPackage{NOME}, onde NOME é o nome do seu pacote, que deve coincidir
+% com o do arquivo (mais a extensão "sty", de style): NOME.sty.
+%-------------------------------------------------------------------------
+\ProvidesPackage{usandoLaTeX}
+
+%-------------------------------------------------------------------------
+% Ao invés do usual \usepackage, utilize \RequirePackage para informar ao
+% LaTeX quais pacotes você precisa para definir seus próprios comandos. A
+% sintaxe deste comando é idêntica à do \usepackage.
+%-------------------------------------------------------------------------
+\RequirePackage{xspace,xcolor}
+
+%-------------------------------------------------------------------------
+% Finalmente, seus comandos. Lembre-se: definir seus próprios comandos é
+% o que o(a) permitirá explorar todo o potencial do LaTeX. DEFINA SEUS
+% COMANDOS SEM DÓ!
+%-------------------------------------------------------------------------
+\newcommand{\cs}[1]{{\normalfont\ttfamily\color{blue!50!black}\textbackslash #1}}
+\newcommand{\pkg}[1]{{\normalfont\sffamily\color{green!50!white}#1}}
+\newcommand{\cls}[1]{{\normalfont\sffamily\color{green!50!black}#1}}
+\newcommand{\ctr}[1]{{\normalfont\sffamily\color{yellow!50!white}#1}}
+\newcommand{\env}[1]{{\normalfont\sffamily\color{yellow!50!black}#1}}
+\newcommand{\opt}[1]{{\normalfont\ttfamily\color{green!50!black}#1}}
+\newcommand{\fntattr}[1]{{\normalfont\ttfamily #1}}
+\newcommand{\foreign}[1]{\textsl{#1}}
+
+\newcommand{\etc}{etc\xspace}
+\newcommand{\ie}{ie\xspace}
+\newcommand{\etal}{et~al\xspace}
+
+\newcounter{obs}
+\newcommand\obs{\stepcounter{obs}\textbf{obs.~\theobs:}\ }

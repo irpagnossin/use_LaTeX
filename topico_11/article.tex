@@ -1,0 +1,92 @@
+\documentclass[a4paper,12pt]{article}
+%\documentclass[a4paper,12pt]{scrartcl} % <-- Faz parte do "bundle" Koma-Script
+
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}		
+	\usepackage{amstext}
+	\usepackage{indentfirst}
+	
+	%----------------------------------------------------------------------------
+	% O comando \input abaixo insere o arquivo defs.tex nesta posição, como se 
+	% todo o conteúdo daquele arquivo tivesse sido digitado aqui. Particularmente
+	% neste caso, o arquivo defs.tex contém algumas definições de comandos 
+	% utilizadas aqui.
+	%----------------------------------------------------------------------------
+	\input{usandoLaTex}
+	%\usepackage{usandoLaTeX}
+			
+	%----------------------------------------------------------------------------
+	% O comando \title define o título do trabalho, mas NÃO o imprime (isto é
+	% feito pelo comando \maketitle, mais a frente).
+	%----------------------------------------------------------------------------
+	\title{O título deste trabalho}
+	
+	%----------------------------------------------------------------------------
+	% O comando \author define o(s) autor(es) do trabalho. Cada autor deve ser
+	% separado pela instrução \and. O comando \thanks insere uma nota de rodapé,
+	% gealmente utilizada (neste contexto) para informar e-mails.
+	%----------------------------------------------------------------------------
+	\author{
+		Fulano de tal\thanks{fulano@latex.br}\\
+		Instituto dos fulaninhos
+		\and
+		Sicrano de tal\thanks{sicrano@tex.br}\\
+		Universidade dos sicraninhos}
+		
+	%----------------------------------------------------------------------------
+	% O comando \date define a data do trabalho. Você pode escrevê-la no formato
+	% que quiser ou omití-lo. Neste caso, o LaTeX inserirá automaticamente a data
+	% atual no formato padrão (não se esqueça de utilizar o pacote babel ou ela
+	% será apresentada no formato americano).
+	%----------------------------------------------------------------------------
+	\date{São Paulo, \today}
+	
+\begin{document}
+
+	\pagenumbering{Roman}
+
+	\maketitle
+		
+	\begin{abstract}
+		Para escrever um resumo (ou abstract) do trabalho, utilizamos o ambiente
+		\env{abstract}. A formatação é totalmente gerenciada pelo \LaTeX,	restando
+		ao autor apenas preocupar-se com o conteúdo.
+		
+		Note também a ação do pacote \pkg{babel}: sem ele, ao invés do título
+		``resumo,''	teríamos ``abstract.'' Experimente remover o comando de 
+		carregamento do pacote (\cs{usepackage}).\footnote{\emph{Atenção:} remover
+		o pacote \pkg{babel} após uma primeira compilação com ele pode gerar erro
+		na compilação seguinte. Se isto ocorrer, simplesmente recompile (pergunte
+		ao professor o porquê disto).}
+	\end{abstract}
+	
+	\pagenumbering{roman}
+	
+	\section{Posicionamento padrão de expressões matemáticas}
+	
+	As expressões matemáticas em estilo de exibição geralmente são posicionadas
+	no centro de sua própria linha, com a numeração, se houver, junto à margem
+	direita:
+	%\setlength{\mathindent}{2\parindent} % <-- Para descomentar esta linha, você
+	                                     % deve utiliza a opção fleqn da classe.
+	\begin{equation}\label{eq:QHE}
+		R_H = \frac{R_K}{N}\text{.}
+	\end{equation}
+	
+	Mas você pode alterar este posicionamento: as classes-padrão do \LaTeX\
+	disponibilizam as opções \opt{leqno} (\foreign{left equation number}) e
+	\opt{fleqn} (\foreign{flushed left equation}). A primeira faz com que
+	os números das expressões sejam	colocados na margem	esquerda da linha. Já a
+	opção \opt{fleqn} instrui o	\LaTeX\ a posicionar a expressão à esquerda, a
+	uma distância parametrizada	por \cs{mathindent}. Mas atenção: \cs{mathindent}
+	só é definido se a opção \opt{fleqn} tiver sido utilizada. Isto significa que
+	se você tentar alterá-lo sem indicar explicitamente a opção \opt{fleqn},
+	obterá um erro de compilação (\foreign{undefined control sequence}).
+		
+	\begin{thebibliography}{0}
+		\bibitem{kopka:1998} H. Kopka e P. W. Daly, \textsl{A guide to \LaTeX},
+		Addison-Wesley, 1998.
+	\end{thebibliography}
+	
+\end{document}

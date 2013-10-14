@@ -1,0 +1,39 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}	
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	\usepackage{graphicx}
+		
+	\graphicspath{
+		{Figuras/EPS/}
+		{Figuras/JPG/}
+		{Figuras/PDF/}
+		{Figuras/PNG/}
+		}
+		
+	% O comando \input insere um arquivo .tex no seu documento. Neste caso o LaTeX SUBSTITUI a instrução abaixo pelo conteúdo do arquivo minhasconfiguracoes.tex. Aproveite para observar que este arquivo não tem preâmbulo nem o ambiente document. Por quê?
+	\input{minhasconfiguracoes}
+	
+\begin{document}
+
+	\begin{figure}
+		\begin{minipage}[b]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{Tei-Gi}
+		\end{minipage}\hfill
+		\begin{minipage}[b]{0.5\textwidth}
+			\caption{legenda da figura, colocada ao lado dela através de duas \ambiente{minipage}s: a primeira contém a figura, a segunda contém esta legenda e ambas compõem uma linha de texto... caixa, espaço elástico (\comando{hfill}) e caixa.}
+			\label{fig:minipage}
+		\end{minipage}
+	\end{figure}
+
+	Dentro de um ambiente \ambiente{minipage} (fig.~\ref{fig:minipage}), o comprimento \comando{textwidth} assume a largura da minipágina. Por isso no exemplo acima \comando{textwidth} define a largura da figura, de modo a ocupar toda a extensão horizontal da minipágina. O mesmo não acontece com o comando \comando{parbox} (fig.~\ref{fig:parbox}).
+
+	\begin{figure}
+		\parbox[b]{0.4\textwidth}{\includegraphics[width=0.4\textwidth]{Tei-Gi}}%
+		\hfill
+		\parbox[b]{0.5\textwidth}{\caption{legenda da figura, colocada ao lado dela através de duas \ambiente{minipage}s: a primeira contém a figura, a segunda contém esta legenda e ambas compõem uma linha de texto... caixa, espaço elástico (\comando{hfill}) e caixa.}
+		\label{fig:parbox}}
+	\end{figure}
+
+\end{document}

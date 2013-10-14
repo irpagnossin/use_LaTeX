@@ -1,0 +1,431 @@
+\documentclass[a4paper,10pt,twocolumn,landscape]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	\usepackage{calc}
+	\usepackage{wallpaper}
+	\usepackage[margin=2cm]{geometry}
+	\usepackage[squaren]{SIunits}
+	\usepackage{amsmath}
+	\usepackage{paralist}
+	\usepackage{fourier}
+	\usepackage{graphicx}
+	\usepackage{tikz}
+	\usepackage{multirow}
+	\usepackage{booktabs}
+	\usepackage{listings}
+		
+	\usetikzlibrary{calc}
+		
+	\graphicspath{{../figuras/}}
+	
+	% Minhas definições
+	\input{defs}
+
+
+	% Papel de parede
+	\CenterWallPaper{1}{../figuras/leao-pensador-wattermark.png}
+
+	% Configuração extra: espaço entre as colunas.
+	\setlength{\columnsep}{2cm}	
+	
+	
+	\newsavebox{\mystarbox}
+	\savebox{\mystarbox}{\color{red}$\star$}
+	\newcommand{\mystar}{\usebox{\mystarbox}}
+	
+	\settowidth{\parindent}{\usebox{\mystarbox}}
+	
+		
+\begin{document}
+
+	\begin{center}\includegraphics[width=0.8\columnwidth]{../figuras/LogotipoCursoLaTeX_v2}\end{center}
+	
+	\section*{Figuras externas e tabelas}
+
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Produza cada uma das tabelas abaixo separadamente. Depois, organize-as conforme abaixo (ie, colocando-as na mesma linha e equidistantes).
+		
+		\medskip
+		
+		\noindent\hfill
+		\begin{tabular}{cc}		
+			1 & 2 \\		
+			3 & 4 \\
+		\end{tabular}\hfill
+		\begin{tabular}{|c|c|}
+			1 & 2 \\ 
+			3 & 4 \\ 
+		\end{tabular}\hfill
+		\begin{tabular}{cc}
+			\hline
+			1 & 2 \\ 
+			\hline
+			3 & 4 \\
+			\hline
+		\end{tabular}\hfill
+		\begin{tabular}{|c|c|}
+			\hline
+			1 & 2 \\ 
+			\hline
+			3 & 4 \\ 
+			\hline
+		\end{tabular}\hfill\null
+		
+		\medskip
+		
+		\footnotesize
+		\noindent\textbf{obs.:} use \cs{hfill} entre as tabelas e, após a última, 
+		use \cs{hfill}\cs{null} ou \cs{hfill\{\}}. Isto é necessário porque o 
+		\LaTeX\ ignora espaços horizontais no final da linha (ou espaços verticais 
+		no final da página).
+	\end{exercicio}
+	
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Reproduza a equação matricial abaixo (\textbf{atenção:} ``in'' e ``out'' são palavras, não variáveis).
+		
+		\medskip
+	
+		\[
+		\left(\begin{array}{cc}
+			E - H_C - \Sigma_T & i\Sigma^\text{in} \\
+			i\Sigma^\text{out} & E - H_C + \Sigma^{\bar T}
+		\end{array}\right)
+		\left(\begin{array}{cc}
+			G^T & -iG^n \\
+			-iG^p & -G^{\bar T}
+		\end{array}\right) = 
+		\left(\begin{array}{cc}
+			I & 0 \\ 0 & I
+		\end{array}\right)
+		\]
+	\end{exercicio}
+	
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Utilize o comando \cs{cline} para produzir estas tabelas:
+	
+		\medskip
+		
+		\noindent\hfill
+		\begin{tabular}{ccc}
+			\cline{1-1}
+			1 & 2 & 3 \\
+			\cline{2-2}
+			4 & 5 & 6 \\
+			\cline{3-3}
+		\end{tabular}\hfill
+		\begin{tabular}{ccc}
+			\cline{1-1}\cline{3-3}
+			1 & 2 & 3 \\
+			\cline{2-2}
+			4 & 5 & 6 \\
+			\cline{1-3}
+		\end{tabular}\hfill{}
+	\end{exercicio}
+		
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Utilize o comando \cs{multicolumn} para produzir as tabelas abaixo.
+		
+		\medskip		
+		
+		\noindent\hfill
+		\begin{tabular}{|c|c|c|}
+			\hline
+			1 & 2 & 3 \\
+			\hline
+			4 & 5 & 6 \\
+			\hline
+		\end{tabular}\hfill
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\multicolumn{2}{|c|}{1 e 2} & 3 \\
+			\hline
+			4 & \multicolumn{2}{c|}{5 e 6} \\
+			\hline
+		\end{tabular}\hfill
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\multicolumn{3}{|c|}{1, 2 e 3} \\
+			\hline
+			\multicolumn{3}{|c|}{4, 5 e 6} \\
+			\hline
+		\end{tabular}\hfill{}
+		
+	\end{exercicio}
+
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Utilize o comando \cs{multirow}, definido no pacote \pkg{multirow}, para 
+		produzir estas tabelas (as células unificadas têm \unit{1}{\centi\metre} de
+		largura):
+		
+		\medskip
+		
+		\noindent\hfill
+		\begin{tabular}{|c|c|c|}
+			\hline
+			1 & 2 & 3 \\
+			\hline
+			4 & 5 & 6 \\
+			\hline			
+		\end{tabular}\hfill
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\multirow{2}{1cm}{\centering 1 e 4} & 2 & 3 \\
+			                         & 5 & 6 \\
+			\hline			
+		\end{tabular}\hfill
+		\begin{tabular}{|c|c|c|}
+			\hline
+			1 & \multirow{2}{1cm}{\centering 2 e 5} & 3 \\
+			4 &                          & 6 \\
+			\hline			
+		\end{tabular}\hfill
+		\begin{tabular}{|c|c|c|}
+			\hline
+			1 & 2 & \multirow{2}{1cm}{\centering 3 e 6} \\
+			4 & 5 &                          \\
+			\hline			
+		\end{tabular}\hfill{}
+		
+		\medskip
+		
+		\footnotesize
+		\noindent\textbf{dica:} utilize \cs{centering} para centralizar o
+		conteúdo das células unificadas.
+	\end{exercicio}
+		
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Utilize o pacote \pkg{booktabs} para produzir a seguinte tabela. Isto é, 
+		utilize o comando \cs{toprule} para a linha horizontal superior,
+		\cs{cmidrule} e \cs{midrule} para as linhas no meio da tabela, e
+		\cs{bottomrule} para terminá-la.
+		
+		\medskip
+		
+		\centering
+		\begin{tabular}{llr}			
+			\toprule
+			\multicolumn{2}{c}{Item} \\
+			\cmidrule{1-2}
+			Animal & Description & Price (\$) \\
+			\midrule
+			Gnat      & per gram & 13.65 \\
+			          & each     &  0.01 \\
+			Gnu       & stuffed  & 92.50 \\
+			Emu       & stuffed  & 33.33 \\
+			Armadillo & frozen   & 8.99  \\
+			\bottomrule
+		\end{tabular}
+	\end{exercicio}
+
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Refaça o exercício anterior sem utilizar o pacote \pkg{booktabs}, ou seja,
+		utilizando apenas os comandos \cs{hline} e \cs{cline}. Observe as 
+		diferenças.
+	\end{exercicio}
+
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Crie um documento \LaTeX\ e, utilizando o pacote \pkg{graphicx}, importe 
+		para dentro dele uma figura no formato \texttt{eps} com altura igual a 
+		$1/5$ da altura do texto (comprimento \cs{textheight}). Para qual(is) 
+		formato(s) de documento de saída você pode inserir uma figura deste tipo?
+	\end{exercicio}
+		
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Se você quiser incluir figuras \texttt{pdf}, \texttt{jpg} e/ou 
+		\texttt{png} no seu	documento	\LaTeX, qual deve ser o formato do documento
+		de saída?
+	\end{exercicio}
+	
+	\newsavebox{\minhacaixa}
+	\savebox{\minhacaixa}{%
+		\includegraphics[width=0.09\columnwidth]{Tei-Gi}}
+	
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Coloque dez figuras uma do lado da outra, numa mesma linha, \emph{sem 
+		ultrapassar as margens} (isto é, sem produzir \foreign{bad boxes}):
+		
+		\medskip
+		
+		\noindent
+		\hfill\usebox{\minhacaixa}%
+		\hfill\usebox{\minhacaixa}%
+		\hfill\usebox{\minhacaixa}%
+		\hfill\usebox{\minhacaixa}%
+		\hfill\usebox{\minhacaixa}%
+		\hfill\usebox{\minhacaixa}%
+		\hfill\usebox{\minhacaixa}%
+		\hfill\usebox{\minhacaixa}%
+		\hfill\usebox{\minhacaixa}%
+		\hfill\usebox{\minhacaixa}%
+		\hfill\null
+	\end{exercicio}
+		
+	%---------------------------------------------------------	
+	\savebox{\minhacaixa}{%
+		\setlength{\fboxsep}{0pt}
+		\fbox{\includegraphics[width=0.09\columnwidth]{Tei-Gi}}}
+						
+	\begin{exercicio}
+		Refaça o exercício anterior, mas coloque também uma moldura ao redor da 
+		figura:
+		
+		\medskip
+		
+		\noindent
+		\hfill\usebox{\minhacaixa}%
+		\hfill\usebox{\minhacaixa}%
+		\hfill\usebox{\minhacaixa}%
+		\hfill\usebox{\minhacaixa}%
+		\hfill\usebox{\minhacaixa}%
+		\hfill\usebox{\minhacaixa}%
+		\hfill\usebox{\minhacaixa}%
+		\hfill\usebox{\minhacaixa}%
+		\hfill\usebox{\minhacaixa}%
+		\hfill\usebox{\minhacaixa}%
+		\hfill\null
+		
+		\medskip
+		
+		\footnotesize
+		\noindent\textbf{obs.:} torne nulo o comprimento \cs{fboxsep} para 
+		facilitar.
+	\end{exercicio}
+
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Utilize apenas o comando \cs{includegraphics} para inserir uma figura 
+		rotacionada de \unit{90}{\degree}:
+		
+		\medskip
+		
+		\centering
+		\includegraphics[width=2cm,angle=90]{rosa_dos_ventos}
+	\end{exercicio}
+	
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Utilize os comandos \cs{raisebox} e \cs{includegraphics} para produzir o 
+		resultado a seguir (a linha horizontal representa a linha-base):
+		
+		\medskip
+		
+		\noindent
+		\hrulefill\raisebox{+0.0\height}{\includegraphics[width=1cm]{Tei-Gi}}%
+		\hrulefill\raisebox{-0.5\height}{\includegraphics[width=1cm]{Tei-Gi}}%
+		\hrulefill\raisebox{-1.0\height}{\includegraphics[width=1cm]{Tei-Gi}}%
+		\hrulefill\null
+		
+		\medskip
+		
+		\footnotesize
+		\noindent\textbf{dica:} quando você cria uma caixa LR com os comandos
+		\cs{raisebox}, \cs{framebox} ou \cs{makebox}, o \LaTeX\ define
+		automaticamente os seguintes comprimentos: \cs{width}, \cs{height}, 
+		\cs{depth} e \cs{totalheight}, que representam a largura, altura,
+		profundidade e altura-total \emph{natural} desta caixa,	respectivamente.
+		Mas atenção: esses comprimentos só valem dentro dos	argumentos (opcionais
+		ou obrigatórios) do comando. Por exemplo, eu posso definir	uma caixa LR
+		de comprimento igual ao dobro do seu comprimento natural assim: 
+		\cs{framebox}\verb|[2|\cs{width}\verb|]{|\textit{\textbf{caixa}}\verb|}|.
+	\end{exercicio}
+
+	%---------------------------------------------------------
+	\begin{exercicio}		
+		Utilize o comando \cs{resizebox} para produzir a linha principal do 
+		exercício $6$ dos exercícios sobre caixas, que ocupa precisamente toda a linha do texto:
+		
+		\medskip
+		
+		\noindent\resizebox{\columnwidth}{!}{Identifique a linha-base.}
+		
+		\medskip
+	
+		\footnotesize
+		\noindent\textbf{obs.:} não se esqueça de suprimir a endentação.
+	\end{exercicio}
+	
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Reveja os exercícios 11 e 12 da lista anterior e produza o resultado 
+		abaixo. Tente	responder aqueles exercícios agora.
+		
+		\Huge
+		\noindent\hrulefill\scalebox{1}[-1]{Eu sou uma caixa!}\hrulefill
+	\end{exercicio}
+	
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Utilize o comando \cs{rotatebox} para produzir
+		
+		\medskip
+	
+		\centering
+		\rotatebox{155}{%
+		\begin{tabular}{|c|c|c|}
+			\hline
+			1 & 2 & 3 \\\hline 4 & 5 & 6\\
+			\hline
+		\end{tabular}}
+	\end{exercicio}
+	
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Utilize a mesma tabela do exercício anterior junto com o comando
+		\cs{resizebox} e reproduza o resultado abaixo, cuja largura é metade da
+		da linha e a altura, \unit{1}{\centi\metre}.
+		
+		\medskip
+	
+		\centering
+		\resizebox{0.5\columnwidth}{1cm}{%
+		\begin{tabular}{|c|c|c|}
+			\hline
+			1 & 2 & 3 \\\hline 4 & 5 & 6\\
+			\hline
+		\end{tabular}}
+	\end{exercicio}
+		
+	%---------------------------------------------------------
+	\begin{exercicio}
+		\textbf{Desafio:} construa a célula unificada da tabela abaixo sem
+		utilizar o pacote \pkg{multirow}.
+
+		\setlength{\fboxsep}{0.5pt}
+
+		\medskip
+
+		\begin{center}
+			\begin{tabular}{|c|c|}		
+				\hline
+				Célula 11 &\\
+				\cline{1-1}
+				Célula 21 & \rule{3mm}{0pt}%
+					\raisebox{1ex}[\height][0pt]{União}%
+					\rule{3mm}{0pt} \\
+				\hline
+			\end{tabular}
+		\end{center}
+		
+		\medskip
+		
+		\footnotesize
+		\noindent\textbf{dica:} a célula unificada em questão não é, de fato,
+	unificada. Acontece que a célula $(\text{linha},\text{coluna}) = (1,2)$ está 
+	vazia, enquanto $(2,2)$ contém um \cs{raisebox}. Experimente.
+
+	\end{exercicio}
+
+		
+\end{document}

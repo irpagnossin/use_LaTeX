@@ -1,0 +1,23 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage[brazil]{babel}
+	\usepackage{ae}
+	
+	% À imagem da atividade 8 do tópico anterior, por que eu criei estes dois comandos?
+	\newcommand{\foreign}[1]{\textsl{#1}}
+	\newcommand{\obs}{\textbf{obs.:}}
+	
+\begin{document}
+	
+	O comando \verb|\setlength| deve ser utilizado para alterar qualquer comprimento parametrizado do \LaTeX. Por exemplo, para definir uma endentação de dois centímetros para todos os parágrafos \emph{daqui para baixo}, basta escrever:
+		
+	\setlength{\parindent}{2cm}
+	\verb|\setlength{\parindent}{2cm}|
+	
+	O primeiro argumento é o ``nome'' do comprimento, ou a variável que armazena o comprimento propriamente dito. Ou ainda o comando que representa ou referencia este comprimento. O segundo argumento é o comprimento de fato, na representação do \LaTeX. Isto é, um valor numérico seguido de uma unidade (mesmo que o valor numérico seja nulo).
+	
+	Outros exemplos de comprimentos parametrizados são a distância entre as linhas, entre parágrafos, as margens da página, o tamanho da folha etc. São muitos comprimentos e por isso é recomendável ter à mão uma referência deles, como aquela contida na apresentação deste tópico.
+
+	\obs\ experimente variar o comprimento atribuido a \verb|\parindent|, inclusive com valores negativos! Para alguns comprimentos é possível que apareçam \foreign{bad boxes} (confira sempre o resultado da compilação), talvez como resultado de alguma palavra que o \LaTeX\ não soube como separar as sílabas. Como você o ajudaria nesta situação?
+
+\end{document}

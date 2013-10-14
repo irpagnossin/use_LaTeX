@@ -1,0 +1,21 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}	
+	\usepackage[brazil]{babel}
+	\usepackage{SIunits}
+	\usepackage{xcolor}
+	\usepackage{icomma}
+	
+	\newcommand{\comando}[1]{{\normalfont\textbackslash\color{blue!50!black}#1}}
+\begin{document}
+
+	Considere a seguinte caixa: \rule[-0.5cm]{2ex}{2ex}. Sua profundidade é de \unit{0,5}{\centi\metre}, bem maior que a distância entre as linha do texto, \comando{baselineskip}, igual a \the\baselineskip\ aqui. Apesar disso a caixa não se sobrepõe ao texto na linha seguinte. Isto ocorre porque \comando{baselineskip} é a distância entre as linhas apenas enquanto uma linha não se aproxima demasiadamente da outra. Quando isto acontece, entra em cena um outro parâmetro, \comando{lineskip}, que define a extensão vertical do espaço em branco \emph{entre} as linhas. Aqui ele é igual a \the\lineskip\ e é esta a distância entre a base da caixa e o topo do ``d'' imediatamente abaixo.
+	
+	Este procedimento garante que nunca ocorra sobreposição do conteúdo de uma linha com o de outra. Entretanto, sabemos que o \LaTeX\ não se importa com letras e símbolos, mas sim com as \emph{dimensões} das caixas que os contêm. Isto significa que não é a base de \rule{2ex}{2ex}
+	
+	
+	 Também sabemos que é possível dissociar o conteúdo das dimensões da caixa que o ``contém''. Isto é, podemos colocar o ``conteúdo'' de uma caixa fora dela! E o que aconteceria neste caso?
+
+
+\end{document}
+

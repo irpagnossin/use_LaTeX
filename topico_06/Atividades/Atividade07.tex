@@ -1,0 +1,34 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage{xcolor}
+	
+	\newcommand{\comando}[1]{{\textbackslash\color{blue!70}\normalfont #1}}
+\begin{document}
+
+	O comando \comando{hfill} insere um espaço horizontal cujo comprimento natural é nulo, mas que pode esticar arbitrariamente. No exemplo abaixo, inicialmente o \LaTeX\ suprime a endentação (\comando{noindent}), insere o espaço \emph{com comprimento zero} (o comprimento natural) e, em seguida, a palavra ``texto''. No entanto, como ele precisa preencher a linha e demos a ele a liberdade de expandir aquele espaço, é isto que ele faz: estica-o até que toda a linha seja preenchida. Isto é, \comando{hfill} assume um comprimento igual ao da linha menos o comprimento de ``texto'':
+
+	\noindent \hfill texto\par
+	
+	Neste outro exemplo colocamos o espaço após ``texto''. A endentação, que tem um comprimento fixo, é respeitada, independentemente do comprimento que \comando{hfill} assumir:
+	
+	texto\hfill
+	
+	Finalmente, neste outro exemplo o espaço \comando{hfill} está entre dois ``texto'' e estica até que toda a linha seja preenchida, à esquerda e à direita com ``texto'' e no centro com espaço:
+	
+	\noindent texto\hfill texto\par
+	
+	% O comando \pagebreak sinaliza para o LaTeX que esta é uma posição muito boa para se quebrar a página, tão boa que ele de fato escolherá terminá-la aqui. No entanto, à imagem do processo de construção das linhas de texto, onde o espaço entre as palavras é contraído ou estendido de modo a ocupar toda a linha, aqui também o LaTeX aumentará ou contrairá os espaços entre parágrafos de modo a ocupar toda a dimensão vertical da página, o que causará um resultado desagradável neste caso. Experimente!
+	% Por outro lado, o comando \newpage solicita ao LaTeX para finalizar a página atual e começar uma nova, inserindo o espaço necessário após o último parágrafo para completar a página, como no caso da última linha de um parágrafo, que não precisa necessariamente ocupar toda a linha.
+	% \pagebreak está para \linebreak assim como \newpage está para \newline ou \\.
+	
+	%\pagebreak
+	\newpage
+		
+	Uma linha no início da página.
+				
+	\vfill
+			
+	Este parágrafo está no final da página porque entre ele e o anterior, há o comando \comando{vfill}, que insere um espaço vertical de comprimento natural nulo, mas que pode esticar indefinidamente. Como não há mais nada nesta página, o \LaTeX\ insere este parágrafo, o anterior e estica o comprimento \comando{vfill} até que toda a dimensão vertical do documento seja ocupada.
+					
+\end{document}

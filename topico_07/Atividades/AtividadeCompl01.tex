@@ -1,0 +1,43 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{paralist}
+	\usepackage{xcolor} % O pacote xcolor substitui o color, mais antigo.
+	
+	% O argumento "blue!60!white", definido pelo pacote xcolor, indica a cor do
+	% texto. Neste caso, esta cor é constituída de uma mistura de 60% de azul e
+	% 40% de branco.
+	\newcommand{\pacote}[1]{\textcolor{blue!60!white}{#1}}
+	\newcommand{\ambiente}[1]{\textsl{#1}}
+	
+\begin{document}
+
+	O espaço entre os itens das listas-padrão do \LaTeX\ é consideravelmente
+	maior que a distância entre as linhas, o que as tornam pouco atrativas no
+	caso de ítens curtos:
+
+	\begin{itemize}
+		\item Maçã é vermelha
+		\item Uva é roxa
+		\item Banana é amarela
+		\item Laranja é\dots\ laranja!
+	\end{itemize}
+	
+	Mas você pode definir sua própria lista, com os comprimentos que mais achar
+	adequados. Alternativamente, você pode simplesmente importar o pacote \pacote
+	{paralist} para o seu documento e utilizar o ambiente \ambiente{compactitem}
+	no lugar do \ambiente{itemize}, \ambiente{compactenum} no de
+	\ambiente{enumerate} e, finalmente, \ambiente{compactdesc} no lugar de
+	\ambiente{description}:
+
+	\begin{compactitem}
+		\item Maçã é vermelha
+		\item Uva é roxa
+		\item Banana é amarela
+		\item Laranja é\dots\ laranja!
+	\end{compactitem}
+	
+	% EXERCÍCIO: crie as listas "compactenum" e "compactdesc".
+
+\end{document}

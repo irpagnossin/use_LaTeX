@@ -1,0 +1,98 @@
+%-------------------------------------------------------------------------------
+% Autores: I. R. Pagnossin e Centro de Ensino e Pesquisa Aplicada.
+%
+% Este material é parte integrante do curso "Usando LaTeX; pensando em TeX" e é
+% distribuido pelos autores segundo a licença Creative Commons 2.5 Brasil
+% (atribuição/não-comercial/redistribuição segundo a mesma licença).
+%
+% This material is part of the course "Usando LaTeX; pensando em TeX".
+% It is distributed according to the license Creative Commons 2.5 Brazil
+% (attribution/non-comercial use/share alike the same license).
+%-------------------------------------------------------------------------------
+\newif\ifhandout
+%\handouttrue  % Descomente se for para gerar a versão para IMPRESSÃO.
+\handoutfalse % Descomente se for para gerar a versão para APRESENTAÇÃO
+
+%-------------------------------------------------------------------------------
+\ifhandout
+  \documentclass[handout,10pt]{beamer}
+  \mode<handout>
+\else
+	\documentclass[10pt,hyperref={pdfpagelabels=false}]{beamer}
+	\mode<presentation>
+\fi
+
+	\usepackage[utf8]{inputenc}
+	\usepackage[brazil]{babel}	
+	\usepackage{graphicx}
+	\usepackage{listings}
+	\usepackage{amsmath}
+	\usepackage{tikz}	
+	\usepackage[squaren]{SIunits}	
+	\usepackage{fancybox}
+	\usepackage{array}
+	\usepackage{colortbl}		
+	\usepackage{bookman}
+	\usepackage{fancybox}
+	\usepackage{booktabs}
+	\usepackage{helvet}
+	\usepackage{lipsum}
+	\usepackage{tabularx}
+	\usepackage{calc}
+	\usepackage{colortbl}
+	\usepackage{multirow}
+		
+	\ifhandout
+		\usepackage{pgfpages}
+		\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+	\fi
+
+	% Bibliotecas TikZ e PGF necessárias
+	\usetikzlibrary{shapes.symbols}
+	\usepgflibrary{shapes.misc}
+	\usetikzlibrary{calc}
+	
+
+	% Path das figuras, relativo a esta pasta.
+	\graphicspath{{../arquivos_comuns/figuras/}{./figuras/}}
+
+	% Modelo da apresentação	
+	\usetheme{Frankfurt}
+	\usefonttheme{serif,structurebold}
+	%\setbeamercovered{transparent}		
+		
+	% Metadados do arquivo PDF.
+	\hypersetup{
+		pdftitle={Tabelas},
+		pdfauthor={Dr. Ivan R. Pagnossin},
+		pdfsubject={LaTeX},
+		pdfkeywords={TeX,LaTeX}
+	}
+
+	% Título, autores e instituição.
+	\title{Expressões matemáticas II}
+	\subtitle{\mathversion{bold}$\mathcal{AMS}$-\LaTeX}
+	\author{\textbf{Prof.:} Ivan R. Pagnossin\and \textbf{Tutora:} Juliana Giordano}
+	\institute{%
+		Coordenadoria de Tecnologia da Informação\\
+		Centro de Ensino e Pesquisa Aplicada}
+	\logo{\includegraphics[width=0.25\textwidth]{LogotipoCursoLaTeX_v3_pequeno}}
+	\date{}
+	
+	\newcommand{\scalefactor}{7}
+	\tikzset{box/.style={color=#1,thick},box/.default=red}
+	\tikzset{letter/.style={color=#1,inner sep=0pt},letter/.default=gray!50}
+	\tikzset{baseline/.style={color=#1,thin},baseline/.default=blue}
+		
+	\newsavebox{\meuparbox}
+	
+\begin{document}
+%-------------------------------------------------------------------
+\begin{frame}[c,label=titulo]
+	\centering	
+	
+	\includegraphics[width=0.8\textwidth]{LogotipoCursoLaTeX_v2}
+
+	\titlepage
+\end{frame}
+\end{document}

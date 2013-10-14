@@ -1,0 +1,29 @@
+% Este arquivo mostra como inserir uma imagem de fundo no documento através do pacote wallpaper
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage{lipsum}	
+	\usepackage[margin=3cm]{geometry}
+	
+	% O pacote wallpaper permite definir figuras como "papel-de-parede" do documento.
+	\usepackage{wallpaper}
+	
+	\graphicspath{
+		{Figuras/EPS/}
+		{Figuras/JPG/}
+		{Figuras/PDF/}
+		{Figuras/PNG/}
+		}	
+		
+\begin{document}
+
+
+	% O comando \CenterWallPaper insere uma figura (segundo argumento compulsório) centralizada em todas as páginas do documento. Seu primeiro argumento define a escala, ou fator (f) de ampliação (f > 1) ou de redução (0 < f < 1).
+	\CenterWallPaper{1}{Tei-Gi}
+	
+	% O comando \ThisCenterWallPaper tem a mesma sintaxe do \CenterWallPaper, só que ele insere a figura apenas na página do documento onde ele (comando \ThisCenterWallPaper) ocorre. Descomente a linha abaixo E COMENTE A INSTRUÇÃO ANTERIOR, \CenterWallPaper, para experimentar.
+	%\ThisCenterWallPaper{1}{Tei-Gi}
+
+	\lipsum[1-10]
+	
+\end{document}

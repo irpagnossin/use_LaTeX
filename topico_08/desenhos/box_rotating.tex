@@ -1,0 +1,22 @@
+\documentclass{beamer}
+	\usepackage{graphicx}
+	\usepackage{tikz}
+\begin{document}
+
+\newcount\angulo
+
+\begin{frame}
+
+	\animate<2-100>
+	\animatevalue<2-100>{\angulo}{0}{360}
+	
+	
+	\begin{tikzpicture}
+		\node (g) {\rotatebox{\angulo}{\scalebox{10}{g}}};
+		\draw [red] (g.south west) rectangle (g.north east);
+		\draw (g.base west) circle (2pt);
+	\end{tikzpicture}
+	
+\end{frame}
+
+\end{document}

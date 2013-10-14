@@ -1,0 +1,59 @@
+%\documentclass{article}
+%
+%	\usepackage[utf8]{inputenc}
+%	\usepackage{tikz}	
+%	\usepackage{fourier}	
+%	
+%	\usetikzlibrary{calc}
+%	
+%\begin{document}
+	%------------------------------------------------------------------
+	% \raisebox{elevação}{g}
+	%------------------------------------------------------------------
+	\renewcommand{\scalefactor}{13}
+	\colorlet{bcolor}{red!30}
+	
+	\begin{tikzpicture}[scale=\scalefactor]
+				
+		\coordinate (L) at (0,0);
+		\coordinate (A) at (0.15em,0);
+		\coordinate (T) at (0.54em,0);
+		\coordinate (E) at (0.98em,0);
+		\coordinate (X) at (1.47em,0);
+	
+		\node [inner sep=0pt,black!30] (nodeL) at (L)
+			{\scalebox{\scalefactor}{L}};
+			
+		\node [inner sep=0pt,black!30] (nodeA) at (A)
+			{\scalebox{\scalefactor}{\raisebox{+0.45ex}{\scriptsize A}}};
+			
+		\node [inner sep=0pt,black!30] (nodeT) at (T)
+			{\scalebox{\scalefactor}{T}};
+			
+		\node [inner sep=0pt,black!30] (nodeE) at (E)
+			{\scalebox{\scalefactor}{\raisebox{-0.47ex}[\height][\depth]{E}}};
+			
+		\node [inner sep=0pt,black!30] (nodeX) at (X)
+			{\scalebox{\scalefactor}{X}};
+		
+		\draw [blue] ($ (nodeL.base west) - (0.3ex,0) $) --
+		($ (nodeX.base east) + (0.3ex,0) $);
+				
+		\draw [red!100] (nodeL.south west) rectangle (nodeL.north east);
+		\draw [blue!100] ($(nodeA.south west) + (0,0.02ex)$) rectangle
+								($(nodeA.north east) - (0,0.02ex)$);
+		\draw [red!100] (nodeT.south west) rectangle (nodeT.north east);
+		\draw [blue!100] ($(nodeE.south west) - (0,0.45ex)$) rectangle
+								($(nodeE.north east) - (0,0.45ex)$);
+		\draw [red!100] (nodeX.south west) rectangle (nodeX.north east);
+		
+		\fill (nodeL.base west) circle (0.05ex);
+		\fill ($(nodeA.south west) + (0,0.02ex)$) circle (0.05ex);
+		\fill (nodeT.base west) circle (0.05ex);
+		\fill (nodeE.base west) circle (0.05ex);
+		\fill (nodeX.base west) circle (0.05ex);
+		
+		
+	\end{tikzpicture}
+	
+%\end{document}

@@ -1,0 +1,24 @@
+\documentclass{article}
+
+	\usepackage[ansinew]{inputenc} % <-- Este arquivo foi escrito com a codificação CP-1252.
+	\usepackage[T1]{fontenc}       % <-- Instrui o LaTeX a utilizar fontes de 8 bits.
+	\usepackage{times}            % <-- Substitui a fonte Computer Modern Roman, Sans-serif e Typewriter por Times, Helvetica e Courier NO TEXTO
+	%\usepackage{mathptmx}           % <-- Substitui a fonte Computer Modern Roman por Times NO TEXTO E NO MODO MATEMÁTICO.
+	\usepackage[brazil]{babel}     % <-- Carrega os padrões de separação silábica do português.
+	
+\begin{document}
+
+	A qualidade na integração entre texto e expressões matemáticas, característica do \LaTeX, reside na configuração harmônica entre as famílias de fontes utilizadas no texto e nas expressões. Por exemplo, neste arquivo nós utilizamos o pacote ``times'' para substituir a Computer Modern Roman pela família Times \emph{no texto} (além disso, este pacote substitui também as Computer Moder Sans-Serif e Typewriter por Helvetica e Courier, respectivamente). Mas no modo matemático, como em $a^2 = b^2 + c^2$, a fonte continua sendo a Computer Modern Roman. Outro exemplo:		
+	\[ % <-- Entra no modo matemático.
+	\frac{d}{dt}\int_0^t \lambda^2\, d\lambda.
+	\] % <-- Sai do modo matemático.
+
+	Assim, utilizar o pacote ``times'' destrói a harmonia entre as fontes do modo texto e do modo matemático.
+	
+	No caso da família Times, para corrigir isto basta substituir o pacote ``times'' pelo ``mathptmx,'' que encarrega-se de definir também a fonte do modo matemático como Symbol, que combina com a Times (neste caso, a substituição das fontes Computer Modern Sans-Serif e Typewriter não ocorre). Faça o teste!
+	
+	A família de fontes Times pertence ao estilo chamado Romano ou antigo. Famílias deste estilo têm serifas curvilíneas e traçados que apresentam a chamada transição grosso-fino, isto é, transições contínuas e suaves entre grosso e fino, como se tivessem sido desenhados à mão. Outros exemplos de famílias deste \emph{estilo} são a própria Computer Modern Roman, a Bookman, a Palatino, dentre muitas outras. Este é o estilo de fontes mais recomendado para a impressão de longos trabalhos.
+	
+	Contudo, note que o \emph{estilo} de uma família de fontes não faz parte da classificação segundo o New Font Selection Scheme (NFSS).
+
+\end{document}

@@ -1,0 +1,54 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}	
+	\usepackage[brazil]{babel}
+	\usepackage{lipsum}
+	\usepackage{xcolor}
+	\usepackage{booktabs}
+	
+	\input{minhasconfiguracoes}
+	
+	% Os parâmetros \topfraction e \bottomfraction representam o tamanho máximo que um objeto flutuante pode ter quando colocado no topo da página ou na base dela, respectivamente. Os valores padrão são 0.7 (70% da altura do texto) e 0.3 (30% da altura do texto), respectivamente.
+	\renewcommand\topfraction{0.5}
+	\renewcommand\bottomfraction{0.5}
+	
+\begin{document}
+
+	% O ambiente table atribui à(s) caixa(s) contida(s) nele a capacidade de "flutuar" pelo texto. Isto é, o LaTeX pode reposicionar o elemento do texto (tabela, usualmente) que está contido num ambiente table de modo a satisfazer vários parâmetros. Mas em última instância este reposicionamento ocorre porque a(s) caixa(s) em questão não cabem onde foram inseridas!
+
+	\lipsum[1]\lipsum[1]
+
+	\begin{table}[htbp]
+		\centering
+		\raisebox{-\topfraction\textheight}[0pt][0pt]{\color{red}\rule{2pt}{\topfraction\textheight}}%
+		%\raisebox{-\bottomfraction\textheight}[0pt][0pt]{\color{red}\rule{2pt}{\bottomfraction\textheight}}%
+		\begin{tabular}[t]{ccc}
+			\toprule
+			Coluna 1  & Coluna 2  & Coluna 3  \\
+			\midrule
+			Célula 21 & Célula 22 & Célula 23 \\
+			Célula 21 & Célula 22 & Célula 23 \\
+			Célula 21 & Célula 22 & Célula 23 \\
+			Célula 21 & Célula 22 & Célula 23 \\
+			Célula 21 & Célula 22 & Célula 23 \\ 
+			Célula 21 & Célula 22 & Célula 23 \\ 
+			Célula 21 & Célula 22 & Célula 23 \\
+			Célula 21 & Célula 22 & Célula 23 \\
+			Célula 21 & Célula 22 & Célula 23 \\
+			Célula 21 & Célula 22 & Célula 23 \\ 
+%			Célula 21 & Célula 22 & Célula 23 \\ % <-- Até aqui vai para "h"
+%			Célula 21 & Célula 22 & Célula 23 \\ % <-- A partir daqui vai para "t" ou "b"
+%			Célula 21 & Célula 22 & Célula 23 \\
+%			Célula 21 & Célula 22 & Célula 23 \\
+%			Célula 21 & Célula 22 & Célula 23 \\
+%			Célula 21 & Célula 22 & Célula 23 \\ % <-- A partir daqui vai para "p"
+			\bottomrule
+		\end{tabular}
+		
+		\caption{o comando \comando{label}, qua atribui um nome (ou rótulo) à tabela, deve sempre ser utilizado \emph{após} o comando \comando{caption} ou dentro de seu argumento.}
+		\label{tab:rotulo}
+	\end{table}
+	
+	\lipsum[4-7]
+	
+\end{document}

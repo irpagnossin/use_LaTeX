@@ -1,0 +1,38 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	\usepackage{lipsum} % Lorem ipsum
+\begin{document}
+
+	% O ambiente list representa uma lista generalizada que você pode configurar.
+
+	\lipsum[1] % Gera o texto anterior à lista.
+
+	% Olhe só: trata-se de um ambiente que recebe DOIS argumentos! A sintaxe
+	% é \begin{list}{arg. 1}{arg. 2}... você enxerga os argumento abaixo?
+	%
+	\begin{list}
+		% 1º argumento
+		%-------------
+		{\( \to \)}		
+		% 2º argumento
+		%-------------
+		{
+			\setlength{\itemindent}{\parindent}
+			\setlength{\itemsep}{0pt}
+			\setlength{\rightmargin}{\leftmargin}
+		}
+	
+	
+	
+	
+		\item \lipsum[2] % Item 1.
+		\item \lipsum[3] % Item 2.
+	\end{list}
+
+	
+	\lipsum[4] % Gera o texto posterior à lista.
+
+\end{document}

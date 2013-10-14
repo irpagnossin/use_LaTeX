@@ -1,0 +1,22 @@
+\documentclass[a4paper,12pt,twoside]{article}
+
+	% O pacote layout define o comando \layout (sem argumentos), que apresenta uma representação gráfica dos diversos parâmetros que definem o leiaute da página.
+	\usepackage{layout}
+	
+	% ------- IMPORTANTE --------------------------------------------------%
+	% obs.: alterações no leiaute da página devem ser feitas no PREÂMBULO. %
+	%----------------------------------------------------------------------%
+	
+	% Caso você queira redefinir margens e outros parâmetros da página, prefira utilizar o pacote geometry, que representa esses parâmetros de maneira mais intuitiva (margens esquerda e direita, centralização do texto na página etc). Descomente a linha abaixo, que define a dimensão de todas as margens como 2 centímetros, e veja o efeito na ilustração criada por \layout. E observe como as notas de margem ficaram parcialmente fora da página: uma evidência de que alterar as dimensões do documento deve ser feito com cautela.
+	\usepackage[margin=2cm]{geometry}
+	
+\begin{document}
+
+	\layout    % Leiaute da página 1.
+	\pagebreak % Impõe uma quebra de página.
+	\layout    % Leiaute da página 2.
+	
+	% EXERCÍCIO: altere alguns dos comprimentos que definem a página.
+	% EXERCÍCIO: encontre a documentação do pacote geometry no CTAN (ctan.org).
+
+\end{document}

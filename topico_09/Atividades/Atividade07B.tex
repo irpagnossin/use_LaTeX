@@ -1,0 +1,47 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{lipsum}
+	\usepackage{xcolor}	
+	\usepackage{graphicx}	
+	\usepackage{subfigure}
+	
+	\graphicspath{
+		{Figuras/EPS/}
+		{Figuras/JPG/}
+		{Figuras/PDF/}
+		{Figuras/PNG/}
+		}
+		
+	\input{minhasconfiguracoes}
+	
+\begin{document}
+
+	\setcounter{lofdepth}{2}
+	\listoffigures
+	
+	\newpage
+
+	\lipsum[1]
+
+	\begin{figure}[htb]
+		\center
+		\subfigure
+			[Esta é a legenda que aparece na lista de figuras (LoF)]
+			[\label{fig:figA}Esta é a legenda longa da figura \ref{fig:figA}. Se você fornecer uma legenda curta no argumento opcional anterior, esta legenda \emph{não} aparecerá na lista de figuras (LoF), mas apenas no texto\dots]
+			{\includegraphics[width=0.45\textwidth]{Tei-Gi}}
+		\qquad
+		\subfigure
+			[Esta é a legenda da figura \ref{fig:figB} que aparece na LoF.]
+			[\dots\ Ainda assim é necessário alterar o valor do contador \contador{lofdepth} para $2$ de modo que as legendas das sub-figuras apareçam na LoF. Caso contrário, apenas a legenda do conjunto (no ambiente \ambiente{figure}) aparecerá. Este contador, \foreign{list of figure depth}, marca a ``profundidade'' da LoF: $\leq1$ são figuras e $\geq2$ são sub-figuras.]
+			{\label{fig:figB}\includegraphics[width=0.45\textwidth]{Tei-Gi}}
+			
+		\caption
+			[Esta é a legenda comum às sub-figuras que aparece na LoF]
+			{observe que no comando \comando{subfigure} você pode colocar o \comando{label} tanto no argumento opcional da legenda (a que aparece no texto) como no argumento obrigatório, que contém o comando \comando{includegraphics}.}
+	\end{figure}
+
+	\lipsum[2]
+
+\end{document}

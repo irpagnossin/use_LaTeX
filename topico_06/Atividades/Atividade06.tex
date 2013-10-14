@@ -1,0 +1,21 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	
+	\newcommand{\comando}[1]{{\textbackslash\color{blue!70}\normalfont #1}}
+	\newcommand{\foreign}[1]{\textsl{#1}}
+\begin{document}
+	
+	No exemplo abaixo inserimos ``texto'', um espaço horizontal de \emph{comprimento natural} \comando{textwidth} e, finalmente, outra palavra ``texto''. Como a linha de texto tem comprimento \comando{textwidth}, esta construção excede a margem direita por um comprimento igual a duas vezes o da palavra ``texto''. Isto geraria um \foreign{bad box}, não fosse o fato de termos utilizado um comprimento elástico (ou cola), que dá ao \LaTeX\ a liberdade de contrair o comprimento inserido em até meia linha de texto. Assim, para evitar o \foreign{bad box}, é o que ele faz: insere ``texto'' à esquerda e à direita, sendo que entre eles há um espaço horizontal de comprimento igual a \comando{textwidth} menos o dobro do comprimento de ``texto''.
+	
+	% \bigskip é um espaço vertical de comprimento elástico igual a 12pt plus 4pt minus 4pt
+	\bigskip
+	
+	\noindent texto\hspace{\textwidth minus 0.5\textwidth}texto
+	
+	% Experimente remover do espaço a capacidade de contrair e observe a formação do (overfull) bad box. E lembre-se: overfull bad box ocorre quando o texto passa da margem direita; underfull bad box ocorre quando o espaço entre as palavras é muito grande.
+	%\noindent texto\hspace{\textwidth}texto
+		
+\end{document}

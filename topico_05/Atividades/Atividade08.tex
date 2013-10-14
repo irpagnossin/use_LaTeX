@@ -1,0 +1,80 @@
+\documentclass[a4paper,10pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor} % <-- O pacote xcolor é uma evolução do color.
+	%\usepackage{amsmath}
+	
+	% Descomente as três linhas abaixo para alterar a fonte do texto e evidenciar a diferença entre as fontes do modo parágrafo e do modo matemático.
+%	\renewcommand\familydefault{fau}
+%	\renewcommand\seriesdefault{m}
+%	\renewcommand\shapedefault{n}
+	
+	% Eu acabei de inventar estes comandos. Por que eu fiz isso? Discuta com seus colegas na atividade conjunta deste tópico. Mas atenção: não se preocupe em entender as instruções abaixo... por enquanto!
+	\newcommand{\pacote}[1]{{\color{orange!50!black}\normalfont#1}}
+	\newcommand{\comando}[1]{{\textbackslash\color{blue!70}\normalfont#1}}
+		
+\begin{document}
+
+	\section*{Textos no modo matemático}
+
+	A forma tradicional de inserir textos no modo matemático é através do
+	comando \comando{mbox} (``make box''):
+	
+	\begin{center}
+		texto \( \cos\left( \mbox{ângulo qualquer} \right) \) texto.
+	\end{center}	
+	Neste caso, a fonte utilizada para escrever o argumento do \comando{mbox}
+	é aquela em voga no modo parágrafo (experimente alterá-la).
+	
+	% Na verdade, o comando \mbox causa uma transição para o chamado
+	% modo LaTeX LR (left-right), ou modo horizontal restrito (TeX).
+	
+	Você também pode utilizar qualquer um dos comandos ordinários de seleção
+	de fontes vistos anteriormente caso queira especificar, explicitamente,
+	os atributos da fonte. Por exemplo, se você quiser escrever dentro do
+	modo matemático com a mesma fonte do modo texto, mas com a forma inclinada
+	(slanted), utilize \comando{textsl}:
+	\begin{center}
+		texto \( \cos\left( \textsl{ângulo qualquer} \right) \) texto.
+	\end{center}	
+	Novamente, experimente alterar a família ou a série da fonte no \emph{modo
+	parágrafo}.
+	
+	A desvantagem desses comandos é que, se você utilizá-los em subscritos ou
+	sobrescritos, terá de ajustar o tamanho da fonte manualmente, o que não é
+	logicamente recomendado (além de ser trabalhoso):
+	\begin{center}
+		texto \( \cos\left( \phi_{\textsl{inicial}} \right) \) texto.
+	\end{center}	
+	
+	Para resolver isso, simplesmente carregue o pacote \pacote{amsmath} no preâmbulo:
+	ele redefine esses comandos levando essa questão em consideração. Faça isso agora
+	e recompile este arquivo.
+	
+	O pacote \pacote{amsmath} também define o comando \comando{text}, que deve ser utilizado
+	no lugar do \comando{mbox} pelo mesmo motivo. Este é o comando que você mais utilizará
+	para inserir textos no modo matemático.
+
+	%-----------------------------------
+	\section*{Fontes do modo matemático}
+	
+	Diferentemente de inserir textos no modo matemático, você pode querer modificar os
+	atributos das fontes \emph{do} modo matemático. Isto é feito através dos comandos
+	\comando{mathrm}, \comando{mathsf}, \comando{mathtt}, \comando{mathbf}, \comando{mathit}
+	e \comando{mathcal}. Ademais, o comando \comando{mathnormal} restaura a fonte padrão do modo matemático.
+	
+	Estes comandos não promovem a transição para algum outro modo, mas apenas alteram
+	os atributos da fonte no modo matemático. E por permanecer neste modo, o argumento
+	desses comandos estão sujeitos às regras do modo matemático. Isto é, os espaços
+	são ignorados e você não pode utilizar acentos:
+	\[\mathrm{ABCD}\quad
+	  \mathsf{ABCD}\quad
+	  \mathtt{ABCD}\quad
+	  \mathbf{ABCD}\quad
+	  \mathit{ABCD}\quad
+	  \mathcal{A  B  C  D}\] % <-- Note que os espaços são ignorados: característica do modo matemático.
+	
+	Estes comandos alteram automaticamente o tamanho das fontes caso estejam
+	como sub ou sobrescritos.
+\end{document}

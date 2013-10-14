@@ -1,0 +1,149 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	
+	\input{minhasconfiguracoes}
+	
+	\setlength\parskip\baselineskip
+\begin{document}
+
+	Este arquivo ilustra a construção básica de tabelas no \LaTeX. Leia os comentários para os detalhes e compare sempre as instruções com o respectivo resultado no documento final. As linhas vermelhas representam as linhas-base.
+	
+	%--------------------------------------------
+	% EXEMPLO 1
+	%--------------------------------------------
+	% Para criar uma tabela no LaTeX você deve utilizar o ambiente tabular. Ele recebe um argumento opcional e um compulsório:
+	%
+	% \begin{tabular}[alinhamento vertical]{configuração das colunas} ... \end{tabular}
+	%
+	% O argumento opcional especifica a posição do ponto-de-referência da caixa que contém a tabela: "t" (top) para colocá-lo no topo dela (altura da caixa = 0), "b" (base) para colocá-lo na base (profundidade = 0) e "c" (center) para colocá-lo - aproximadamente - a meia altura (altura \approx profundidade). Já o argumento obrigatório recebe uma sequência de letras e símbolos, sendo que as letras representam as colunas: há uma letra para cada coluna da tabela. Elas podem ser: "l" para alinhar o conteúdo à esquerda, "c" para centralizar o conteúdo nas células e "r" para alinhá-lo à direita.
+	% Dentro do ambiente tabular, cada célula é separada da seguinte pelo caráter especial & (e-comercial), e linhas são terminadas com o comando do segundo tipo \\. Adicionalmente, podemos utilizar o comando \hline para criar linhas horizontais de um lado ao outro da tabela.
+	
+	\linhabase\hfill
+	\begin{tabular}[c]{ccc}
+		\hline
+		Célula 11 & Célula 12 & Célula 13 \\
+		\hline
+		C. 21     & C. 22     & C. 23     \\
+		\hline
+		31        & 32        & 33        \\
+		\hline
+	\end{tabular}%
+	\hfill\null
+	
+	% OBSERVE QUE...
+	% 1) a quantidade de letras "c" no argumento COMPULSÓRIO do ambiente tabular define a quantidade de colunas da tabela.
+	% 2) o caráter & "separa" cada uma das colunas dentro do ambiente, enquanto o caráter \\ representa a mudança de linha.
+	% 3) \hline, que produz uma linha horizontal de um lado ao outro da tabela, não precisa (e não deve) ser sucedido por \\ (já faz parte do comando).
+	
+	% EXPERIMENTE:
+	% 1) alterar o alinhamento vertical da (caixa da) tabela através do parâmetro opcional (entre colchetes), que pode ser t (topo), b (base) ou c (center). Em cada caso, identifique as caixas que compõem a linha da tabela, a linha-base e o ponto-de-referência da (caixa que contém a) tabela.
+	% 2) alterar o alinhamento horizontal das colunas através do parâmetro obrigatório (entre chaves), que pode ser l (left), r (right) ou c (center).
+	% 3) Altere {ccc} para {||c|c|c||}. Experimente também outras variações, conservando a quantidade de letras "c" (e/ou "l" e/ou "r") entre colchetes (é o que define a quantidade de colunas da tabela).	
+	
+	%--------------------------------------------
+	% EXEMPLO 2
+	%--------------------------------------------
+	% Quanto aos símbolos na configuração das colunas, o | (barra vertical) é o mais comum: ele instrui o LaTeX a inserir uma linha vertical entre as colunas. É possível também inserir || ou |||, mas este tipo de construção deve ser evitado, pois geralmente não é necessário, haja vista que o próprio alinhamento natural da tabela distingue os elementos em colunas distintas (leia a documentação do pacote booktabs para mais informações a respeito de hábitos ruins na construção de tabelas).
+	
+	\linhabase\hfill
+	\begin{tabular}[c]{|c|c|c|}
+		\hline
+		Célula 11 & Célula 12 & Célula 13 \\
+		\hline
+		C. 21     & C. 22     & C. 23     \\
+		\hline
+		31        & 32        & 33        \\
+		\hline
+	\end{tabular}%
+	\hfill\null
+	
+	%--------------------------------------------
+	% EXEMPLO 3
+	%--------------------------------------------
+	%Além das letras "l", "c" e "r" na configuração das colunas, há também a opção "p{comp.}", que especifica uma coluna de largura igual ao comprimento comp (35mm no exemplo abaixo)... 
+	
+	\linhabase\hfill
+	\begin{tabular}[c]{|p{35mm}|p{35mm}|p{35mm}|}
+		\hline
+		Célula 11 & Célula 12 & Célula 13 \\
+		\hline
+		C. 21     & C. 22     & C. 23     \\
+		\hline
+		31        & 32        & 33        \\
+		\hline
+	\end{tabular}%
+	\hfill\null
+	
+	%--------------------------------------------
+	% EXEMPLO 4
+	%--------------------------------------------
+	%... Na verdade, trata-se de uma caixa de parágrafo (equivale à instrução \parbox[t]{comp.}) e ela permite que uma célula tenha um texto longo, de mais de uma linha. Neste caso, o alinhamento do texto é feito utilizando-se as declarações \raggedright, \centering e \raggedleft, e você deve trocar o comando \\ por \tabularnewline. Isto porque \\ referir-se-á à quebra de linha do texto DENTRO da caixa de parágrafo, ie, dentro da célula, enquanto \tabularnewline indicará a mudança de linha DA TABELA.
+	
+	\linhabase\hfill
+	\begin{tabular}[c]{|p{35mm}|p{35mm}|p{35mm}|}
+		\hline
+		Célula 11 & \raggedleft Célula 12 & \centering Célula 13, linha 1\\e a linha 2 \tabularnewline
+		\hline
+		C. 21     & \raggedleft C. 22     & \centering C. 13, linha 1\\e a linha 2     \tabularnewline
+		\hline
+		31        & \raggedleft 32        & \centering 13, linha 1\\e a linha 2        \tabularnewline
+		\hline
+	\end{tabular}%
+	\hfill\null
+	
+	%--------------------------------------------
+	% EXEMPLO 5
+	%--------------------------------------------
+	% Outro símbolo que pode ser utilizado entre as letras na configuração das colunas é o @{}, onde o conteúdo das chaves é inserido NO LUGAR DO ESPAÇO ENTRE AS COLUNAS. No exemplo abaixo, um ponto-final é inserido entre as colunas 1 e 2.
+	
+	\linhabase\hfill
+	\begin{tabular}[c]{|r@{.}l|c|}
+		\hline
+		1234 & 5    & Célula 13 \\
+		 123 & 45   & Célula 13 \\
+		  12 & 345  & C. 23     \\
+       1 & 2345 & 33        \\
+		\hline
+	\end{tabular}%
+	\hfill\null
+	
+	%--------------------------------------------
+	% EXEMPLO 6
+	%--------------------------------------------
+	% Finalmente há o parâmetro *{}{}, utilizado para especificar a configuração de várias colunas de uma só vez. No exemplo abaixo, *{3}{c} equivale a "ccc": três letras "c" (center) seguidas. É, portanto, a mesma configuração do primeiro exemplo desta atividade.
+	
+	\linhabase\hfill
+	\begin{tabular}[c]{*{3}{c}}
+		\hline
+		Célula 11 & Célula 12 & Célula 13 \\
+		\hline
+		C. 21     & C. 22     & C. 23     \\
+		\hline
+		31        & 32        & 33        \\
+		\hline
+	\end{tabular}%
+	\hfill\null
+		
+	%--------------------------------------------
+	% EXEMPLO 7
+	%--------------------------------------------
+	% Além do comando \hline, que cria uma linha horizontal ligando os extremos da tabela, o comando \cline{coluna n-coluna m} cria uma linha ligando a lateral ESQUERDA da coluna n e a DIREITA da coluna m.
+	
+	\linhabase\hfill
+	\begin{tabular}[c]{ccc}
+		\cline{1-3}
+		Célula 11 & Célula 12 & Célula 13 \\
+		\cline{1-2}\cline{2-2} % <----- ATENÇÃO: cuidado para não escrever
+		                       %        \cline{}&\cline (com & no meio). O
+		                       %        correto é \cline{}\cline{}...
+		C. 21     & C. 22     & C. 23     \\
+		\cline{1-1}
+		31        & 32        & 33        \\
+		\cline{2-3}
+	\end{tabular}%
+	\hfill\null
+			
+\end{document}

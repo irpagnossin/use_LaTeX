@@ -1,0 +1,61 @@
+% File: box_raisebox_generic
+% Author: Ivan Ramos Pagnossin
+% Date: 2008.11.01
+\begin{tikzpicture}[baseline/.style={thin,blue},
+											box/.style={thick,red},
+											ref pt0/.style={fill=gray!30,draw=black}]
+
+		% A letra "g" e sua caixa (configuração final)
+		\node [inner sep=0pt] (g) at (0,0) {%
+			\scalebox{10}{%
+				\raisebox{1ex}[0.7ex][0.4ex]{%
+					\textcolor{gray!30}{g}%
+				}%
+			}%
+		};
+		
+		\node [inner sep=0pt] (g0) at (0,12ex) {\scalebox{10}
+		{\textcolor{gray!30}g}};
+		
+		\draw [inner sep=0pt,gray!30] (g0.south west) rectangle (g0.north east);
+		
+		\coordinate (baseline left)  at ($(g.base west) - (5mm,0)$);
+		\coordinate (baseline right) at ($(g.base east) + (5mm,0)$);
+		
+		% A linha-base
+		\draw [baseline] (baseline left) -- (baseline right);
+		
+		% A caixa
+		\draw [box] (g.south west) rectangle (g.north east);
+				
+		% Ponto-de-referência original.
+		\draw [ref pt0] ($(g.base west)+(0,10ex)$) circle (3pt);
+		
+		% Ponto-de-referência final.
+		\fill [black] (g.base west) circle (3pt);
+		
+		% Flecha da elevação
+		\draw [<->] ($ (g.base west) + (-3mm,+0.5mm) $) -- 
+		            ($ (g.base west) + (0,10ex) + (-3mm,-1mm) $);
+		
+		% Rótulo "Elevação"
+		\node [label=left:Elevação, inner sep=3mm]
+			at ($(g.base west) + (0,5ex)$) {};
+				
+		% Flecha da altura
+		\draw [<->] ($ (g.base east) + (3mm,+0.5mm) $) --
+		            ($ (g.north east) + (3mm,-0.5mm) $);		
+		
+		% Rótulo "Altura"
+		\node [label=right:Altura, inner sep=3mm]
+			at ($ (g.base east) ! 0.5 ! (g.north east) $) {};
+		
+		% Flecha da profundidade
+		\draw [<->] ($ (g.south east) + (3mm,+0.5mm) $) --
+		            ($ (g.base east) + (3mm,-0.5mm) $);
+		
+		% Rótulo "Profundidade"
+		\node [label=right:Profundidade, inner sep=3mm]
+			at ($ (g.base east) ! 0.5 ! (g.south east) $) {};
+		
+	\end{tikzpicture}

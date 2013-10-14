@@ -1,0 +1,184 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	\usepackage{booktabs}
+	\usepackage{longtable}
+	
+	\input{minhasconfiguracoes}
+	
+	\setlength\parskip\baselineskip	
+\begin{document}
+
+	Este arquivo ilustra a utilização de tabelas longas através do pacote \pacote{longtable}.
+
+	% A construção do conteúdo de uma tabela longa é exatamente a mesma de qualquer outra. A diferença está no início, onde algumas instruções extras devem ser informadas. A saber, é preciso informar quais serão os cabeçalhos e rodapés necessários. O esquema abaixo ilustra quais informações são necessárias:
+	%
+	%  Página 1             Página 2                 Página 3
+	% 
+	%  ----------------     --------------------     ----------------------
+	% | Cabeçalho p. 1 |   | Cabeçalho p. 2 e 3 |   | Cabeçalho p. 2 e 3   |
+	% | ...            |   | ...                |   | ...                  |
+	% | ...            |   | ...                |   | ...                  |
+	% | ...            |   | ...                |   | ...                  |
+	% | ...            |   | ...                |   | ...                  |
+	% | Rodapé p. 1 e 2|   | Rodapé p. 1 e 2    |   | Rodapé p. 3 (ÚLTIMA) |
+	%  ----------------     --------------------     ----------------------
+	%
+	% Imagine que tenhamos uma tabela que ocupe três páginas. Neste caso precisamos informar ao pacote os seguintes cabeçalhos e rodapés:
+	%
+	% Cabeçalho da página 1
+	% Cabeçalho da página 2 em diante
+	% Rodapé da página 1 até a penúltima
+	% Rodapé da última página
+	%
+	% São essas as quatro informações que temos de informar no início da tabela. Veja o exemplo abaixo.
+
+	\begin{longtable}[c]{ccc}
+			%--------------------------------------------
+			% Cabeçalho da página 1
+			\caption{legenda da tabela.}\\
+		  %\textbf{Col. 1} & \textbf{Col. 2} & \textbf{Col. 3}\\
+		  \multicolumn{3}{c}{\textcolor{blue}{Cabeçalho da primeira página}}\\
+		  \toprule
+		\endfirsthead
+			%--------------------------------------------
+			% Cabeçalho da página 2 em diante			
+		  %\textbf{Col. 1} & \textbf{Col. 2} & \textbf{Col. 3}\\
+		  \multicolumn{3}{c}{\textcolor{blue}{Cabeçalho da página 2 em diante}}\\
+		  \toprule
+		\endhead
+			%--------------------------------------------
+			% Rodapé da página 1 até a penúltima
+		  %\midrule
+		  \multicolumn{3}{r}{\textcolor{blue}{\textit{Continua...}}}\\
+		\endfoot
+			%--------------------------------------------
+			% Rodapé da última página
+			\bottomrule
+		  \multicolumn{3}{c}{\textcolor{blue}{Rodapé da última página}}		  
+		\endlastfoot
+				
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		\midrule
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		\midrule
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		\midrule
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		\midrule
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		\midrule
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		\midrule
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		\midrule
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		\midrule
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		\midrule
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		\midrule
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		\midrule
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		\midrule
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		\midrule
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		\midrule
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		\midrule
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		\midrule
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		\midrule
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		\midrule
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		\midrule
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\
+		Coluna 1 & Coluna 2 & Coluna 3 \\		
+	\end{longtable}
+
+\end{document}

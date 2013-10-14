@@ -1,0 +1,45 @@
+% Configurações personalizadas do código LaTeX.	
+\lstnewenvironment{LaTeXcode}{
+	\setlength{\abovecaptionskip}{0pt}	
+	\lstset{language=[LaTeX]TeX}
+	\lstset{%
+		basicstyle=\footnotesize\ttfamily,  % Global
+		keywordstyle=\color{blue}\bfseries, % Comandos
+		identifierstyle=,                   % Texto
+		stringstyle=,                       % Strings 
+		commentstyle=\color{gray},          % Comentários
+		showstringspaces=false,             % Espaços
+		rulecolor=\color{gray},             % Linha da caixa
+	}
+	\lstset{emph={setlength,includegraphics,psfrag,subfigure},emphstyle={\color{blue}\bfseries}}
+}% Abrindo o ambiente.
+{}% Fechando o ambiente.
+	
+\newcommand{\digite}[1]{{\fontfamily{cmss}\fontseries{bx}\selectfont#1}}	
+\newcommand{\cs}[1]{{\normalfont\textbackslash\color{blue!50!black}#1}}
+\newcommand{\pkg}[1]{{\normalfont\sffamily\color{orange}#1}}
+\newcommand{\env}[1]{{\normalfont\sffamily\color{green!50!black}#1}}
+\let\comando=\cs
+\let\package=\pkg
+\let\ambiente=\env
+\newcommand{\foreign}[1]{{\textsl{#1}}}
+
+
+	\newcounter{exercicio}	
+	\newenvironment{exercicio}{%
+		\refstepcounter{exercicio}%
+		\penalty-200
+		\noindent\colorbox{blue!60!black}{\makebox[\columnwidth-\fboxsep*2][c]{\textbf{\color{white}Exercício~\theexercicio}}}\smallskip
+	}{\par\medskip}
+		
+
+\newcommand{\bibtex}{\textsc{Bib}\TeX}
+
+\newenvironment<>{atividade}[1]{%
+\begin{actionenv}#2%
+\begin{exampleblock}{{Atividade #1}}%
+}
+{%
+\end{exampleblock}%
+\end{actionenv}%
+}

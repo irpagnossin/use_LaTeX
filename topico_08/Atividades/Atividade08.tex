@@ -1,0 +1,35 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage{lipsum}
+	\usepackage[brazil,latin]{babel} % <-- Carrega os padrões de separação silábica do português e do latin
+	\usepackage{graphicx}
+	\usepackage{SIunits}	
+		
+	\setlength{\parskip}{0.5\baselineskip minus 0.5\baselineskip}
+	
+	% Aqui estou salvando uma caixa, que contém o parágrafo 2 do texto "Lorem Ipsum", para ser utilizada depois
+	\selectlanguage{latin} % <-- Dentro da caixa o texto está em latin (este é um comando do pacote babel)
+	\newsavebox{\minhacaixa}
+	\savebox{\minhacaixa}{% <-- Para que serve este comentário?
+		\begin{minipage}{0.3\textwidth}
+			\tiny\lipsum[2]
+		\end{minipage}}
+	
+\begin{document}
+
+	
+	\selectlanguage{brazil} % <-- Daqui para baixo o texto está em português. Este é um comando do pacote babel
+		
+	Rotação de \unit{30}{\degree}: \rotatebox{30}{\usebox{\minhacaixa}}
+	
+	A mesma caixa, 50\% maior: \scalebox{1.5}{\usebox{\minhacaixa}}
+	
+	A mesma caixa, de cabeça para baixo: \scalebox{1}[-1]{\usebox{\minhacaixa}}
+	
+	% O argumento ! (exclamação) informa ao LaTeX para aumentar/reduzir a dimensão horizontal da caixa na mesma proporção da vertical
+	A mesma caixa, com \emph{altura} igual a \unit{1}{\centi\metre}: \resizebox{!}{1cm}{\usebox{\minhacaixa}}
+		
+	Destaque as linhas-base do texto acima e os pontos-de-referência das caixas de parágrafo. Depois responda: exceto por este parágrafo, quantas \emph{linhas} de texto há neste arquivo?
+	
+\end{document}

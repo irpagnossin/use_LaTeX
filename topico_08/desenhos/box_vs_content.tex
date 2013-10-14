@@ -1,0 +1,35 @@
+%----------------------------------------------------------------------------
+	\begin{tikzpicture}[scale=\scalefactor]
+		\node [letter] (A) {\scalebox{\scalefactor}{A}};
+		\draw [box] (A.south west) rectangle (A.north east);
+		
+		\draw [baseline]
+			($(A.base west) - (0.005\textwidth,0)$) --
+			($(A.base east) + (0.005\textwidth,0)$);
+		\fill (A.base west) circle (0.001\textwidth);
+	\end{tikzpicture}\hfill					
+%----------------------------------------------------------------------------
+	\begin{tikzpicture}[scale=\scalefactor]
+		\node [letter] (A) {\scalebox{\scalefactor}{%
+			\makebox[0.2\width][l]{A}%
+		}};
+		\draw [box] (A.south west) rectangle (A.north east);
+		
+		\draw [baseline]
+			($(A.base west) - (0.005\textwidth,0)$) --
+			($(A.base east) + (0.005\textwidth,0)$);
+		\fill (A.base west) circle (0.001\textwidth);
+	\end{tikzpicture}\hfill
+%----------------------------------------------------------------------------
+	\begin{tikzpicture}[scale=\scalefactor]
+		\node [letter] (A) {\scalebox{\scalefactor}{%
+			\raisebox{0pt}[0pt][\height]{A}%
+		}};
+		\draw [box] (A.south west) rectangle (A.north east);
+		
+		\draw [baseline]
+			($(A.base west) - (0.005\textwidth,0)$) --
+			($(A.base east) + (0.005\textwidth,0)$);
+		\fill (A.base west) circle (0.001\textwidth);
+	\end{tikzpicture}			
+%----------------------------------------------------------------------------

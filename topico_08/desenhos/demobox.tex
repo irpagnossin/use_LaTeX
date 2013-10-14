@@ -1,0 +1,27 @@
+%--------------------------------------------------------------
+% Exercício 11.5 do livro TeXbook. A macro \demobox{<texto>} 
+% substitui <texto> belos boxes construídos pelo TeX. Muito útil
+% para compreender o conceito de box.
+\def\dolist{\afterassignment\dodolist\let\next= }
+\def\dodolist{\ifx\next\endlist \let\next\relax
+  \else \\\let\next\dolist \fi
+  \next}
+\def\endlist{\endlist}
+\def\hidehrule#1#2{\kern-#1%
+  \hrule height#1 depth#2 \kern-#2 }
+\def\hidevrule#1#2{\kern-#1{\dimen0=#1
+  \advance\dimen0 by#2\vrule width\dimen0}\kern-#2 }
+\def\makeblankbox#1#2{\hbox{\lower\dp0\vbox{\hidehrule{#1}{#2}%
+  \kern-#1 % overlap the rules at the corners
+  \hbox to \wd0{\hidevrule{#1}{#2}%
+    \raise\ht0\vbox to #1{}% set the vrule height
+    \lower\dp0\vtop to #1{}% set the vrule depth
+    \hfil\hidevrule{#2}{#1}}%
+  \kern-#1\hidehrule{#2}{#1}}}}
+\def\maketypebox{\makeblankbox{0pt}{0.05pt}}
+\def\makelightbox{\makeblankbox{.2pt}{.2pt}}
+\def\\{\expandafter\if\space\next\
+  \else \setbox0=\hbox{\next}\maketypebox\fi}
+\def\demobox#1{\setbox0=\hbox{\dolist#1\endlist}%
+  \copy0\kern-\wd0\makelightbox}
+%--------------------------------------------------------------

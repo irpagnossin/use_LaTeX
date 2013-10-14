@@ -1,0 +1,18 @@
+\documentclass[a4paper,12pt]{article}
+  \usepackage[utf8]{inputenc} % <-- ATENÇÃO: \usepackage só no preâmbulo!
+\begin{document}
+	Agora é possível acentuar o texto normalmente,
+	mas você ainda pode usar a acentua\c c\~ao
+	padr\~ao do \TeX, se quiser!
+\end{document}
+
+% A partir de agora você pode - e deve - utilizar o pacote inputenc, não apenas
+% porque ele lhe permite acentuar normalmente os caracteres, mas principalmente
+% porque assim você especifica explicitamente qual é a codificação que o LaTeX
+% deve utilizar para compilar com sucesso o seu arquivo.
+
+% Mesmo quando você estiver escrevendo um documento em inglês, onde caracteres
+% acentuados raramente são requeridos (e, quando são, podem ser obtidos conforme
+% a acentuação padrão do LaTeX), é bom utilizar o pacote inputenc com a opção
+% "ascii" (isto é, no lugar do "utf8") para, novamente, deixar claro qual é a
+% codificação que você utilizou para escrever seu arquivo de instruções.

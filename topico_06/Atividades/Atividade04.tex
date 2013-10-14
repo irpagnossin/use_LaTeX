@@ -1,0 +1,22 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage[brazil]{babel}	
+	\usepackage{ae}	
+	\usepackage{xcolor}
+	
+	\newcommand{\comando}[1]{{\textbackslash\color{blue!70}\normalfont #1}}
+	
+\begin{document}	
+	
+	O comando \comando{hspace} insere um espaço horizontal no documento, como na primeira linha do exemplo abaixo: a distância entre a palavra ``texto'' e a margem esquerda é de dois centímetros. Mas na segunda linha o espaço não apareceu! Isto aconteceu porque ele foi inserido logo após a quebra de linha, situação na qual ele de fato é ignorado pelo \LaTeX. Para evitar que isto aconteça, basta utilizarmos \comando{hspace*} (a versão com asterísco de \comando{hspace}). Faça isso!
+	
+	\noindent\hspace{2cm}texto\\ % <-- 1a linha
+	         \hspace{2cm}texto   % <-- 2a linha (precisa de \hspace*)
+		       
+	Nas três linhas abaixo, observe como o espaço anterior e posterior ao comando \comando{hspace} (ou \comando{hspace*}) é preservado. Você já sabe o porquê disso e deve levar este comportamento em consideração quando utilizar espaços.	          
+	
+	Espaço\hspace{1cm}horizontal.\par
+	Espaço \hspace{1cm}horizontal.\par
+	Espaço \hspace{1cm} horizontal.
+		
+\end{document}

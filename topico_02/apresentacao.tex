@@ -1,0 +1,669 @@
+%-------------------------------------------------------------------------------
+% Autores: I. R. Pagnossin e Centro de Ensino e Pesquisa Aplicada.
+%
+% Este material é parte integrante do curso "Usando LaTeX; pensando em TeX" e é
+% distribuido pelos autores segundo a licença Creative Commons 2.5 Brasil
+% (atribuição/não-comercial/redistribuição segundo a mesma licença).
+%
+% This material is part of the course "Usando LaTeX; pensando em TeX".
+% It is distributed according to the license Creative Commons 2.5 Brazil
+% (atribution/non-comercial use/share alike the same license).
+%-------------------------------------------------------------------------------
+\newif\ifhandout
+%\handouttrue  % Descomente se for para gerar a versão para IMPRESSÃO.
+\handoutfalse % Descomente se for para gerar a versão para APRESENTAÇÃO
+
+%-------------------------------------------------------------------------------
+\ifhandout
+  \documentclass[handout,10pt]{beamer}
+  \mode<handout>
+\else
+	\documentclass[10pt]{beamer}
+	\mode<presentation>
+\fi
+
+	\usepackage[utf8]{inputenc}	
+	\usepackage[brazil]{babel}	
+	\usepackage{graphicx}
+	\usepackage{listings}
+	\usepackage{tikz}
+	\usepackage{helvet}	
+	\usepackage{amsmath}
+	\usepackage{bookman}
+	\usepackage{helvet}		
+	\usepackage[squaren]{SIunits}
+	\usepackage{booktabs}
+	
+	\ifhandout
+		\usepackage{pgfpages}
+		\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+	\fi
+	
+	
+
+	\usetikzlibrary{shapes.symbols}
+
+
+	% Configurações pessoais
+	\input{../arquivos_comuns/personalsettings}
+
+	% Path das figuras, relativo a esta pasta.
+	\graphicspath{{../arquivos_comuns/figuras/}{./figuras/}}
+
+	% Modelo da apresentação	
+	\usetheme{Frankfurt}
+	\usefonttheme{serif,structurebold}
+	\setbeamercovered{transparent}
+	
+	% Metadados do arquivo PDF.
+	\hypersetup{
+		pdftitle={Os primeiros passos},
+		pdfauthor={Dr. Ivan R. Pagnossin},
+		pdfsubject={LaTeX},
+		pdfkeywords={TeX,LaTeX}
+	}
+
+	% Título, autores e instituição.
+	\title{Os primeiros passos}
+	\subtitle{regras básicas, caracteres especiais e comandos}
+	
+	\author{\textbf{Prof.:} Ivan R. Pagnossin \and \textbf{Tutora:} Juliana Giordano}
+	\institute{%
+		Coordenadoria de Tecnologia da Informação\\
+		Centro de Ensino e Pesquisa Aplicada}
+	\logo{\includegraphics[width=0.25\textwidth]{LogotipoCursoLaTeX_v3_pequeno}}
+	\date{}
+	
+	
+
+\begin{document}
+%-------------------------------------------------------------------
+\begin{frame}[label=titulo]
+	\centering	
+	
+	\includegraphics[width=0.8\textwidth]{LogotipoCursoLaTeX_v2}
+
+	\titlepage
+\end{frame}
+
+\logo{} % <-- O logotipo não aparecerá mais a partir daqui.
+
+\setbeamertemplate{background canvas}{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{leao-pensador-wattermark.png}
+}
+		
+%-------------------------------------------------------------------
+\section{Introdução ao TeXnicCenter}
+\begin{frame}[fragile]
+	\frametitle{Introdução ao TeXnicCenter}
+	
+	\begin{exampleblock}<1->{Atividade 1}
+		Configure os \emph{perfís de compilação} do TeXnicCenter e explore um pouco as suas janelas,
+		botões e menus.
+	\end{exampleblock}
+	
+	\begin{exampleblock}<2->{Atividade 2}
+		Crie o arquivo abaixo, salve-o, compile-o para \textsf{dvi} e veja-o com o Yap, \emph{tudo através do TeXnicCenter}:
+		
+		\begin{LaTeXcode}
+			\documentclass{article}
+			\begin{document}
+			Meu segundo arquivo \LaTeX!
+			\end{document}		
+		\end{LaTeXcode}
+	\end{exampleblock}
+	
+	\begin{exampleblock}<3->{Atividade 3}
+		Altere o perfil de compilação, recompile e veja o \emph{arquivo de saída}
+		(usando o TeXnicCenter).
+	\end{exampleblock}	
+\end{frame}
+%-------------------------------------------------------------------
+\section{As 5 regras básicas}
+
+\subsection{1ª regra}
+\begin{frame}[fragile,label=regra1]
+	\frametitle{As 5 regras básicas}
+	\framesubtitle{1ª regra}
+	
+	\begin{center}
+		\begin{uncoverenv}<1->		
+			\small Elas referem-se a como o \LaTeX\ ``enxerga'' o arquivo de instruções e\\
+			permitem ainda que você possa organizá-lo de forma inteligível.
+		\end{uncoverenv}
+	\end{center}
+	
+	\begin{block}<2->{1ª regra}
+		Um espaço é tão bom quanto dez
+	\end{block}
+	
+	\begin{exampleblock}<3->{Atividade 4}
+		\begin{LaTeXcode}
+			\documentclass{article}
+			\begin{document}
+			Meu segundo  arquivo          \LaTeX!
+			\end{document}
+		\end{LaTeXcode}
+	\end{exampleblock}	
+\end{frame}
+%-------------------------------------------------------------------
+\subsection{2ª regra}
+\begin{frame}[fragile,label=regra2]
+	\frametitle{As 5 regras básicas}
+	\framesubtitle{2ª regra}
+	
+	\begin{block}<1->{2ª regra}
+		\alert{Uma} quebra de linha equivale a um espaço
+	\end{block}
+	
+	\begin{exampleblock}<2->{Atividade 5}
+		\begin{LaTeXcode}
+			\documentclass{article}
+			\begin{document}
+			Meu
+			segundo
+			arquivo
+			\LaTeX!
+			\end{document}
+		\end{LaTeXcode}
+	\end{exampleblock}
+	
+	\begin{exampleblock}<3->{Atividade 6}
+		Reescreva o arquivo acima numa única linha
+	\end{exampleblock}
+\end{frame}
+%-------------------------------------------------------------------
+\subsection{3ª regra}
+\begin{frame}[fragile,label=regra3]
+	\frametitle{As 5 regras básicas}
+	\framesubtitle{3ª regra}
+	
+	\begin{block}<1->{3ª regra}
+		Uma linha em branco indica mudança de parágrafo
+	\end{block}
+	
+	\begin{exampleblock}<2->{Atividade 7}
+		\begin{LaTeXcode}
+			\documentclass{article}
+			\begin{document}
+			texto texto texto...
+			
+			texto texto texto...
+			\end{document}
+		\end{LaTeXcode}
+	\end{exampleblock}	
+\end{frame}
+%-------------------------------------------------------------------
+\subsection{4ª regra}
+\begin{frame}[fragile,label=regra4]
+	\frametitle{As 5 regras básicas}
+	\framesubtitle{4ª regra}
+	
+	\begin{block}<1->{4ª regra}
+		Uma linha em branco é tão boa quanto dez
+	\end{block}
+	
+	\begin{exampleblock}<2->{Atividade 8}
+		\begin{LaTeXcode}
+			\documentclass{article}
+			\begin{document}
+			texto texto texto...
+			
+			
+			
+			texto texto texto...
+			\end{document}
+		\end{LaTeXcode}
+	\end{exampleblock}	
+\end{frame}
+%-------------------------------------------------------------------
+\subsection{5ª regra}
+\begin{frame}[fragile,label=regra5]
+	\frametitle{As 5 regras básicas}
+	\framesubtitle{5ª regra}
+	
+	\begin{block}<1->{5ª regra}
+		Espaços no início de linha são ignorados
+	\end{block}
+	
+	\begin{exampleblock}<2->{Atividade 9}
+		\begin{LaTeXcode}
+			\documentclass{article}
+			\begin{document}
+			      Meu segundo arquivo \LaTeX!
+			\end{document}
+		\end{LaTeXcode}
+	\end{exampleblock}	
+\end{frame}
+%-------------------------------------------------------------------
+\subsection{Resumo}
+\begin{frame}
+	\frametitle{As 5 regras básicas}
+	\framesubtitle{Resumo}
+	
+	\makebox[\textwidth]{%
+	\begin{minipage}{1.15\textwidth}
+	\begin{description}
+		\item[1ª regra:] \hyperlink{regra1}{Um espaço é tão bom quanto dez}
+		\item[2ª regra:] \hyperlink{regra2}{\emph{Uma} quebra de linha equivale a um espaço}
+		\item[3ª regra:] \hyperlink{regra3}{Uma linha em branco indica mudança de parágrafo}
+		\item[4ª regra:] \hyperlink{regra4}{Uma linha em branco é tão boa quanto dez}
+		\item[5ª regra:] \hyperlink{regra5}{Espaços no início de linha são ignorados}
+	\end{description}
+	\end{minipage}}
+\end{frame}
+%-------------------------------------------------------------------
+%-------------------------------------------------------------------
+\section{Caracteres especiais}
+\begin{frame}[fragile]
+	\frametitle{Caracteres especiais}
+	
+	\centering
+	
+	{\small No \LaTeX, alguns caracteres têm significado especial e, por isso,\\
+	\textbf{não podem ser utilizados normalmente no texto}. São eles:\par}
+	
+	\begin{block}{}
+		\centering
+		\begin{tabular}{lll}
+			Caráter							& Significado									& Para imprimí-lo use \\
+			\midrule
+			\verb|\|            & \alert<1>{Inicia comandos}  & \verb|\textbackslash| \\
+			\verb|{| e \verb|}| & \alert<1>{Agrupamento}			& \verb|\{| e \verb|\}| \\
+			\verb|%|            & Comentários                 & \verb|\%| \\
+			\verb|~|            & Espaço indivisível          & \verb|\~{}| \\
+			\verb|$|            & Modo matemático             & \verb|\$| \\
+			\verb|_|            & Subscrito/índice            & \verb|\_| \\
+			\verb|^|            & Sobrescrito/expoente        & \verb|\^{}| \\
+			\verb|&|            & Tabulação                   & \verb|\&| \\
+			\verb|#|            & Ordenação de parâmetros     & \verb|\#| \\
+		\end{tabular}
+	\end{block}
+		
+	\begin{block}{Exercício 1\hfill \hyperlink{R1a3}{\footnotesize\textbf{(resposta)}}}
+		Gere um documento com todos os caracteres especiais acima
+	\end{block}	
+\end{frame}
+%-------------------------------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{Comentários}
+	
+	\centering
+	
+	{\small Comentários são informações úteis ao autor,	mas não pertinentes	ao documento final.
+	Por isso, eles \emph{não} aparecem nele.\par}
+	
+	\vfill
+	
+	\begin{exampleblock}<2->{Atividade 10}
+		\begin{LaTeXcode}
+			\documentclass{article}
+			\begin{document}
+			Meu segundo % Isto é um comentário.
+			     arquivo \LaTeX!
+			\end{document}		
+		\end{LaTeXcode}
+		
+		\uncover<4->{Altere a posição do caráter \% e veja o que acontece.}
+	\end{exampleblock}
+	
+	\vfill
+	
+	\onslide<3->{Tudo o que estiver entre \% e o final da linha é
+	ignorado pelo \LaTeX, isto é, não aparece no documento final.}
+	
+\end{frame}
+%-------------------------------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{Exercícios}	
+
+	\begin{block}<2->{Exercício 2\hfill \hyperlink{R1a3}{\footnotesize\textbf{(resposta)}}}
+		No arquivo da atividade anterior, coloque \% imediatamente após o último caráter da primeira linha, identifique a mudança no arquivo de saída e explique-a.
+	
+		\hrulefill\par%
+		\footnotesize\textbf{Dica:} regras básicas 2 e 4.		
+	\end{block}
+
+	\begin{block}<3->{Exercício 3\hfill \hyperlink{R1a3}{\footnotesize\textbf{(resposta)}}}
+		Por que \alert{não} há dois parágrafos aqui?
+		
+		\begin{LaTeXcode}
+			texto texto texto... %
+			                     %
+			texto texto texto...
+		\end{LaTeXcode}
+		
+		\hrulefill\par%
+		\footnotesize\textbf{Dica:} regra básica 5.			
+	\end{block}
+\end{frame}
+%-------------------------------------------------------------------
+%-------------------------------------------------------------------
+\section{Comandos}
+
+\subsection{Tipos}
+\begin{frame}[fragile]
+	\frametitle{Comandos ou \foreign{control sequences}}
+	\framesubtitle{Tipos}
+		
+	\begin{block}<2->{1º tipo \hfill \foreign{control words}}
+		Barra-invertida seguida de uma sequência arbitrariamente longa de caracteres exclusivamente alfabéticos.
+	\end{block}
+
+	\begin{uncoverenv}<3->	
+		\begin{tabbing}
+			Exemplos: \= \verb|\documentclass|\+\\
+									 \verb|\begin|          \\
+									 \verb|\end|            \\
+									 \verb|\LaTeX|          \\
+								   etc
+		\end{tabbing}
+	\end{uncoverenv}
+
+	\begin{block}<4->{2º tipo \hfill \foreign{control symbols}}
+		Barra-invertida seguida de \alert{um} caráter não-alfabético.
+	\end{block}
+	
+	\begin{uncoverenv}<5->
+		\begin{tabbing}
+			Exemplos: \= \verb|\_|\+\\
+								   \verb|\~|  \\
+								   \verb|\#|  \\
+								   etc
+		\end{tabbing}
+	\end{uncoverenv}		
+\end{frame}
+%-------------------------------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{Comandos ou \foreign{control sequences}}
+	\framesubtitle{Exercícios}
+	
+	\centering
+	
+	\begin{block}{Exercício 4\hfill \hyperlink{R4a6}{\footnotesize\textbf{(resposta)}}}
+		Identifique o tipo dos comandos abaixo:
+		\begin{enumerate}
+		\item<1,8-> \verb|\textbackslash|		
+		\item<2,8-> \verb|\+|
+		\item<3,8-> \verb|\\|
+		\item<4,8-> \verb|\EsteComandoEMuitoLongoNaoEMesmo|
+		\item<5,8-> \verb|\a|
+		\item<6,8-> \verb|\-|		
+		\item<7,8-> \verb|\ |{\footnotesize\qquad$\leftarrow$ tem um espaço após a barra}
+		\end{enumerate}
+	\end{block}
+	
+	\vfill
+	
+	\uncover<8->{\textbf{Atenção:} o \LaTeX\ diferencia maiúsculas de minúsculas.}
+		
+\end{frame}
+%-------------------------------------------------------------------
+\subsection{Parâmetros}
+
+\begin{frame}[fragile,shrink=0.1]
+	\frametitle{Comandos ou \foreign{control sequences}}
+	\framesubtitle{Argumentos}
+
+	\centering
+
+	\begin{block}{Comandos que não recebem argumentos}
+		\cs{comando}
+	\end{block}
+	
+	\begin{tabbing}
+		Exemplos de comandos s/ argumento: \=\verb|\LaTeX|\`\LaTeX\+\\
+						                             \verb|\%|\`\%\\
+						                             \verb|\textbackslash|\`\textbackslash
+	\end{tabbing}
+		
+	\begin{block}<2->{Comandos que recebem argumentos}	
+		\cs{comando} \{\textit{argumento 1}\} \{\textit{argumento 2}\}\dots
+	\end{block}
+	
+	\begin{uncoverenv}<2->
+		\begin{tabbing}
+			Exemplos de comandos c/ argumento: \=\verb|\begin{document}| \+\\
+			                                     \verb|\^{g}|\`\^g\\
+			                                     \verb|\~{g}|\`\~g
+		\end{tabbing}
+	\end{uncoverenv}
+		
+\end{frame}
+%-------------------------------------------------------------------
+\setlength{\fboxsep}{0pt}
+\newcommand{\argA}[1]{{\colorbox{red!20}{\bfseries\{#1\}}}}
+\newcommand{\argB}[1]{{\colorbox{green!20}{\bfseries\{#1\}}}}
+
+\begin{frame}[fragile,t]
+	\frametitle{Comandos ou \foreign{control sequences}}
+	\framesubtitle{Argumentos --- regra A}
+	
+	\begin{block}{Regra A}
+		Um comando toma os \alert{caracteres} ou \alert{grupos} que o segue como argumentos
+	\end{block}
+
+	\onslide<2->{Imagine que \cs{comando} requeira \alert{um} argumento\dots}
+
+	\begin{itemize}\bfseries
+		\item[]< 2-> \cs{comando} {\colorbox{red!20}A} B C
+		\item[]< 4-> \cs{comando} \argA{A} B C
+		\item[]< 6-> \cs{comando} \argA{A B} C\hfill eg.: \verb|\begin{document}|
+	\end{itemize}	
+
+	\onslide<3->{Imagine que \cs{comando} requeira \alert{dois} argumentos\dots}
+
+	\begin{itemize}\bfseries
+		\item[]< 3-> \cs{comando} {\colorbox{red!20}A} {\colorbox{green!20}B} C
+		\item[]< 5-> \cs{comando} \argA{A} \argB{B} C
+		\item[]< 7-> \cs{comando} \argA{A B C} \argB{?}\hfill \alert<7->{\mathversion{bold}$\leftarrow$ ERRO!}
+	\end{itemize}
+\end{frame}
+%-------------------------------------------------------------------
+\begin{frame}[fragile,t]
+	\frametitle{Comandos ou \foreign{control sequences}}
+	\framesubtitle{Argumentos --- regra B}
+	
+	\centering
+	
+	\begin{block}<1->{Regra B}
+		Todos os espaços existentes entre o comando e seus argumentos e entre os argumentos são removidos
+	\end{block}
+			
+	\begin{exampleblock}<2->{Atividade 11}		
+		\begin{LaTeXcode}
+			\comando a    \LaTeX   {texto qualquer}  FG
+		\end{LaTeXcode}
+		
+		\textbf{obs.:} use o arquivo \verb|Atividade11.tex| para esta atividade.
+	\end{exampleblock}
+	
+	\begin{block}<3->{Exercício 5\hfill \hyperlink{R4a6}{\footnotesize\textbf{(resposta)}}}
+		Na atividade 11, remova o espaço entre \verb|\comando| e a letra ``a'' e	recompile. Por que ocorre erro de compilação?
+	\end{block}
+\end{frame}
+%-------------------------------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{Comandos ou \foreign{control sequences}}
+	\framesubtitle{Exemplos}
+
+	Exemplos:
+	\begin{itemize}
+	\item<+-> \verb|\documentclass{article}|
+	\item<+-> \verb|\documentclass      {article}|
+	\item<+-> \verb|\documentclass article|
+	\item<+-> \verb|\documentclass    article|
+	\item<+-> \verb|\~{a}|
+	\item<+-> \verb|\~a|
+	\item<+-> \verb|\~   a|
+	\end{itemize}
+
+	\begin{block}<8->{Exercício 6\hfill \hyperlink{R4a6}{\footnotesize\textbf{(resposta)}}}
+		A instrução abaixo resulta em erro de compilação. Por quê?
+		
+		\begin{LaTeXcode}
+		\documentclass article
+		\end{LaTeXcode}
+	\end{block}
+\end{frame}
+%-------------------------------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{Comandos ou \foreign{control sequences}}
+	\framesubtitle{Argumentos}
+	
+	\centering
+	
+	{\small	Por consequência da regra B, mesmo no caso dos comandos que não recebem argumentos, os espaços após ele são removidos\par}
+				
+	\begin{exampleblock}{Atividade 12}
+		\begin{LaTeXcode}
+				texto \LaTeX   texto
+				 
+				texto \LaTeX\  texto 
+				
+				texto \LaTeX{} texto
+		\end{LaTeXcode}
+	\end{exampleblock}	
+		
+	\vfill
+	
+	\begin{uncoverenv}<2->
+		\small Para evitar	que isto aconteça, utilize \verb*|\ | ou \verb|{}| após o comando.\par
+		{\footnotesize\textbf{obs.:} neste caso as chaves não indicam argumento, mas um grupo vazio.\par}
+	\end{uncoverenv}
+	
+	\vfill
+	
+	\begin{block}<3->{Exercício 7\hfill \hyperlink{R7a9}{\footnotesize\textbf{(resposta)}}}
+		Eu estou aprendendo \LaTeX\ na USP.
+	\end{block}
+	
+\end{frame}
+%-------------------------------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{Comandos ou \foreign{control sequences}}
+	\framesubtitle{Argumentos opcionais}
+
+	\centering
+
+	\begin{block}{}
+		\cs{comando}[\textit{arg. opcional}]\{\textit{arg. compulsório 1}\}\dots		
+	\end{block}
+	
+	{\small	Alguns comandos podem receber argumentos opcionais,	que são \alert{obrigatoriamente} passados entre colchetes. A posição deles depende do comando, mas como regra geral eles antecedem os argumentos compulsórios.\par}
+		
+	\begin{exampleblock}<2->{Atividade 13}
+		No arquivo anterior, altere a primeira linha do arquivo para
+		
+		\begin{LaTeXcode}
+			\documentclass[a4paper,12pt]{article}
+		\end{LaTeXcode}
+	\end{exampleblock}
+	
+	\small
+	\begin{description}
+		\item[a4paper]<3-> Define o formato do papel como A4 (210 $\times$ \unit{297}{\milli\metre}).
+		\item[12pt]<4-> Define o tamanho padrão da fonte: \unit{12}{pt}.
+	\end{description}
+	
+\end{frame}
+%-------------------------------------------------------------------
+\subsection{Declarações e ambientes}
+\begin{frame}
+	\frametitle{Comandos ou \foreign{control sequences}}
+	\framesubtitle{Declarações e ambientes}
+	
+	Os comandos do \alert{primeiro tipo} (\foreign{control words}) podem ser:
+	
+	\vfill
+	
+	\begin{enumerate}
+		\item<2-> \textbf{Declarações} (\foreign{declarations}): {\footnotesize comandos que não produzem nada
+			no documento final, mas afetam as instruções seguintes.\par}
+			
+			{\footnotesize Exemplo: \cs{documentclass}\{\textit{article}\}.}
+	
+			\begin{block}<3->{Exercício 8\hfill \hyperlink{R7a9}{\footnotesize\textbf{(resposta)}}}
+				Por que \cs{documentclass} é uma declaração?
+			\end{block}
+	
+			\vfill
+			
+		\item<4-> \textbf{Ambientes} (\foreign{environments}): {\footnotesize são aqueles comandos iniciados
+			por \cs{begin}\{\textit{nome}\} e terminados por \cs{end}\{\textit{nome}\}. \alert<5>{\textit{nome} é o
+			nome deste ambiente}. \alert<6>{Sempre deve haver um {\sffamily\textbackslash begin} para cada 
+			{\sffamily\textbackslash end}, e vice-versa}.\par}
+		
+			\vfill
+		
+			\begin{block}<7->{Exercício 9\hfill \hyperlink{R7a9}{\footnotesize\textbf{(resposta)}}}
+				Que exemplo de ambiente você conhece?
+			\end{block}				
+	\end{enumerate}	
+\end{frame}
+%-------------------------------------------------------------------
+{
+	\logo{\includegraphics[width=0.25\textwidth]{LogotipoCursoLaTeX_v3_pequeno}}
+	\setbeamertemplate{background canvas}{}
+	\againframe{titulo} % Reapresenta a página inicial.
+}
+%-------------------------------------------------------------------
+%-------------------------------------------------------------------
+%-------------------------------------------------------------------
+\section{Respostas dos exercícios}
+
+\begin{frame}[fragile,label=R1a3]
+	\frametitle{Respostas}
+	
+	\begin{enumerate}\footnotesize
+	\item Coloque estas instruções no ambiente \foreign{document}:
+		\begin{LaTeXcode}
+		\textbackslash, \{ e \}, \~{}, \$, \_, \^{}, \&, \# e \%
+		\end{LaTeXcode}
+	
+	\item \textbf{Mudança:} some o espaço entre ``segundo'' e ``arquivo\rlap.'' \textbf{Motivo:} o \% comenta o caráter de quebra de linha, impedindo o \LaTeX\ de atribuir um espaço a ele (regra 2). Além disso, os espaços no início da segunda linha são ignorados (regra 4). Como resultado, não existe espaço entre o	último caráter da primeira linha e o primeiro da segunda.
+	
+	\item A linha ``vazia'' que supostamente indicaria a mudança de parágrafo é totalmente ignorada pelo \LaTeX. Por dois motivos: primeiro porque como o \% é o primeiro caráter da linha, todos os espaços anteriores a ele são ignorados (regra 5). Segundo porque o \% faz o \LaTeX\ ignorar tudo o que está depois dele, inclusive ele próprio e o caráter de quebra de linha. Assim, do ponto de vista do \LaTeX\ esta linha não existe.
+	\end{enumerate}
+\end{frame}
+%-------------------------------------------------------------------
+\begin{frame}[fragile,label=R4a6]
+	\frametitle{Respostas}
+	
+	\begin{enumerate}\footnotesize\setcounter{enumi}{3}
+	\item \textbf{Atenção:} a existência ou não de argumentos nada tem a ver com o tipo do comando.
+		\begin{enumerate}\footnotesize
+		\item \verb|\textbackslash|\hfill 1º tipo	
+		\item \verb|\+|\hfill 2º tipo
+		\item \verb|\\|\hfill 2º tipo
+		\item \verb|\EsteComandoEMuitoLongoNaoEMesmo|\hfill 1º tipo
+		\item \verb|\a|\hfill 1º tipo
+		\item \verb|\-|\hfill 2º tipo
+		\item \verb|\ |{\footnotesize\qquad$\leftarrow$ tem um espaço após a barra}\hfill 2º tipo
+		\end{enumerate}
+	
+	\item Por que o \LaTeX\ não conhece o comando \verb|\comandoa|
+	
+	\item O argumento do comando \verb|\documentclass| é a letra ``a'' de ``article\rlap.'' Esta construção gera erro ao ser compilada porque o \LaTeX\ não conhece uma classe de documento chamada ``a'' (não existe um arquivo \verb|a.cls| na distribuição). Para corrigir isso precisamos \alert{agrupar} os caracteres da palavra ``article'' usando chaves: \verb|{article}|. \textbf{obs.:} mesmo que existisse tal classe, ainda assim ocorreria erro por que o \emph{texto} ``rticle'' (sem o ``a'') não podem existir no preâmbulo, mas apenas no corpo do documento.	
+	
+	\end{enumerate}
+\end{frame}
+%-------------------------------------------------------------------
+\begin{frame}[fragile,label=R7a9]
+	\frametitle{Respostas}
+	
+	\begin{enumerate}\footnotesize\setcounter{enumi}{6}	
+	
+	\item Coloque estas instruções no ambiente \foreign{document}:
+		\begin{LaTeXcode}
+		Eu estou aprendendo \LaTeX\ na USP.
+		\end{LaTeXcode}
+		
+	\item \verb|\documentclass| é uma declaração porque não imprime nada no documento final, mas afeta tudo o que lhe segue: as dimensões da folha, as margens, os formatos de capítulos e seções etc.
+	
+	\item O ambiente \foreign{document}: \verb|\begin{document}|\dots\verb|\end{document}|
+	\end{enumerate}	
+\end{frame}
+%-------------------------------------------------------------------
+
+\end{document}

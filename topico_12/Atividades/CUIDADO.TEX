@@ -1,0 +1,97 @@
+\documentclass[a4paper,12pt]{article}	
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}	
+\begin{document}
+
+	%----------------------------------------------------------------------------
+	% O comando \hbox é a instrução TeX (não LaTeX) para criar uma caixa dita
+	% horizontal (que será utilizada para formar linhas). Você não deve usar este
+	% recurso rotineiramente. Aqui ele serve para ilustrar um conceito.	
+	%----------------------------------------------------------------------------
+	% O espaço no final de uma frase expande/contrai mais intensamente que os
+	% espaços no meio da frase. Isto porque as palavras de uma mesma frase têm
+	% relações de significado mais fortes entre elas e as de outra frase. Você
+	% pode ver isto alterando abaixo o ponto-final após a palavra "oração" para
+	% vírgula, por exemplo. Cada um dos comandos \hbox abaixo cria uma caixa de
+	% largura específica (\hbox to 1cm, \hbox to 5mm, etc), de modo que o TeX
+	% é obrigado a aumentar os espaços (elásticos) entre as palavras para preen-
+	% chê-la.
+	%----------------------------------------------------------------------------
+	\setbox1=\hbox to 1.0\textwidth{Esta é uma oração. E outra.}
+	\setbox2=\hbox to 0.9\textwidth{Esta é uma oração. E outra.}
+	\setbox3=\hbox to 0.8\textwidth{Esta é uma oração. E outra.}
+	\setbox4=\hbox to 0.7\textwidth{Esta é uma oração. E outra.}	
+			
+	\box1		
+	\box2		
+	\box3		
+	\box4
+	
+	\bigskip
+	
+	%----------------------------------------------------------------------------
+	% Coloque o comando \ (barra seguida de espaço) após o ponto-final para remo-
+	% ver dele a função de marcar o final da frase. Como resultado, o espaço após
+	% ele expande/contrai igualmente aos outros. Assim: "Fulano et al.\ fizeram
+	% isso."
+	%----------------------------------------------------------------------------
+	\setbox1=\hbox to 1.0\textwidth{Fulano et al. fizeram isso.}
+	\setbox2=\hbox to 0.9\textwidth{Fulano et al. fizeram isso.}
+	\setbox3=\hbox to 0.8\textwidth{Fulano et al. fizeram isso.}
+	\setbox4=\hbox to 0.7\textwidth{Fulano et al. fizeram isso.}
+				
+	\box1
+	\box2		
+	\box3		
+	\box4	
+
+	\bigskip
+
+	%----------------------------------------------------------------------------
+	% Coloque o comando \@ antes do ponto-final para devolver-lhe o significado
+	% de final da frase (que é removido automaticamente pelo TeX devido à letra I
+	% maiúscula que o precede), assim: "João Paulo II\@. O grande?"
+	%----------------------------------------------------------------------------
+	\setbox1=\hbox to 1.0\textwidth{João Paulo II. O Grande?}
+	\setbox2=\hbox to 0.9\textwidth{João Paulo II. O Grande?}
+	\setbox3=\hbox to 0.8\textwidth{João Paulo II. O Grande?}
+	\setbox4=\hbox to 0.7\textwidth{João Paulo II. O Grande?}	
+	
+	\box1		
+	\box2		
+	\box3		
+	\box4
+	
+	\bigskip
+	
+	%----------------------------------------------------------------------------
+	% A função do ponto-final, de marcar o final da frase, persiste mesmo após as
+	% aspas. Mas este não é o caso. Então, use \ (barra seguida de espaço) para
+	% tornar o espaço após as aspas igualmente expansível/comprimível aos demais.
+	%----------------------------------------------------------------------------
+	\setbox1=\hbox to 1.0\textwidth{``um, dois, etc.'' e continua.}
+	\setbox2=\hbox to 0.9\textwidth{``um, dois, etc.'' e continua.}
+	\setbox3=\hbox to 0.8\textwidth{``um, dois, etc.'' e continua.}
+	\setbox4=\hbox to 0.7\textwidth{``um, dois, etc.'' e continua.}
+
+	\box1		
+	\box2		
+	\box3		
+	\box4
+	
+	\bigskip
+	
+	%----------------------------------------------------------------------------
+	% O parêntese também não suprime a função do ponto-final de terminar a frase.
+	% A situação é igual à anterior, inclusive com a mesma solução.
+	%----------------------------------------------------------------------------
+	\setbox1=\hbox to 1.0\textwidth{Beans (lima, etc.) have vitamin B.}
+	\setbox2=\hbox to 0.9\textwidth{Beans (lima, etc.) have vitamin B.}
+	\setbox3=\hbox to 0.8\textwidth{Beans (lima, etc.) have vitamin B.}
+	\setbox4=\hbox to 0.7\textwidth{Beans (lima, etc.) have vitamin B.}
+	
+	\box1		
+	\box2		
+	\box3
+	\box4
+\end{document}

@@ -1,0 +1,78 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage{graphicx}
+	
+	\graphicspath{
+		{Figuras/EPS/}
+		{Figuras/JPG/}
+		{Figuras/PDF/}
+		{Figuras/PNG/}
+		}
+		
+\begin{document}
+
+	% \rotatebox[opções]{ângulo}{caixa}
+	%
+	% As opções podem ser:
+	% 1) origin = xy indica a posição do eixo de rotação. x pode ser l (left), 
+	%    referindo-se à lateral esquerda da caixa, r (right) ou c (center). Já
+	%    y pode ser t (top): topo da caixa, c (center), b (bottom) ou B 
+	%    (baseline), isto é, linha-base. Se não for especificado, o eixo de 
+	%    rotação é sempre o ponto-de-referência da caixa.
+	% 2) x = comprimento é a coordenada horizontal do eixo de rotação, medido a
+	%    partir do ponto-de-referência. y é o análogo vertical.
+	% 3) units = número. Esta opção permite definir a unidade de medida do 
+	%    ângulo. Por exemplo: units=360 é o padrão, units=-360 é utilizado para 
+	%    fazer rotações horárias (o padrão é anti-horário). units=6.283185 (isto
+	%    é, 2\pi) define o radiano como a unidade de ângulo.
+	\noindent\hrulefill\
+	\rotatebox[
+		%origin = cc,
+		x = 1cm,
+		y = 0cm,
+		units=-360
+		]{30}{\includegraphics[width=2cm,height=2cm]{Tei-Gi}}
+	\hrulefill
+	
+	\bigskip
+	
+	% \resizebox{largura}{altura}{caixa}
+	%
+	% Este comando aumenta ou reduz a caixa original de modo que suas dimensões
+	% sejam aquelas dadas pelo primeiro e segundo argumento. Para não deformar a
+	% sua figura, dê apenas uma das dimensões (altura ou largura) e coloque !
+	% (exclamação) no lugar da outra. Isto fará com que aquela dimensão seja
+	% ampliada ou reduzida de acordo com a que você passou como argumento, sem
+	% deformar a figura.
+	\noindent\hrulefill\
+	\resizebox{2cm}{1cm}{\includegraphics{Tei-Gi}}
+	\hrulefill
+	
+	\bigskip
+	
+	% \scalebox{fator horizontal}[fator vertical]{caixa}
+	%
+	% Os fatores horizontal e vertical multiplicam a largura e a altura, 
+	% respectivamente, da caixa original, para definir a largura e a altura
+	% da caixa final. Se o fator vertical não for dado (observe que é um 
+	% parâmetro opcional), ele é feito igual ao horizontal. Isto é, a caixa
+	% é ampliada (|fator| > 1) ou reduzida (|fator| < 1) sem ser deformada.
+	% Experimente definir fatores negativos.
+	\noindent\hrulefill\
+	\scalebox{2}{\includegraphics[width=2cm]{Tei-Gi}}
+	\hrulefill
+	
+	\bigskip
+	
+	% \reflectbox{caixa}
+	%
+	% É a mesma coisa que \scalebox{-1}{caixa}. Isto é, reflete o conteúdo da
+	% caixa com relação à lateral esquerda dela (isto é, a reta vertical que
+	% contém o ponto-de-referência).	
+	\noindent\hrulefill\
+	\reflectbox{\includegraphics[width=2cm]{Tei-Gi}}
+	\hrulefill
+	
+	% Refaça os três exemplos acima, mas utilizando apenas uma vez o comando
+	% \includegraphics.
+		
+\end{document}

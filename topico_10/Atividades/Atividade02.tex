@@ -1,0 +1,86 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	\usepackage{array}
+	
+	\input{minhasconfiguracoes}
+		
+	\newcommand\textobreve
+		{\tiny Este é um breve texto para testes de tabelas.
+		Espera-se que ele tenha pelo menos duas linhas para
+		tornar evidentes as opções do pacote \pacote{array}.}
+	
+	\setlength\parskip\baselineskip
+\begin{document}
+	
+	Este arquivo ilustra as opções adicionais na configuração das colunas de uma tabela introduzidas pelo pacote \pacote{array} (não confundir com o ambiente \ambiente{array} na próxima atividade).
+	
+	%--------------------------------------------
+	% EXEMPLO 1
+	%--------------------------------------------
+	% Na atividade anterior vimos que a opção p{comp.} equivale à instrução \parbox[t]{comp.}. O pacote array introduz duas outras opções similares: "m" (middle) e "b" (bottom), que equivalem a \parbox[c] e \parbox[b]. Veja o efeito dessas opções no exemplo abaixo.
+	\linhabase\hfill
+	\begin{tabular}[c]{|p{35mm}|m{35mm}|b{35mm}|}
+		\hline
+		\textobreve & \textobreve & \textobreve \\
+		\hline
+	\end{tabular}%
+	\hfill\null
+
+	%--------------------------------------------
+	% EXEMPLO 2
+	%--------------------------------------------
+	% O pacote array introduz também as opções >{} e <{}, que permite inserir instruções LaTeX no início e no fim de cada elemento de uma coluna. No exemplo abaixo, inserimos no começo das colunas as declarações de alinhamento do texto através desta opção. Sem elas seria necessário digitar essas declarações em cada uma das células da tabela.
+	\linhabase\hfill
+	\begin{tabular}[c]{|>{\raggedright}p{35mm}|>{\centering}m{35mm}|>{\raggedleft}b{35mm}|}
+		\hline
+		\textobreve & \textobreve  & \textobreve \tabularnewline
+		\hline
+	\end{tabular}%
+	\hfill\null
+	
+	%--------------------------------------------
+	% EXEMPLO 3
+	%--------------------------------------------
+	% Já no exemplo abaixo inserimos $ antes e após cada elemento da segunda coluna. Desta forma, temos a certeza de que o que digitarmos na segunda coluna será interpretado no modo matemático (lembre-se: comandos como \alpha, \beta e \gamma não podem ser utilizados no modo parágrafo, ou texto).
+	\linhabase\hfill
+	\begin{tabular}[c]{|c|>{$}c<{$}|c|}
+		\hline
+		1 & \alpha & 4 \tabularnewline
+		\hline
+		2 & \beta  & 5 \tabularnewline
+		\hline
+		3 & \gamma & 6 \tabularnewline
+		\hline
+	\end{tabular}%
+	\hfill\null
+	
+	%--------------------------------------------
+	% EXEMPLO 4
+	%--------------------------------------------
+	% Outro símbolo definido pelo pacote array é o !{}, que insere o conteúdo encerrado pelas chaves entre as colunas, MAS PRESERVANDO O ESPAÇO ENTRE AS COLUNAS. Compare com a segunda tabela, onde usamos @{}, que REMOVE O ESPAÇO ENTRE AS COLUNAS.
+	\linhabase\hfill
+	\begin{tabular}[c]{|c!{$+$}>{$}c<{$}|c|}
+		\hline
+		1 & \alpha & 4 \tabularnewline
+		\hline
+		2 & \beta  & 5 \tabularnewline
+		\hline
+		3 & \gamma & 6 \tabularnewline
+		\hline
+	\end{tabular}%
+	\hfill
+	\begin{tabular}[c]{|c@{$+$}>{$}c<{$}|c|}
+		\hline
+		1 & \alpha & 4 \tabularnewline
+		\hline
+		2 & \beta  & 5 \tabularnewline
+		\hline
+		3 & \gamma & 6 \tabularnewline
+		\hline
+	\end{tabular}%
+	\hfill\null
+	
+\end{document}

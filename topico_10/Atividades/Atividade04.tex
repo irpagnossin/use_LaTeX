@@ -1,0 +1,67 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	
+	\input{minhasconfiguracoes}
+	
+	\setlength\parskip\baselineskip
+\begin{document}
+
+	Este arquivo ilustra o uso do comando \comando{multicolumn}, que permite unificar várias células de uma mesma \emph{linha} (exemplo 1). Através deste comando é possível também reconfigurar as linhas e o alinhamento de uma ou mais células de modo a distinguí-las das demais (exemplos 2 e 3).
+	
+	%--------------------------------------------
+	% EXEMPLO 1
+	%--------------------------------------------
+	% O comando \multicolumn permite unir células adjacentes de uma mesma linha. Sua sintaxe é
+	%
+	% \multicolumn{nº de colunas unidas}{configuração da coluna}{conteúdo}.
+	%
+	% O segundo argumento segue os mesmos padrões da configuração de colunas do ambiente tabular, com a ressalva de que apenas uma coluna está presente, já que se trata de uma união.
+	
+	\linhabase\hfill
+	\begin{tabular}[c]{|c|c|c|}
+		\hline
+		\multicolumn{2}{|c|}{Células 11 e 12} & Célula 13       \\
+		\hline
+		C. 21     & \multicolumn{2}{|c|}{Células 22 e 23}       \\
+		\hline
+		31        & 32  & \multicolumn{1}{|c|}{Célula 31}       \\
+		\hline
+	\end{tabular}%
+	\hfill\null
+	
+	%--------------------------------------------
+	% EXEMPLO 2
+	%--------------------------------------------
+	% Perceba que você pode escrever \multicolumn{1}... Isto é útil para redefinir as linhas verticais de uma célula. Por exemplo: a tabela abaixo foi configurada de modo que não há nenhuma linha vertical em nenhuma das colunas (argumento {ccc}). Mas utilizando \multicolumn{1} apenas na célula central, com o segundo argumento igual a |c|, mais um auxílio de \cline, a célula agora tem suas próprias linhas.
+	
+	\linhabase\hfill
+	\begin{tabular}[c]{ccc}		
+		Célula 11 & Célula 12                   & Célula 13 \\
+		\cline{2-2}
+		C. 21     & \multicolumn{1}{|c|}{C. 22} & C. 23     \\
+		\cline{2-2}
+		31        & 32                          & 33        \\
+	\end{tabular}%
+	\hfill\null
+	
+	%--------------------------------------------
+	% EXEMPLO 3
+	%--------------------------------------------	
+	% O exemplo oposto também é possível, isto é, definir linhas para todas as colunas e removê-las para uma célula apenas através de \multicolumn. Veja:
+	
+	\linhabase\hfill
+	\begin{tabular}[c]{|c|c|c|}
+		\hline
+		Célula 11                  & Célula 12                 & Célula 13 \\
+		\cline{1-1}\cline{3-3}
+		\multicolumn{1}{|c}{C. 21} & \multicolumn{1}{c}{C. 22} & C. 23     \\
+		\cline{1-1}\cline{3-3}
+		31                         & 32                        & 33        \\
+		\hline
+	\end{tabular}%
+	\hfill\null
+		
+\end{document}

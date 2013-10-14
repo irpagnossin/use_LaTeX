@@ -1,0 +1,68 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	\usepackage{colortbl} % <-- Permite o uso de cores em tabelas
+	
+	\input{minhasconfiguracoes}
+	
+	\setlength\parskip\baselineskip	
+\begin{document}
+
+	Este arquivo ilustra a utilização de cores em tabelas através do pacote \pacote{colortbl}. Basicamente são três os comandos úteis: \comando{rowcolor}, para atribuir cor a toda uma linha (exemplo 1); \comando{columncolor} (exemplo 2), para toda uma coluna; e \comando{cellcolor} (exemplo 3), para definir a cor de apenas uma tabela. Há muitas outras opções... não deixe de ver a documentação do pacote.
+
+	%--------------------------------------------
+	% EXEMPLO 1
+	%--------------------------------------------
+	% O comando \rowcolor{cor} recebe como argumento obrigatório uma cor, segundo a sintaxe do pacote color ou xcolor. Ele deve ser colocado logo no início da linha que ser quer colorir.
+	
+	\linhabase\hfill
+	\begin{tabular}[c]{ccc}
+		\rowcolor{red!50}     Célula 11 & Célula 12 & Célula 13 \\
+		\rowcolor{green!50}   Célula 21 & Célula 22 & Célula 23 \\
+		\rowcolor{blue!50}    Célula 31 & Célula 32 & Célula 33 \\
+		\rowcolor{yellow!50}  Célula 41 & Célula 42 & Célula 43 \\
+		\rowcolor{magenta!50} Célula 51 & Célula 52 & Célula 53 \\
+		\rowcolor[gray]{1.0}  Célula 61 & Célula 62 & Célula 63 \\
+		\rowcolor[gray]{0.8}  Célula 71 & Célula 72 & Célula 73 \\		
+		\rowcolor[gray]{0.6}  Célula 81 & Célula 82 & Célula 83 \\
+		\rowcolor{black!60}   Célula 91 & Célula 92 & Célula 93 % black!60 é o mesmo que [gray]{0.4}
+	\end{tabular}%
+	\hfill\null
+	
+	%--------------------------------------------
+	% EXEMPLO 2
+	%--------------------------------------------
+	% O comando \columncolor{cor} colore toda uma coluna. Você deve utilizá-lo junto com a opção >{} do pacote array (não é necessário carregá-lo pois o colortbl faz isso).
+	
+	\linhabase\hfill
+	\begin{tabular}[c]{
+		>{\columncolor{red!50}}     c
+		>{\columncolor{green!50}}   c
+		>{\columncolor{blue!50}}    c
+		>{\columncolor{yellow!50}}  c
+		>{\columncolor{magenta!50}} c
+		>{\columncolor{black!50}}   c}
+	
+		Col. 1 & Col. 2 & Col. 3 & Col. 4 & Col. 5 & Col. 6\\
+		Col. 1 & Col. 2 & Col. 3 & Col. 4 & Col. 5 & Col. 6\\
+		Col. 1 & Col. 2 & Col. 3 & Col. 4 & Col. 5 & Col. 6\\
+		Col. 1 & Col. 2 & Col. 3 & Col. 4 & Col. 5 & Col. 6\\
+		Col. 1 & Col. 2 & Col. 3 & Col. 4 & Col. 5 & Col. 6
+	\end{tabular}%
+	\hfill\null
+	
+	%--------------------------------------------
+	% EXEMPLO 3
+	%--------------------------------------------	
+	% Finalmente, o comando \cellcolor{cor} torna colorida apenas a célula que contém esta instrução, como abaixo.
+	
+	\linhabase\hfill
+	\begin{tabular}[c]{ccc}	
+		\cellcolor{red!50} Col. 1  &                    Col. 2 & \cellcolor{green!50}  Col. 3 \\
+		                   Col. 1  & \cellcolor{blue!50}Col. 2 &                       Col. 3 \\
+		\cellcolor{cyan!50}Col. 1 &                     Col. 2 & \cellcolor{magenta!50}Col. 3
+	\end{tabular}%
+	\hfill\null
+\end{document}

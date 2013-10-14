@@ -1,0 +1,34 @@
+% -----------------------------------------------------------------------------
+% -------------------- Usando LaTeX; pensando em TeX (2009) -------------------
+% -----------------------------------------------------------------------------
+%
+% O comando Plain-TeX \let.
+%
+\documentclass{article}
+\begin{document}
+
+	% ASSIM QUE SE FAZ EM LaTeX
+	% -------------------------
+
+	\newcommand\etc{etc}      % Cria o comando \etc (que apenas escreve "etc")
+	\let\etcoriginal=\etc     % Copia a definição de \etc para \etcoriginal
+	
+	\renewcommand\etc{\etcoriginal...} % Redefine \etc usando \etcoriginal
+	
+	\etc                      % Usa \etc
+	
+
+	% ASSIM QUE SE FAZ EM TeX
+	% -----------------------
+	
+	\def\etc{etc}             % Cria o comando \etc (que apenas escreve "etc")
+	\let\etcoriginal=\etc     % Copia a definição de \etc para \etcoriginal
+	
+	\def\etc{\etcoriginal...} % Redefine \etc usando \etcoriginal
+	
+	\etc                      % Usa \etc
+	
+	
+	
+
+\end{document}

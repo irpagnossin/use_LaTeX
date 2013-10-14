@@ -1,0 +1,14 @@
+\newcounter{exercicio}
+\newenvironment{exercicio}{%
+	\refstepcounter{exercicio}%
+	\penalty-200
+	\noindent\colorbox{blue!60!black}{\makebox[\columnwidth-\fboxsep*2][c]{\textbf{\color{white}Exercício~\theexercicio}}}\smallskip
+}{\par\medskip}
+\newcommand{\foreign}[1]{\textsl{#1}}
+\newcommand{\digite}[1]{{\fontfamily{cmss}\fontseries{bx}\selectfont#1}}	
+\newcommand{\cs}[1]{{\normalfont\textbackslash\color{blue!50!black}#1}}
+\newcommand{\pkg}[1]{{\normalfont\sffamily\color{orange}#1}}
+\newcommand{\env}[1]{{\normalfont\sffamily\color{green!50!black}#1}}
+\let\comando=\cs
+\let\package=\pkg
+\let\ambiente=\env

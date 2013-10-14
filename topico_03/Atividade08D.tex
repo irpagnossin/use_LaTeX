@@ -1,0 +1,21 @@
+%
+% OBS.: ESTE ARQUIVO GERA ERRO AO SER COMPILADO. FAZ PARTE DA ATIVIDADE!
+%
+\documentclass[12pt]{article}
+	\usepackage[utf8]{inputenc}
+	
+	% O erro gerado durante a compilação se deve ao fato de que o caráter
+	% acentuado "í" é internamente representado como "\'\i" e este tipo de
+	% construção obstrui o funcionamento do algoritmo de separação silábica
+	% do LaTeX. Para contornar isso precisamos representar "í" como "í"
+	% de fato, ou seja, precisamos utilizar uma fonte que contenha o tipo
+	% "í" e não apenas uma conjunção de "i" com "´" (acento agudo). Isto é
+	% feito modificando a codificação DE SAÍDA para T1, por exemplo.
+	\hyphenation{e-xe-quí-vel in-cons-ti-tu-ci-o-nal}
+\begin{document}
+
+	\noindent\hrulefill\par
+	exequível exequível exequível exequível exequível exequível exequível
+	exequível exequível exequível exequível exequível exequível exequível
+	
+\end{document}

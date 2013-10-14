@@ -1,0 +1,20 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}	
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	
+	\newcommand{\comando}[1]{{\ttfamily\textbackslash\textcolor{blue}{#1}}}
+\begin{document}
+	
+	\tiny
+	
+	\noindent\hrulefill
+	\parbox[c]{0.4\textwidth}{\sloppy Esta é uma caixa de parágrafo de largura igual a $1/3$ da linha. A linha à esquerda e à direita indica a posição da linha corrente, ou se preferir, da \emph{linha-base}.}% <-- Para que serve este comentário?
+	\hrulefill
+	\parbox[c]{0.4\textwidth}{\sloppy O ponto de referência desta caixa de parágrafo, posicionado a meia-altura da caixa (devido ao parâmetro opcional ``c''), está sobre a linha-base da linha atual, que por sua fez foi definida no	início do parágrafo (comando \comando{hrulefill}). O comando \comando{sloppy} diz ao \LaTeX\ para não se preocupar com o espaço entre as palavras. Isto é útil quando o espaço para escrever é pequeno, mas produz resultados pouco agradáveis.}% <-- Para que serve este comentário?
+	\hrulefill
+	
+	% Experimente mudar o parâmetro opcional de \parbox de ambas as caixas. Você pode usar t (de top: topo), c (de center: centro) ou b (de bottom: em baixo).
+
+\end{document}

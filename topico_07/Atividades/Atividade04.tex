@@ -1,0 +1,123 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+		
+	% Definir o comando \contador para formatar cada ocorrência de um contador é
+	% uma maneira logicamente correta de organizar o documento, mas utilizar os
+	% diversos \verb abaixo não é... mas dá muito trabalho definir um comando
+	% suficientemente abrangente para representar um comando genérico. E como o
+	% documento é curto, escolhi não fazê-lo.
+	\newcommand{\contador}[1]{\textit{#1}}
+\begin{document}
+
+	Na lista abaixo, a banana aparece no item de número \ref{item:banana}. Este é
+	um exemplo de referência-cruzada, como aquela que vimos no caso de equações.
+
+	\begin{enumerate}
+		\item Maçã é vermelha
+		\item \label{item:banana} Banana é amarela %\stepcounter{enumi}
+		\item Uva é roxa
+		
+		\item Laranja é\dots\ laranja!
+	\end{enumerate}
+
+	O mecanismo de referências-cruzadas baseia-se nos contadores: comandos que
+	representam números inteiros. Eles numeram ítens, capítulos, seções, figuras,
+	equações e tudo o mais que a sua imaginação quiser.
+
+	Por exemplo, os números na lista anterior são armazenados pelo contador
+	\contador{enumi}. Para cada novo \verb|\item|, o \LaTeX\ adiciona 1 (um) a
+	este contador e imprime-o antes do texto (inicialmente \(\contador{enumi} =
+	0\)).
+	
+	Com efeito, o comando \verb|\label| simplesmente anota no arquivo auxiliar
+	(aquele com extensão \texttt{aux}) o valor do contador \contador{enumi} 
+	naquele ponto do documento.
+	
+	As classes-padrão do \LaTeX\ já definem uma série de contadores, cada qual
+	para uma estrutura do documento:
+		\contador{part},
+		\contador{chapter},
+		\contador{section},
+		\contador{subsection},
+		\contador{subsubsection},
+		\contador{paragraph},
+		\contador{subparagraph},
+		\contador{page},
+		\contador{equation},
+		\contador{figure},
+		\contador{table},
+		\contador{footnote},
+		\contador{mpfootnote},
+		\contador{enumi},
+		\contador{enumii},
+		\contador{enumiii} e
+		\contador{enumiv}.
+				
+	Você pode definir o seu próprio contador para, digamos, numerar uma lista 
+	de exercícios. Chamemos este contador de \contador{exercicio} (uma palavra
+	qualquer sem acentos, espaços ou outros caracteres especiais) e utilizemos
+	o comando \verb|\newcounter{|\contador{exercicio}\verb|}| para definí-lo.
+	
+	\newcounter{exercicio}
+	
+	O valor inicial do contador é zero. Para alterá-lo, você pode utilizar os
+	seguintes comandos:
+	\begin{itemize}
+		\item
+		\verb|\setcounter{|\contador{exercicio}\verb|}{|\textit{número}\verb|}|:
+		atribui o \textit{número} ao contador.
+		
+		\item
+		\verb|\addtocounter{|\textit{contador}\verb|}{|\textit{número}\verb|}|:
+		adiciona o \textit{número} ao contador.
+					
+		\item
+		\verb|\stepcounter{|\textit{contador}\verb|}|:
+		adiciona 1 (um) ao contador.
+					
+		\item	\verb|\refstepcounter{|\textit{contador}\verb|}|:		
+		idem ao anterior, mas atualiza o contador utilizado para as
+		referências-cruzadas (que podem ser acessados pelo comando \verb|\ref|).
+		
+	\end{itemize}	
+		
+	Para \emph{imprimir} o valor do contador, utilize os comandos 
+		\verb|\arabic{|\contador{exercicio}\verb|}|,
+		\verb|\roman{|\contador{exercicio}\verb|}|,
+		\verb|\Roman{|\contador{exercicio}\verb|}|,
+		\verb|\alph{|\contador{exercicio}\verb|}|,
+		\verb|\Alph{|\contador{exercicio}\verb|}| ou ainda
+		\verb|\fnsymbol{|\contador{exercicio}\verb|}|:
+	
+	% Experimente alterar o valor atribuido ao contador.
+	\setcounter{exercicio}{2}
+	
+	\begin{center}
+		\arabic{exercicio},
+		\roman{exercicio},
+		\Roman{exercicio},
+		\alph{exercicio},
+		\Alph{exercicio} ou
+		\fnsymbol{exercicio}.
+	\end{center}
+	
+	Além deles, para cada \contador{contador}, o \LaTeX\ cria automaticamente o
+	comando \verb|\the|\contador{contador}, que costuma ser utilizado para 
+	definir um formato conveninente de exprimir o \contador{contador}.
+	
+	Por exemplo, pode ser conveniente que nossos exercícios sejam numerados por
+	seção: eg, ``exercício 3.7'' representaria o sétimo exercício da seção 3.
+	Para fazermos isso, basta redefinirmos \verb|\theexercicio|.
+	
+	% Por que usamos \renewcommand ao invés de \newcommand?
+	\renewcommand{\theexercicio}{\arabic{section}.\arabic{exercicio}}
+	
+	Aqui, como não criamos nenhuma seção, o contador \contador{section} é igual a
+	zero. Já \contador{exercicio} é igual a 2, pois foi este o último valor que
+	lhe atribuímos, algumas linhas acima. Logo, o comando \verb|\theexercicio|
+	resulta em \theexercicio.
+	
+\end{document}

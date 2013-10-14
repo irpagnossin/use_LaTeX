@@ -1,0 +1,28 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}	
+	\usepackage{SIunits}
+	\usepackage{xcolor}
+	%\usepackage[onehalfspacing]{setspace} % Opções do pacote: singlespacing, onehalfspacing e doublespacing	
+		
+	\newcommand{\pacote}[1]{{\color{orange!50!black}\normalfont #1}}
+	\newcommand{\opcao}[1]{{\color{red!50!black}\normalfont #1}}
+		
+\begin{document}
+
+	%\setlength{\baselineskip}{20pt}
+	%\setlength{\lineskip}{-24pt}
+	
+	%\setlength\parskip\baselineskip % <-- Procure entender esta instrução. Por que utilizar \baselineskip e não 12pt, por exemplo?
+	
+	Basicamente, a distância entre duas linhas consecutivas é definida pelo comprimento \verb|\baselineskip|. Experimente alterar este comprimento e observe a influência no texto. Uma situação interessante é fazê-lo igual a \unit{-24}{pt} (neste caso é preciso atribuir este mesmo valor ao comprimento \verb|\lineskip|).
+	
+	% NÍVEL COMPLEMENTAR: rigorosamente, a distância entre as linhas-base de duas linhas consecutivas é definida por três comprimentos: \baselineskip, \lineskip e \lineskiplimit. O primeiro é a distância de fato, a não ser que os tipos dessas duas linhas aproximem-se demais um do outro (distância inferior a \lineskiplimit). Neste caso \lineskip é utilizado como a extensão vertical do espaço em branco entre as duas linhas (a distância entre o ponto mais baixo da linha de cima e o ponto mais alto da linha de baixo). Esta é uma informação que muito dificilmente você usará.
+	
+	Mas uma maneira mais elegante e menos propensa a erros de se alterar a distância entre as linhas do texto é utilizar o pacote \pacote{setspace}. Através das opções \opcao{onehalfspacing} e \opcao{doublespacing} do pacote você pode aumentar a distância entre as linhas de 50\% e 100\%, respectivamente. Isto é particularmente útil quando você precisa criar uma versão para revisão do seu documento, com espaço extra entre as linhas para comentários: você pode alternar entre a versão final e de revisão com apenas uma linha de código significativa (isto é, de fácil compreensão).
+	
+	% Embora você possa alterar os parâmetros \baselineskip e \lineskip (e outros) conforme acima, você deve evitar fazê-lo. Ocorre que o espaço vertical ocupado pelo texto em uma página (\textheight) é definido no início do documento como um múltiplo inteiro de \baselineskip (que, por sua vez, é definido com base na fonte escolhida, o comando \normalsize). Assim, redefinir \baselineskip arbitrariamente resulta em sobra ou falta de espaço na página. Na verdade, a alteração de qualquer dimensão do documento deve ser feita com cuidado e preferencialmente através de comprimentos previamente definidos pela fonte, como \baselineskip e as unidades ex e em (altura do "x" minúsculo e largura do "M" maiúsculo, respectivamente).
+	
+	Há também quem prefira, além da endentação, marcar a mudança de parágrafo com um espaço vertical extra. Isto também é muito fácil: basta redefinir \verb|\parskip|, a distância \emph{adicional} (além do \verb|\baselineskip|) entre parágrafos.
+	
+\end{document}

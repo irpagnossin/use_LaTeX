@@ -1,0 +1,22 @@
+% -----------------------------------------------------------------------------
+% -------------------- Usando LaTeX; pensando em TeX (2009) -------------------
+% -----------------------------------------------------------------------------
+%
+% Simulação do erro "TeX capacity exceeded"
+%
+\documentclass{article}
+\begin{document}
+
+	% Ao definirmos \etc recorrentemente como abaixo (isto é, usando-o em sua
+	% própria definição, o TeX substituirá recorrentemente \etc por \etc  por 
+	% \etc por \etc... até consumir toda a memória disponível. Neste ponto ele
+	% desistirá, informando "TeX capacity exceeded".
+	\newcommand\etc{\etc~}
+	
+	% Observe, no entanto, que o problema só ocorre quando USAMOS o comando 
+	% \etc, mas não antes (comente a linha abaixo e recompile). Isto significa
+	% que o TeX troca \etc por sua definição (dizemos que o TeX expandiu o 
+	% comando \etc) apenas quando ele é UTILIZADO.
+	\etc
+
+\end{document}

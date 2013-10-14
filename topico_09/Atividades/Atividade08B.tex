@@ -1,0 +1,36 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}	
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	\usepackage{graphicx}
+	
+	% O pacote pinlabel permite inserir textos em figuras EPS e PDF
+	\usepackage{pinlabel}
+	
+	\input{minhasconfiguracoes}
+	
+	\graphicspath{
+		{./figuras/EPS/}
+		{./figuras/JPG/}
+		{./figuras/PDF/}
+		{./figuras/PNG/}
+		}
+	
+\begin{document}
+
+	\begin{figure}		
+		\labellist
+		\small
+		\hair 1pt
+		\pinlabel {Obrigado, \pacote{pinlabel}!} [lb] at 103 255
+		%\pinlabel {Obrigado, \pacote{pinlabel}!} [B] at 215 425
+		\endlabellist
+		\centering
+		\includegraphics[width=10cm]{Tei-Gi}
+		\caption{diferentemente do \pacote{psfrag}, que \emph{substitui} textos existentes no arquivo EPS por outros, o pacote \pacote{pinlabel} \emph{insere-os} numa posição qualquer da figura, seja ela EPS ou PDF (a versão EPS é sempre necessária). As coordenadas dos rótulos, em \texttt{pt}, podem ser facilmente determinadas abrindo-se o arquivo EPS no Ghostview. Uma observação importante: o nome do arquivo inserido através de \comando{includegraphics} deve ser dado \emph{sem extensão}. Além disso, ao menos o arquivo EPS deve estar na mesma pasta do arquivo \LaTeX, haja vista que o pacote \pacote{pinlabel} não reconhece a instrução \comando{graphicspath}.}
+	\end{figure}
+	
+	% EXERCÍCIO: abra o arquivo Tei-Gi.eps e reposicione o texto do exemplo acima no centro do "olho" esquerdo, ou acrescente outro texto nesta posição.
+
+\end{document}

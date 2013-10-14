@@ -1,0 +1,48 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{lipsum}
+	\usepackage{xcolor}
+	\usepackage{graphicx}
+	
+	\graphicspath{
+		{Figuras/EPS/}
+		{Figuras/JPG/}
+		{Figuras/PDF/}
+		{Figuras/PNG/}
+		}
+			
+\begin{document}
+
+	%\lipsum[1-5]
+
+	\begin{figure}[bht]
+		\centering
+		\includegraphics[height=0.2\textheight]{Tei-Gi}
+		\caption{o Tei-Gi ou In Yang, símbolo de equanimidade.}
+		\label{fig:tei-gi} % <-- Coloque o rótulo sempre após o \caption.
+	\end{figure}
+	
+	A figura \ref{fig:tei-gi} tem um rótulo, \texttt{fig:tei-gi}, através do
+	qual eu posso referenciá-la em qualquer parte do documento através do
+	comando \verb|\ref{fig:tei-gi}|. Se quiser, também posso fazer uma
+	referência à página onde esta figura se encontra através do comando
+	\verb|\pageref{fig:tei-gi}|. Por exemplo, esta figura está na página
+	\pageref{fig:tei-gi}.
+
+	Note também que, ao compilar o arquivo pela primeira vez ou após ter
+	alterado ou inserido algum rótulo, o \LaTeX\ dá uma mensagem de aviso,
+	informando que os rótulos foram alterados e que você deve re-compilar:
+
+	\begin{center}\slshape
+		Label(s) may have changed. Rerun to get cross-references right.
+	\end{center}
+	
+	% Dica: o pacote caption dá várias opções de personalização da legenda
+	% de figuras e de tabelas.
+	
+	\noindent{\color{red}\bfseries Atenção: não coloque o ambiente figure
+	dentro de uma caixa!}
+	
+\end{document}

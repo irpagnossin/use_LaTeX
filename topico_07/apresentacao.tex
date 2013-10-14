@@ -1,0 +1,195 @@
+%-------------------------------------------------------------------------------
+% Autores: I. R. Pagnossin e Centro de Ensino e Pesquisa Aplicada.
+%
+% Este material é parte integrante do curso "Usando LaTeX; pensando em TeX" e é
+% distribuido pelos autores segundo a licença Creative Commons 2.5 Brasil
+% (atribuição/não-comercial/redistribuição segundo a mesma licença).
+%
+% This material is part of the course "Usando LaTeX; pensando em TeX".
+% It is distributed according to the license Creative Commons 2.5 Brazil
+% (attribution/non-comercial use/share alike the same license).
+%-------------------------------------------------------------------------------
+\newif\ifhandout
+%\handouttrue  % Descomente se for para gerar a versão para IMPRESSÃO.
+\handoutfalse % Descomente se for para gerar a versão para APRESENTAÇÃO
+
+%-------------------------------------------------------------------------------
+\ifhandout
+  \documentclass[handout,10pt]{beamer}
+  \mode<handout>
+\else
+	\documentclass[10pt,hyperref={pdfpagelabels=false}]{beamer}
+	\mode<presentation>
+\fi
+
+	\usepackage[utf8]{inputenc}
+	\usepackage{ae}	
+	\usepackage[brazil]{babel}	
+	\usepackage{graphicx}
+	\usepackage{listings}
+	\usepackage{tikz}
+	\usepackage{amsmath}
+	\usepackage[squaren]{SIunits}
+	\usepackage{booktabs}
+	\usepackage{fancybox}
+	\usepackage{array}
+	\usepackage{colortbl}
+		
+	\usepackage{bookman}
+	
+	\ifhandout
+		\usepackage{pgfpages}
+		\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+	\fi
+
+	% Bibliotecas TikZ e PGF necessárias
+	\usetikzlibrary{shapes.symbols}
+	\usetikzlibrary{calc}
+	\usepgflibrary{shapes.misc}
+	
+	% Configurações pessoais
+	\input{../arquivos_comuns/personalsettings}
+
+	% Path das figuras, relativo a esta pasta.
+	\graphicspath{{../arquivos_comuns/figuras/}{./figuras/}}
+
+	% Modelo da apresentação	
+	\usetheme{Frankfurt}
+	\usefonttheme{serif,structurebold}
+	\setbeamercovered{transparent}		
+		
+	% Metadados do arquivo PDF.
+	\hypersetup{
+		pdftitle={Comandos personalizados, listas e contadores},
+		pdfauthor={Dr. Ivan R. Pagnossin},
+		pdfsubject={LaTeX},
+		pdfkeywords={TeX,LaTeX}
+	}
+
+	% Título, autores e instituição.
+	\title{Comandos personalizados,}
+	\subtitle{listas e contadores}
+	\author{\textbf{Prof.:} Ivan R. Pagnossin \and \textbf{Tutora:} Juliana Giordano}
+	\institute{%
+		Coordenadoria de Tecnologia da Informação\\
+		Centro de Ensino e Pesquisa Aplicada}
+	\logo{\includegraphics[width=0.25\textwidth]{LogotipoCursoLaTeX_v3_pequeno}}
+	\date{}
+	
+\begin{document}
+
+
+%-------------------------------------------------------------------
+\begin{frame}[c,label=titulo]
+	\centering	
+	
+	\includegraphics[width=0.8\textwidth]{LogotipoCursoLaTeX_v2}
+
+	\titlepage
+\end{frame}
+\end{document}
+%-------------------------------------------------------------------
+\logo{} % <-- O logotipo não aparecerá mais a partir daqui.
+\setbeamertemplate{background canvas}{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{leao-pensador-wattermark.png}
+}
+%-------------------------------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{Listas}
+	\framesubtitle{\foreign{itemize}, \foreign{enumerate} e \foreign{description}}
+	
+	\begin{columns}
+		\scriptsize
+		
+		\column{0.3\textwidth}
+		\begin{block}{\foreign{itemize}}
+			\begin{itemize}	
+				\item Maçã é vermelha
+				\item Uva é roxa
+				\item Banana é amarela
+				\item Laranja é\dots\ laranja!
+			\end{itemize}
+		\end{block}
+		
+		\column{0.3\textwidth}		
+		\begin{block}{\foreign{enumerate}}
+			\begin{enumerate}	
+				\item Maçã é vermelha
+				\item Uva é roxa
+				\item Banana é amarela
+				\item Laranja é\dots\ laranja!
+			\end{enumerate}
+		\end{block}
+		
+		\column{0.35\textwidth}
+		\begin{block}{\foreign{description}}			
+			\begin{description}
+				\item[Maçã] é vermelha
+				\item[Uva] é roxa
+				\item[Banana] é amarela
+				\item[Laranja] é\dots\ laranja!
+			\end{description}
+		\end{block}
+	\end{columns}
+	
+	\vfill
+	
+	\begin{block}{}
+		\centering
+		\verb|\begin{|\textit{lista}\verb|}|%
+		\quad\dots\quad
+		\verb|\item[|\textit{símbolo}\verb|]|%
+		\quad\dots\quad
+		\verb|\end{|\textit{lista}\verb|}|
+	\end{block}
+	
+	\vfill
+	
+	\begin{atividade}{1}
+		\begin{LaTeXcode}
+		\begin{itemize}	
+		  \item Maçã é vermelha
+		  \item[$\star$] Uva é roxa
+		  \item Banana é amarela
+		  \item Laranja é\dots\ laranja!
+		\end{itemize}
+		\end{LaTeXcode}
+	\end{atividade}
+	
+\end{frame}
+%-------------------------------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{Comandos personalizados}
+	
+	\begin{block}{}
+		\centering
+		\verb|\newcommand{\|\textit{nome do comando}\verb|}[|\textit{n\textordmasculine\ de arg.}\verb|]{|\textit{definição}\verb|}|
+	\end{block}
+	
+	\begin{atividade}{2}
+		A instrução abaixo define o comando \cs{avec}:
+		\begin{LaTeXcode}
+			\newcommand{\xvec}{ x_1, \ldots, x_n }
+		\end{LaTeXcode}
+		
+		Assim, escrever \verb|$\avec$| é o mesmo que escrever \verb|$x_1, \ldots, x_n$|
+	\end{atividade}
+	
+\end{frame}
+%-------------------------------------------------------------------
+{
+	\logo{\includegraphics[width=0.25\textwidth]{LogotipoCursoLaTeX_v3_pequeno}}
+	\setbeamertemplate{background canvas}{}
+	\againframe{titulo} % Reapresenta a página inicial.
+}
+%-------------------------------------------------------------------
+%-------------------------------------------------------------------
+%-------------------------------------------------------------------
+\section{Apêndice}
+\subsection{Respostas}
+\begin{frame}[fragile,label=respostas]
+	\frametitle{Respostas}
+	\scriptsize
+
+\end{frame}
+\end{document}

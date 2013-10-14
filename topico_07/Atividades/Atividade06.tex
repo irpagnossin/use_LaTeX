@@ -1,0 +1,30 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	\usepackage{lipsum} % Lorem ipsum
+\begin{document}
+
+	\newcounter{meucontador}
+	
+	\begin{list}
+		{(\roman{meucontador})}
+		{\usecounter{meucontador}
+		 \setlength{\itemindent}{\parindent}
+		 \setlength{\itemsep}{0pt}
+		 \setlength{\rightmargin}{\leftmargin}
+		}
+	
+		\item \lipsum[1] % Item 1.
+		
+		\item \label{paragrafo 2}
+					\lipsum[2] % Item 2.
+					
+		\item \lipsum[3] % Item 3.
+	\end{list}
+	
+	O segundo parágrafo do texto \textit{Lorem ipsum} está no item
+	\ref{paragrafo 2}.
+
+\end{document}

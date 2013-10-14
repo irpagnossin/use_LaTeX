@@ -1,0 +1,401 @@
+%-------------------------------------------------------------------------------
+% Autores: I. R. Pagnossin e Centro de Ensino e Pesquisa Aplicada.
+%
+% Este material é parte integrante do curso "Usando LaTeX; pensando em TeX" e é
+% distribuido pelos autores segundo a licença Creative Commons 2.5 Brasil
+% (atribuição/não-comercial/redistribuição segundo a mesma licença).
+%
+% This material is part of the course "Usando LaTeX; pensando em TeX".
+% It is distributed according to the license Creative Commons 2.5 Brazil
+% (attribution/non-comercial use/share alike the same license).
+%-------------------------------------------------------------------------------
+\newif\ifhandout
+%\handouttrue  % Descomente se for para gerar a versão para IMPRESSÃO.
+\handoutfalse % Descomente se for para gerar a versão para APRESENTAÇÃO
+
+%-------------------------------------------------------------------------------
+\ifhandout
+  \documentclass[handout,10pt]{beamer}
+  \mode<handout>
+\else
+	\documentclass[10pt,hyperref={pdfpagelabels=false}]{beamer}
+	\mode<presentation>
+\fi
+
+	\usepackage[utf8]{inputenc}
+	\usepackage{ae}	
+	\usepackage[brazil]{babel}	
+	\usepackage{graphicx}
+	\usepackage{listings}
+	\usepackage{tikz}
+	\usepackage{amsmath}
+	\usepackage[squaren]{SIunits}
+	\usepackage{booktabs}
+	\usepackage{fancybox}
+	\usepackage{array}
+	\usepackage{bookman}
+	
+	\ifhandout
+		\usepackage{pgfpages}
+		\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+	\fi
+
+	\usetikzlibrary{shapes.symbols}
+
+	% Configurações pessoais
+	\input{../arquivos_comuns/personalsettings}
+
+	% Path das figuras, relativo a esta pasta.
+	\graphicspath{{../arquivos_comuns/figuras/}{./figuras/}}
+
+	% Modelo da apresentação	
+	\usetheme{Frankfurt}
+	\usefonttheme{serif,structurebold}
+	\setbeamercovered{transparent}
+		
+	\newcommand{\grupo}[1]{\colorbox{red!50}{#1}}
+	\newcommand{\escopo}[1]{\colorbox{yellow!50}{#1}}
+		
+	% Metadados do arquivo PDF.
+	\hypersetup{
+		pdftitle={Grupos e escopo de comandos},
+		pdfauthor={Dr. Ivan R. Pagnossin},
+		pdfsubject={LaTeX},
+		pdfkeywords={TeX,LaTeX}
+	}
+
+	% Título, autores e instituição.
+	\title{Grupos e escopos de comando}
+	\subtitle{e o alinhamento do texto}
+	\author{\textbf{Prof.:} Ivan R. Pagnossin \and \textbf{Tutora:} Juliana Giordano}
+	\institute{%
+		Coordenadoria de Tecnologia da Informação\\
+		Centro de Ensino e Pesquisa Aplicada}
+	\logo{\includegraphics[width=0.25\textwidth]{LogotipoCursoLaTeX_v3_pequeno}}
+	\date{}
+	
+\begin{document}
+
+
+%-------------------------------------------------------------------
+\begin{frame}[c,label=titulo]
+	\centering	
+	
+	\includegraphics[width=0.8\textwidth]{LogotipoCursoLaTeX_v2}
+
+	\titlepage
+\end{frame}
+%-------------------------------------------------------------------
+\logo{} % <-- O logotipo não aparecerá mais a partir daqui.
+\setbeamertemplate{background canvas}{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{leao-pensador-wattermark.png}
+}
+
+\section{Grupos e escopos}
+\subsection{Definição}
+
+\begin{frame}[fragile]
+	\frametitle{Grupo}
+	\framesubtitle{definição}
+	
+	\begin{block}<2->{Grupo}
+		No \LaTeX, um grupo de elementos é definido através das chaves
+	\end{block}\vfill
+		
+	\onslide<3->{Exemplos:}
+	\begin{itemize}
+	\item<3-> {\large ab\textcolor{red}{\bfseries\Large\{}cde\textcolor{red}{\bfseries\Large\}}fg}
+						\hfill \(\leftarrow\) ``cde'' são os elementos do grupo.
+	\item<4-> {\large\textcolor{blue}{\bfseries\Large\{}ab\textcolor{red}{\bfseries\Large\{}cde\textcolor{red}{\bfseries\Large\}}fg\textcolor{blue}{\bfseries\Large\}}}
+						\hfill \(\leftarrow\) Um grupo pode conter outro
+	\item<5-> {\large\textcolor{blue}{\bfseries\Large\{}ab\textcolor{red}{\bfseries\Large\{}cde\textcolor{blue}{\bfseries\Large\}}fg\textcolor{red}{\bfseries\Large\}}}
+						\hfill \(\leftarrow\) \alert<5>{\emph{Não} existe intersecção}
+	\item<6-> {\large ab\textcolor{red}{\bfseries\Large\{}\textcolor{red}{\bfseries\Large\}}cdefg}
+						\hfill \(\leftarrow\) Grupo vazio
+	\item<7-> {\large\textcolor{red}{\bfseries\Large\{}\verb|\LaT|\textcolor{red}{\bfseries\Large\}}\verb|eX|}
+						\hfill \(\leftarrow\) Cuidado!
+	\end{itemize}
+			
+	\begin{atividade}<8->{1}
+		\verb|a {} b|\quad não é a mesma coisa que\quad \verb|a  b|.
+	\end{atividade}
+			
+\end{frame}
+%-------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Escopo}
+	\framesubtitle{Definição}
+	
+	\begin{block}<1->{Escopo}
+		É a região ou intervalo sujeito à ação de uma instrução.
+	\end{block}\vfill
+	
+	\uncover<2->{O escopo de um(a)\dots}
+	\begin{itemize}
+	\item<2-> \textbf{\dots\ comando ordinário} é seus argumentos
+	\item<3-> \textbf{\dots\ ambiente} é tudo entre \cs{begin} e \cs{end}
+	\item<4-> \textbf{\dots\ declaração} é tudo o que a segue, até o fim do grupo ao qual ela pertence
+	\end{itemize}
+\end{frame}
+%-------------------------------------------------------------------
+\subsection{Escopo de comandos ordinários}
+\setlength{\fboxrule}{1pt}
+\begin{frame}[fragile]
+	\frametitle{O escopo de um comando ordinário}
+	\framesubtitle{é seus argumentos}
+		
+	\begin{atividade}{2}
+		\begin{LaTeXcode}
+			texto \textbf{texto \textit{texto} texto.}
+		\end{LaTeXcode}
+	\end{atividade}\vfill
+	
+	\begin{itemize}
+	\item<2-> texto \cs{textbf}\{\grupo{\escopo{texto \cs{textit}\{texto\} texto.}}\}
+	\item<3-> texto \cs{textbf}\{texto \cs{textit}\{\grupo{\escopo{texto}}\} texto.\}
+	\end{itemize}\vfill
+	
+	\begin{block}<4->{Exercício 1\hfill \hyperlink{respostas}{\footnotesize\textbf{(resposta)}}}
+		Na atividade anterior, modifique a posição de \emph{uma} das chaves de modo que
+		apenas os dois ``texto'' centrais fiquem em negrito.
+	\end{block}\vfill
+	
+	\begin{uncoverenv}<2->
+		\footnotesize
+		Legenda: \grupo{grupo}\quad\escopo{escopo}
+	\end{uncoverenv}
+	
+\end{frame}
+%-------------------------------------------------------------------
+\subsection{Escopo de declarações}
+\begin{frame}[fragile]
+	\frametitle{O escopo de uma declaração}
+	\framesubtitle{é tudo o que a segue, até o fim do grupo ao qual percence}
+	
+	\begin{atividade}{3}
+		\begin{LaTeXcode}
+			texto \bfseries {texto \itshape texto} texto.
+		\end{LaTeXcode}
+	\end{atividade}\vfill
+	
+	\begin{itemize}
+	\item<2-> \grupo{texto \cs{bfseries} \escopo{\{texto \cs{itshape} texto\} texto.}}
+	\item<3-> texto \cs{bfseries} \{\grupo{texto \cs{itshape} \escopo{texto}}\} texto.
+	\end{itemize}\vfill
+	
+	\begin{block}<4->{Exercício 2\hfill \hyperlink{respostas}{\footnotesize\textbf{(resposta)}}}
+		Na atividade anterior, modifique a posição de \emph{uma} das chaves de modo que
+		apenas os dois ``texto'' centrais fiquem em negrito.
+	\end{block}\vfill
+	
+	\begin{uncoverenv}<2->
+		\footnotesize
+		Legenda: \grupo{grupo}\quad\escopo{escopo}
+	\end{uncoverenv}
+	
+\end{frame}
+%-------------------------------------------------------------------
+\subsection{Escopo de ambientes}
+\begin{frame}[fragile]
+	\frametitle{O escopo de um ambiente}
+	\framesubtitle{é o grupo \emph{automaticamente} definido entre {\sffamily\textbackslash begin} e {\sffamily\textbackslash end}}
+	
+	\vfill
+	
+	\begin{columns}
+		\column[c]{0.4\textwidth}
+		\begin{atividade}{4}%
+			\begin{LaTeXcode}%
+				texto
+				\begin{bfseries}%
+				  texto
+				  \begin{itshape}%
+				    texto
+				  \end{itshape}%
+				  texto.
+				\end{bfseries}
+			\end{LaTeXcode}
+		\end{atividade}
+		
+		\column[c]{0.5\textwidth}			
+		\onslide<2->{Para que servem os \%?}
+		
+	\end{columns}
+	
+	\begin{block}<3->{Exercício 3\hfill \hyperlink{respostas}{\footnotesize\textbf{(resposta)}}}
+		Na atividade anterior, modifique a posição do início ou do fim do ambiente \texttt{bfseries}
+		de modo que apenas os dois ``texto'' centrais fiquem em negrito.
+	\end{block}	
+		
+\end{frame}
+%-------------------------------------------------------------------
+\subsection{Revisão: argumentos compulsórios}
+\begin{frame}[fragile]
+	\frametitle{Revisão}
+	\framesubtitle{Argumentos de comandos}
+	
+		\begin{block}{Exercício 4\hfill \hyperlink{respostas}{\footnotesize\textbf{(resposta)}}}	
+			\begin{enumerate}
+			\item<1-7> Identifique o \emph{único} argumento de \cs{comando}:
+	
+				\begin{itemize}\bfseries
+					\item[]<2-3> \{A B\} C \cs{comando} \{{\color<3>{red}D E F G}\} H I
+					\item[]<4-5> A B C \cs{comando} {\color<5>{red}D} \{E F G\} H I
+					\item[]<6-7> A B C \cs{comando} {\color<7>{red}D} {\sffamily\textbackslash LaTeX} \{\} F G H I
+				\end{itemize}
+			
+			\item<8-16> Identifique os \emph{dois} argumentos de \cs{comando}:
+	
+				\begin{itemize}\bfseries
+					\item[]<8-10> \{A B\} C \cs{comando} \{{\color<9>{red}D E F G}\} {\color<10>{red}H} I
+					\item[]<11-13> A B C \cs{comando} {\color<12>{red}D} \{{\color<13>{red}E F G}\} H I
+					\item[]<14-16> A B C \cs{comando} {\color<15>{red}D} {\color<16>{red}\sffamily\textbackslash LaTeX} \{\} F G H I
+				\end{itemize}
+	
+			\item<17-28> Identifique os \emph{três} argumentos de \cs{comando}:
+	
+				\begin{itemize}\bfseries
+					\item[]<17-20> \{A B\} C \cs{comando} \{{\color<18>{red}D E F G}\} {\color<19>{red}H} {\color<20>{red}I}
+					\item[]<21-24> A B C \cs{comando} {\color<22>{red}D} \{{\color<23>{red}E F G}\} {\color<24>{red}H} I
+					\item[]<25-28> A B C \cs{comando} {\color<26>{red}D} {\color<27>{red}\sffamily\textbackslash LaTeX} {\color<28>{red}\{\}} F G H I
+				\end{itemize}
+			\end{enumerate}
+		\end{block}
+		
+		\vfill
+		
+		\begin{center}
+			\bfseries
+			\textbf{Lembre-se:} os espaços entre os argumentos são removidos!
+		\end{center}
+		
+\end{frame}
+%-------------------------------------------------------------------
+\section{Instruções mutuamente exclusivas}
+\begin{frame}[fragile]
+	\frametitle{Instruções mutuamente exclusivas}
+		
+	\begin{atividade}{5}
+		\begin{LaTeXcode}
+			{texto \slshape\sffamily texto}
+			{texto \slshape\scshape texto}
+		\end{LaTeXcode}
+	\end{atividade}
+
+	\begin{atividade}<2->{6}
+		\begin{LaTeXcode}
+			texto \textsl{\textsf{texto}}
+			texto \textsl{\textsc{texto}}
+		\end{LaTeXcode}
+		
+		\footnotesize\textbf{obs.:} note que a interpretação das instruções pelo \LaTeX\ ocorre
+		da esquerda para a direita, isto é, vale a última instrução dada.
+	\end{atividade}
+
+	\begin{block}<3->{Exercício 5\hfill \hyperlink{respostas}{\footnotesize\textbf{(resposta)}}}
+		Recrie os exemplos acima usando apenas ambientes.
+	\end{block}
+	
+\end{frame}
+%-------------------------------------------------------------------
+\section{Intersecção de grupos}
+\begin{frame}[fragile]
+	\frametitle{Intersecção de grupos}
+	
+	\begin{itemize}
+	\item \textbf{Atenção:} diferentemente da intersecção de ambientes
+	definidos por chaves, que é interpretada ``incorretamente,'' a intersecção
+	de ambientes gera erro! Por exemplo, o código abaixo não compila:
+	\end{itemize}
+	
+	\begin{atividade}{7}
+		\begin{LaTeXcode}		
+			\begin{slshape}
+			  \begin{sffamily}
+			    Há um erro aqui!
+			\end{slshape}
+			  \end{sffamily}
+		\end{LaTeXcode}
+	\end{atividade}
+	
+\end{frame}
+%-------------------------------------------------------------------
+\section{Alinhamento do texto}
+
+\begin{frame}[fragile]
+	\frametitle{Alinhamento do texto}
+	
+	\begin{atividade}<1->{8}
+		\begin{LaTeXcode}
+			\centering Texto\\centralizado.
+			\raggedleft Texto alinhado\\à direita.
+			\raggedright Texto alinhado\\à esquerda.
+		\end{LaTeXcode}
+	\end{atividade}\vfill
+				
+	\begin{atividade}<2->{9}
+		Utilize o pacote \pkg{lipsum} (\foreign{lorem ipsum}) neste arquivo:
+		\begin{LaTeXcode}		
+			\begin{center}\lipsum[1]\end{center}
+			\begin{flushright}\lipsum[2]\end{flushright}		
+			\begin{flushleft}\lipsum[3]\end{flushleft}
+		\end{LaTeXcode}
+	\end{atividade}\vfill		
+				
+	\centering
+	\begin{uncoverenv}<1->
+		\footnotesize\bfseries
+		Atenção: evite utilizar \verb|\\| para controlar a distância entre as linhas e
+		\\\emph{jamais} utilize-o para controlar a distância entre parágrafos!
+	\end{uncoverenv}
+			
+\end{frame}
+%-------------------------------------------------------------------
+{
+	\logo{\includegraphics[width=0.25\textwidth]{LogotipoCursoLaTeX_v3_pequeno}}
+	\setbeamertemplate{background canvas}{}
+	\againframe{titulo} % Reapresenta a página inicial.
+}
+%-------------------------------------------------------------------
+%-------------------------------------------------------------------
+%-------------------------------------------------------------------
+\section{Respostas}
+\begin{frame}[fragile,label=respostas]
+	\frametitle{Respostas}
+	\scriptsize
+	
+	\begin{enumerate}
+	\item%
+		\begin{LaTeXcode}
+			texto \textbf{texto \textit{texto}} texto.
+		\end{LaTeXcode}
+		
+	\item%
+		\begin{LaTeXcode}
+			texto {\bfseries texto \itshape texto} texto.
+		\end{LaTeXcode}
+		
+	\item%
+		\begin{LaTeXcode}
+			texto \begin{bfseries}texto\begin{itshape}
+			texto\end{itshape}\end{bfseries} texto
+		\end{LaTeXcode}
+		
+	\item Resposta no próprio enunciado
+	
+	\item%
+		\begin{LaTeXcode}
+		{texto\begin{slshape}\begin{sffamily}
+		texto\end{sffamily}\end{slshape}}
+		\end{LaTeXcode}
+		
+		\begin{LaTeXcode}
+		{texto\begin{slshape}\begin{scshape}
+		texto\end{scshape}\end{slshape}}
+		\end{LaTeXcode}
+	\end{enumerate}
+	
+	\textbf{obs.:} nos exercícios com ambientes, procure identificar a origem dos espaços entre as palavras
+	
+\end{frame}
+\end{document}

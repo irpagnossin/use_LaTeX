@@ -1,0 +1,18 @@
+\documentclass[12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	
+	\setlength\parindent{0pt}
+	\setlength\parskip{\baselineskip}
+\begin{document}
+
+O grupo interno é desnecessário: {\rmfamily{roman}}
+
+Incorreto: {\rmfamily\textbf roman boldface}\\
+Correção:  {\rmfamily\textbf{roman boldface}}
+
+Potencialmente problemático: {\rmfamily\textbf\upshape roman boldface upright}\\
+Correção: {\rmfamily\textbf{\upshape roman boldface upright}}
+
+\end{document}

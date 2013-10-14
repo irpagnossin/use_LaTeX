@@ -1,0 +1,23 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}	
+	\usepackage[brazil]{babel}
+\begin{document}
+
+	Você pode colocar uma \fbox{moldura} ao redor de um pedaço de texto, ao
+	redor de uma expressão matemática, como \fbox{$y(x) = \sin(x)$}, ou mesmo
+	ao redor de uma figura.\footnote{Mas para isso você vai ter de esperar
+	um pouco mais}
+				
+	\begin{center}
+		\fbox{$  \sec^2\theta = 1 + \tan^2\theta  $}
+	\end{center}
+	
+	% obs.: você NÃO pode utilizar \[ ou $$ (estilo de exibição) acima: dentro de
+	% uma caixa LR é proibido inserir uma expressão que tenha sua própria linha.
+	% Para fazer isso, você deve colocá-la dentro de uma caixa de parágrafo e só
+	% então utilizar \fbox ou \framebox:
+	%
+	% \fbox{\parbox{0.5\textwidth}{$$  \sec^2\theta = 1 + \tan^2\theta  $$}}
+	
+\end{document}

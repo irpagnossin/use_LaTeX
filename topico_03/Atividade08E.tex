@@ -1,0 +1,18 @@
+\documentclass[12pt]{article}
+	\usepackage[utf8]{inputenc}
+	
+	% O pacote fontenc com a opção "T1" substitui a codificação padrão OT1,
+	% de 7 bits, pela T1, de 8 bits. Assim, os caracteres acentuados são
+	% representados internamente não como uma sequência como \'i (OT1) e sim como
+	% uma fonte í propriamente dita (T1). Isto permite o funcionamento do algoritmo
+	% de separação silábica do LaTeX com palavras acentuadas.
+	\usepackage[T1]{fontenc}	
+	\hyphenation{e-xe-quí-vel}
+	
+\begin{document}
+
+	\noindent\hrulefill\par
+	exequível exequível exequível exequível exequível exequível exequível
+	exequível exequível exequível exequível exequível exequível exequível
+	
+\end{document}

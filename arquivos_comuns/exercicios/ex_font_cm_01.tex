@@ -1,0 +1,279 @@
+\documentclass[a4paper,10pt,twocolumn,landscape]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	\usepackage{calc}
+	\usepackage{wallpaper}
+	\usepackage[margin=2cm]{geometry}
+	
+	
+	
+	\newcounter{exercicio}	
+	\newenvironment{exercicio}{%
+		\refstepcounter{exercicio}%
+		\noindent\colorbox{blue!60!black}{\makebox[\columnwidth-\fboxsep*2][c]{\textbf{\color{white}Exercício~\theexercicio}}}\smallskip
+	}{\par}
+	
+	%\hyphenation{de-cla-ra-ções}
+	
+	\CenterWallPaper{1}{../figuras/leao-pensador-wattermark.png}
+
+	\setlength{\columnsep}{2cm}
+\begin{document}
+
+	\begin{center}\includegraphics[width=0.8\columnwidth]{../figuras/LogotipoCursoLaTeX_v2}\end{center}
+
+	Faça todos os exercícios num arquivo \texttt{tex} e envie-o para o professor através da página de onde você baixou este arquivo, no moodle.
+
+	\medskip
+
+	%---------------------------------------------------------
+	\begin{exercicio}\label{ex:1qualidade}
+		Reproduza o resultado abaixo utilizando apenas \emph{ambientes}.
+		
+		{\rmfamily roman}\par	
+		{\sffamily sans-serif}\par	
+		{\ttfamily typewriter}\par
+		{\mdseries medium}\par
+		{\bfseries boldface}\par
+		{\upshape upright}\par
+		{\itshape italic}\par
+		{\slshape slanted}\par
+		{\scshape small capital}	
+	\end{exercicio}
+	\bigskip
+	%---------------------------------------------------------
+	\begin{exercicio}\label{ex:2qualidades}
+		Combine família e série para reproduzir o texto abaixo. Utilize apenas \emph{comandos ordinários} (ie, que não são nem declarações nem ambientes).
+		
+		\medskip
+		{\rmfamily\bfseries roman boldface}\par
+		{\rmfamily roman \bfseries boldface}\par
+		{\sffamily\bfseries sans-serif boldface}\par
+		{\ttfamily\mdseries typewriter medium}\par		
+
+	\end{exercicio}	
+	\bigskip
+	%---------------------------------------------------------
+	\begin{exercicio}\label{ex:3qualidades}
+		Combine família, série e forma para reproduzir o texto abaixo. Utilize apenas \emph{declarações}.
+		
+		\medskip
+		{\rmfamily roman {\mdseries medium {\upshape upright}}}\par                      % OT1/cmrm/md/up
+		{\rmfamily roman {\mdseries medium {\slshape slanted}}}\par                 % OT1/cmrm/md/sl
+		{\rmfamily roman {\bfseries boldface {\itshape italic}}}\par           % OT1/cmrm/bx/it
+		{\rmfamily roman {\bfseries boldface {\slshape slanted}}}\par              % OT1/cmrm/bx/sl		
+		{\sffamily sans-serif {\mdseries medium {\upshape upright}}}\par                 % OT1/cmss/md/up
+		{\sffamily sans-serif {\mdseries medium {\slshape slanted}}}\par            % OT1/cmss/md/sl
+		{\sffamily sans-serif {\bfseries boldface {\upshape upright}}}\par              % OT1/cmss/bx/up	
+		{\ttfamily typewriter {\mdseries medium {\slshape slanted}}}\par            % OT1/cmtt/md/sl
+		{\ttfamily typewriter {\mdseries medium {\scshape small-capital}}}\par      % OT1/cmtt/md/sc	
+	\end{exercicio}
+	\bigskip
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Reproduza o texto abaixo utilizando as declarações de tamanhos pré-definidos do \LaTeX\ (obs.: não se preocupe com a quebra de linha).
+		
+		\medskip
+		\centering
+		\noindent\makebox[\columnwidth]{\tiny tiny, \scriptsize scriptsize, \footnotesize footnotesize, \small small, \normalsize normalsize, \large large,
+		\Large Large, \LARGE LARGE, \huge huge e \Huge Huge.}
+	\end{exercicio}
+	\bigskip
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Reproduza o texto abaixo.
+		
+		\medskip
+		\centering
+		\Huge 0\huge 1\LARGE 2\Large 3\large 4\normalsize 5\small 6\footnotesize 7\scriptsize 8\tiny 90\scriptsize 1\footnotesize 2\small
+		3\normalsize 4\large 5\Large 6\LARGE 7\huge 8\Huge 9 \normalsize		
+	\end{exercicio}
+	\bigskip
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Utilizando apenas \emph{uma} declaração de mudança de tamanho de fonte, reproduza o resultado abaixo.
+		
+		\medskip
+		\centering
+		A{\Huge B}C
+	\end{exercicio}
+	\bigskip
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Utilizando apenas \emph{duas} declarações de mudança de tamanho de fonte, reproduza o resultado abaixo.
+		
+		\begin{center}
+		A{\Huge B{\tiny c}D}E
+		\end{center}
+				
+		\noindent\textbf{dica:} utilize chaves para agrupar as letras.
+	\end{exercicio}
+	\bigskip
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Utilizando cada uma das declarações de tamanho de fonte apenas \emph{uma vez}, reproduza o resultado abaixo.\par
+	
+		\medskip
+		\centering
+		{\Huge 0{\huge 1{\LARGE 2{\Large 3{\large 4{\normalsize 5{\small 6{\footnotesize 7{\scriptsize 8{\tiny 90}1}2}3}4}5}6}7}8}9}	
+	\end{exercicio}
+	\bigskip
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Com o pacote \texttt{color} você pode utilizar cores no seu documento \LaTeX. Por exemplo,
+		você pode usar o comando ordinário \verb|\textcolor{|\textit{cor}\verb|}{|\textit{texto}\verb|}| ou a declaração
+		\verb|\color{|\textit{cor}\verb|}|, onde \textit{cor} pode ser: \texttt{white}, \texttt{black},
+		\texttt{red}, \texttt{green}, \texttt{blue}, \texttt{cyan}, \texttt{magenta} ou \texttt{yellow}.\footnote{Você
+		também pode definir suas próprias cores, mas não vamos tratar disso aqui. Para informações sobre isso, veja
+		a documentação do pacote \texttt{color} ou \texttt{xcolor}.}	
+	
+		Utilizando apenas a \emph{declaração} acima, reproduza o resultado abaixo.
+		
+		\medskip
+		{\color{black} black}\par
+		{\color{red} red}\par
+		{\color{green} green}\par
+		{\color{blue} blue}\par
+		{\color{cyan} cyan}\par
+		{\color{magenta} magenta}\par
+		{\color{yellow} yellow}
+	\end{exercicio}
+	\bigskip	
+	%---------------------------------------------------------
+	\begin{exercicio}	
+		Utilizando as declarações \verb|\color{blue}| e \verb|\color{red}| apenas uma vez cada, reproduza o resultado abaixo.
+		
+		\medskip
+		\centering
+		teste {\color{blue} teste {\color{red} teste} teste} teste\par
+	\end{exercicio}
+	\bigskip
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Utilizando os comandos \verb|\textcolor{red}{}| e \verb|\textcolor{black}{}| apenas uma vez cada, reproduza o resultado abaixo.
+		
+		\medskip
+		\centering
+		\textcolor{red}{teste \textcolor{black}{teste} teste}\par		
+	\end{exercicio}	
+	\bigskip
+	%---------------------------------------------------------
+	\begin{exercicio}\label{ex:align:L:decl}
+		Reproduza o poema abaixo utilizando apenas \emph{declarações} de alinhamento. Em seguida, refaça o exercício utilizando apenas \emph{ambientes} de alinhamento.
+	
+		\medskip
+		
+		\begin{footnotesize}
+			\noindent\textbf{obs.:} lembre-se de que o comando \verb|\\| causa uma quebra de linha (sem finalizar o parágrafo, contudo).\\
+			\noindent\textbf{dica:} você pode criar um parágrafo vazio colocando o comando \verb*|\ | numa linha qualquer, onde \verb*| | representa um espaço (não se esqueça de
+			deixar uma linha em branco abaixo e outra acima de \verb*|\ |). Isto causa a impressão de um espaço maior entre os parágrafos.
+		\end{footnotesize}
+			
+		\medskip
+		
+		\flushleft
+		Pensem nas crianças\\
+		Mudas telepáticas\\			
+		Pensem nas meninas\\
+		Cegas inexatas\\			
+		Pensem nas mulheres\\
+		Rotas alteradas
+
+		\centering
+		Pensem nas feridas\\
+		Como rosas cálidas\\
+		Mas só não se esqueçam\\
+		Da rosa da rosa\\
+		Da rosa de Hiroxima\\
+		A rosa hereditária
+	
+		\flushright
+		A rosa radioativa\\
+		Estúpida e inválida\\
+		A rosa com cirrose\\
+		A anti-rosa atômica\\
+		Sem cor sem perfume\\
+		Sem rosa sem nada.
+			
+		\bigskip
+			
+		``A rosa de Hiroxima\rlap{,}'' de Vinícius de Moraes.
+	\end{exercicio}
+	\bigskip
+	%---------------------------------------------------------
+	\begin{exercicio}
+		Reproduza a crônica abaixo (se não quiser digitar, você pode copiar o texto através do link disponibilizado no site do curso). Utilize todos os comandos que você conhece.
+		
+		\noindent\textbf{dica 1:} lembre-se que \verb|\\| causa uma quebra de linha;
+		
+		\bigskip
+	
+		\begin{center}\large\bfseries
+		O QUASE\\\small\mdseries Luís Fernando Veríssimo
+		\end{center}
+	
+		\begin{flushleft}
+		Ainda pior que a convicção do \textsc{não},\\
+		e a incerteza do \textsl{talvez},\\
+		é a desilusão de um \textcolor{blue}{quase}.
+		\end{flushleft}
+				
+		\centering
+		É o \textcolor{blue}{quase} que me incomoda,\\
+		que me entristece, que me mata trazendo \\
+		tudo que poderia ter sido e não foi.\\
+		Quem \textcolor{blue}{quase} passou ainda estuda,\\
+		quem \textcolor{blue}{quase} morreu ainda está vivo,\\
+		quem \textcolor{blue}{quase} amou não amou.
+		
+		
+		\flushright
+		Basta pensar nas oportunidades que escaparam pelos dedos,\\
+		nas chances que se perdem por medo, nas idéias que nunca\\
+		sairão do papel por essa maldita mania de viver no outono.
+			
+		\begin{center}
+		Pergunto-me, ás vezes, o que nos leva a escolher uma vida morna;\\
+		ou melhor, não me pergunto, \Large contesto\normalsize. A resposta eu sei de cor,\\
+		está estampada na distancia e frieza dos sorrisos,\\
+		na frouxidão dos abraços,\\
+		na indiferença dos \textit{Bom Dia} \textcolor{blue}{quase} que sussurrados.
+		\end{center}
+		
+		\bigskip
+			
+		\centering
+		{\large\sffamily
+		Sobra {\LARGE covardia} e \textcolor{red}{falta {\LARGE coragem} até para ser \LARGE{feliz}}.}
+		
+		\flushleft
+		\textbf{A paixão queima, o amor enlouquece, o desejo trai. Talvez esses fossem bons motivos para decidir entre a alegria e a dor, mas não são.}
+			
+		\flushleft
+		Se a virtude estivesse mesmo no meio termo,\\
+		o mar não teria ondas, os dias seriam nublados e o arco-íris em tons de cinza.\\
+		O nada não ilumina, não inspira,	não aflige nem acalma,\\
+		apenas amplia o vazio que cada um traz dentro de si.
+		
+		\flushright
+		{\ttfamily Não é que fé mova montanhas, nem que todas as estrelas estejam ao alcance, para as coisas que não podem ser mudadas resta-nos somente paciência, porém, preferir a derrota prévia à duvida da vitória é desperdiçar a oportunidade de merecer}.
+		
+		\flushleft
+		\scriptsize Pros erros há perdão; pros fracassos, chance;\\
+		pros amores impossíveis, tempo.\\
+		De nada adianta cercar um coração vazio ou economizar alma.\\
+		Um romance cujo fim é instantâneo ou indolor não é romance.\\
+		Não deixe que a saudade sufoque, que a rotina acomode, que sonhando,\\
+		fazendo que planejando, vivendo que esperando\\
+		porque embora quem \textcolor{blue}{quase} morre está vivo,\\
+		quem \textcolor{blue}{quase} vive já morreu.
+		
+	\end{exercicio}	
+	
+	\vfill
+	
+	\paragraph{\textbf{Comentário:}} você aprendeu a modificar os atributos de fontes, cores e o alinhamento do texto; propriedades estas associadas à aparência do seu documento. É claro que isto é importante, mas você também não deve deixar de lado a ideia de que no \LaTeX\ devemos procurar trabalhar com as funções dos elementos do texto. Isto significa que todos esses recursos que você aprendeu devem ser utilizados preferencialmente na definição de outros comandos, e não no texto propriamente dito. Talvez este comentário lhe diga muito pouco agora, mas reveja-o quando virmos o tópico ``listas, contadores e comandos personalizados\rlap.''
+	
+\end{document}

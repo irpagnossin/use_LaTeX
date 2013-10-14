@@ -1,0 +1,31 @@
+h3. Usando LaTeX; pensando em TeX
+
+Curso de LaTeX com ênfase na prática e com sólida base teórica. Atualmente este curso é oferecido gratuitamente pela Superintendência de Tecnologia da Informação (STI) da Universidade de São Paulo (USP) "neste endereço":http://moodle.stoa.usp.br/course/view.php?id=104.
+
+h3. Ementa
+
+Instalação, estrutura básica do arquivo e compilação, caracteres especiais, ligaduras, comandos (control words, control symbols, declarações e ambientes), pacotes, agrupamento, fontes (New Font Selection Scheme), formatação básica, cores, comprimentos, comprimentos elásticos (cola), expressões matemáticas, classes-padrão e organização lógica, referências-cruzadas, listas, bibliografia, BibTeX, índice remissivo, caixas (boxes), modos, tabelas e tabulações, figuras, caixas flutuantes (floats), comandos do usuário, contadores, comandos frágeis, apresentações, pôsteres, tipografia.
+
+h3. Tópicos
+
+# Introdução
+# Os primeiros passos
+# Fontes I
+# Grupos e escopo de comandos
+# Expressões matemáticas
+# Comprimentos e comprimentos elásticos
+# Comandos personalizados
+# Caixas
+# Figuras
+# Tabelas
+# Organização lógica
+# BibTeX
+# Expressões matemáticas II
+# NFSS (a fazer)
+# Índices remissivos (a fazer)
+
+h3. Licença
+
+Usando LaTeX; pensando em TeX by Ivan R. Pagnossin is licensed under a "Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License":http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US.
+
+

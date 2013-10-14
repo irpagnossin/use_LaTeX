@@ -1,0 +1,294 @@
+\documentclass[a4paper,10pt,twocolumn,landscape]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	\usepackage{calc}
+	\usepackage{wallpaper}
+	\usepackage[margin=2cm]{geometry}
+	\usepackage[squaren]{SIunits}
+	\usepackage{amsmath}
+	\usepackage{paralist}
+	\usepackage{lipsum}
+	\usepackage{fourier}
+	\usepackage{tikz}
+	\usepackage{fancyhdr}
+	
+	\usetikzlibrary{calc}
+	
+	% Minhas definições
+	\input{defs}
+
+	% Papel de parede
+	\CenterWallPaper{1}{../figuras/leao-pensador-wattermark.png}
+
+	% Configuração extra: espaço entre as colunas.
+	\setlength{\columnsep}{2cm}
+	
+
+	
+	\newcommand{\cs}[1]{{\normalfont\ttfamily\textbackslash\color{blue}#1}}
+	\newcommand{\pkg}[1]{{\normalfont\sffamily\color{orange}#1}}
+	
+	\newsavebox{\mystarbox}
+	\savebox{\mystarbox}{\color{red}$\star$}
+	\newcommand{\mystar}{\usebox{\mystarbox}}
+	
+	\settowidth{\parindent}{\usebox{\mystarbox}}
+				
+\begin{document}
+
+	\begin{center}\includegraphics[width=0.8\columnwidth]{../figuras/LogotipoCursoLaTeX_v2}\end{center}
+
+	{\noindent\Large Nome: \hrulefill}
+
+	\bigskip
+
+	Na lista de exercícios abaixo, aqueles marcados com \mystar\ devem ser 
+	respondidos \emph{nesta} folha. O restante deve ser entregue num arquivo
+	\texttt{tex} através do link ``tarefa individual: caixas'' no tópico 8 do
+	moodle.
+
+	\bigskip
+
+%------------------------------------------------------------------------------
+	\begin{exercicio}
+		Qual é a diferença entre os comandos \cs{mbox} e
+		\cs{fbox}?		
+	\end{exercicio}
+%------------------------------------------------------------------------------
+	\begin{exercicio}
+		O que significa o ``m'' em \cs{mbox}? E o ``f'' em
+		\cs{fbox}?
+	\end{exercicio}	
+%------------------------------------------------------------------------------
+	\begin{exercicio}
+		Reproduza os resultados abaixo utilizando o comando \cs{framebox}:
+		
+		\medskip
+		
+		\begin{center}
+			\framebox{Eu sou uma caixa!}\par
+			\framebox[5cm][c]{Eu sou uma caixa!}\par
+			\framebox[5cm][l]{Eu sou uma caixa!}\par
+			\framebox[5cm][r]{Eu sou uma caixa!}\par
+			\framebox[1cm][c]{Eu sou uma caixa!}\par
+			\framebox[1cm][l]{Eu sou uma caixa!}\par
+			\framebox[1cm][r]{Eu sou uma caixa!}
+		\end{center}
+	\end{exercicio}
+%------------------------------------------------------------------------------
+	\begin{exercicio}
+		Coloque algum texto antes e depois de cada uma das caixas do exercício
+		anterior. O que acontece de ``estranho'' nas três últimas caixas? Por quê?
+	\end{exercicio}
+%------------------------------------------------------------------------------
+	\begin{exercicio}
+		Reproduza a caixa com dupla moldura:
+		
+		\medskip
+		
+		\begin{center}
+			\fbox{\fbox{Eu sou uma caixa!}}
+		\end{center}
+	\end{exercicio}
+%------------------------------------------------------------------------------
+	\begin{exercicio}
+		\noindent\mystar\ Utilize uma régua para traçar uma reta pela linha-base
+		da linha abaixo.
+	
+		\medskip
+	
+		\begin{center}
+			\resizebox{0.99\columnwidth}{!}{Identifique a linha-base.}
+		\end{center}
+		
+		\medskip
+		
+		\footnotesize
+		\noindent\textbf{extra:} trace uma reta \unit{1}{ex} acima da 
+		linha-base\dots\ você não precisa medir nada, apenas olhar.
+	\end{exercicio}
+%------------------------------------------------------------------------------
+	\begin{exercicio}
+		\noindent\mystar\ No exercício anterior, esboce as diversas caixas que
+		compõem aquela linha e seus respectivos pontos-de-referência.
+		
+		\medskip
+		
+		\footnotesize
+		\noindent\textbf{obs.:} a seqüência ``fi'' é, na verdade, um caráter só. É
+		o que se chama \emph{ligação} ou caracteres-ligados (\foreign{ligatures}) e
+		serve para melhorar a aparência de algumas seqüências de letras. Nas fontes
+		Computer Moder Roman, exemplos são fi, ff, fl, ffi e ffl, mas em outras
+		fontes (como esta: utopia) outras seqüências podem ser definidas.
+	\end{exercicio}
+%------------------------------------------------------------------------------	
+	\begin{exercicio}
+		\noindent\mystar\ Complete: o parâmetro \cs{baselineskip} rege a distância 
+		entre as \hrulefill\\\null\hrulefill de duas linhas consecutivas.
+	\end{exercicio}
+%------------------------------------------------------------------------------
+	\begin{exercicio}
+		\noindent\mystar\ Esboce as caixas que contém as caixas-pretas e seus 
+		pontos-de-referência.
+		
+		\medskip
+		
+		\Huge
+		\noindent\makebox[0pt][l]{\raisebox{1pt}{\scriptsize Linha-base}}%
+		\hrulefill\
+		\rule[2ex]{1em}{1ex}
+		\rule[-0.5ex]{1em}{1ex}	
+		\rule[0ex]{1em}{1ex}		
+		\rule[-1ex]{1em}{1ex}
+		\rule[1ex]{1em}{1ex}
+		\rule[-2ex]{1em}{1ex}
+		\rule[0.5ex]{1em}{1ex}
+		\hrulefill
+	\end{exercicio}
+%------------------------------------------------------------------------------
+	\begin{exercicio}
+		\noindent\mystar\ No final do texto abaixo, a palavra ``purus'' foi
+		separada pelo \TeX\ no final da linha. Utilizando o que você aprendeu
+		sobre caixas, como você poderia evitar que isso acontecesse?
+		
+		\medskip
+	
+		\large
+		\foreign{%
+		Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Ut purus elit,
+		vestibulum ut, placerat ac, adipiscing vitae, felis. Curabitur dictum
+		gravida mauris.}
+		
+		\medskip
+		
+		\noindent\footnotesize\textbf{obs.:} \emph{não} use \cs{hyphenation}.
+
+	\end{exercicio}
+%------------------------------------------------------------------------------
+	\begin{exercicio}
+		Considere o resultado abaixo. Sabendo que existe um comando que reflete uma
+		caixa com relação à linha-base (isto é, assuma que colocar o texto de 
+		cabeça para baixo não é um problema), \textbf{explique} como você faria
+		para construir o resultado abaixo.
+		
+		\medskip
+		
+		\begin{center}
+		\Huge\makebox[0pt][l]{\raisebox{0.5pt}{Eu sou uma caixa!}}%
+		\scalebox{1}[-1]{\textcolor{blue!30}{\raisebox{0.5pt}{Eu sou uma caixa!}}}
+		\end{center}
+				
+	\end{exercicio}
+%------------------------------------------------------------------------------
+	\begin{exercicio}
+		\textbf{DESAFIO:} reproduza o resultado do exercício anterior.
+		
+		\medskip
+		
+		\footnotesize
+				
+		\noindent\textbf{obs.:} a instrução \cs{scalebox}\verb|{1}[-1]{|%
+		\cs{textcolor}\verb|{blue!30}{Eu sou uma caixa!}}| produz o texto
+		invertido em azul. \textbf{Dica:} utilize \cs{makebox}.		
+	\end{exercicio}
+%------------------------------------------------------------------------------
+	\begin{exercicio}
+		\noindent\mystar\ Complete a linha-base da linha abaixo e esboce os
+		pontos-de-referência das caixas que englobam cada palavra.
+		
+		\medskip
+	
+		\noindent\hrulefill
+		\raisebox{1ex}{Reproduza}
+		\raisebox{0ex}{esta}
+		\raisebox{-1ex}{linha}
+		\raisebox{0ex}{de}
+		\raisebox{1ex}{texto}
+		\raisebox{0ex}{utilizando}
+		\raisebox{-1ex}{o}
+		\raisebox{0ex}{comando}
+		\raisebox{1ex}{\cs{raisebox}}
+		\raisebox{0ex}{.}
+		\hrulefill
+		
+		\medskip
+		
+		\footnotesize
+		\textbf{obs.:} além de desenhar as caixas, você deve reproduzir a linha 
+		acima e enviá-la ao professor.
+	\end{exercicio}
+%------------------------------------------------------------------------------
+	\begin{exercicio}
+		Crie uma linha preta de \unit{1}{pt} de espessura que vai da margem direita
+		até a margem esquerda da página, como esta:
+		
+		\medskip
+		
+		\noindent\rule{\columnwidth}{1pt}
+		
+		\medskip
+		
+		\noindent\textbf{obs.:} não se esqueça de suprimir o avanço do parágrafo
+		com \cs{noindent}.
+	\end{exercicio}
+		
+%------------------------------------------------------------------------------
+	\begin{exercicio}
+		Refaça o exercício anterior, mas desenhe uma linha vermelha:
+		
+		\medskip
+		
+		{\color{red}\noindent\rule{\columnwidth}{1pt}}
+		
+	\end{exercicio}
+%------------------------------------------------------------------------------
+	\begin{exercicio}
+		Reproduza o resultado abaixo utilizando o comando \cs{parbox}.
+		
+		\medskip
+		
+		\begin{center}
+			\tiny
+			\parbox[t]{0.4\textwidth}{\lipsum[1]}\qquad%
+			\parbox[t]{0.4\textwidth}{\lipsum[3]}
+		\end{center}
+		
+		\smallskip
+		
+		\footnotesize
+		\noindent\textbf{dicas:} a distância entre as duas colunas (caixas) é
+		\cs{quad}. Utilize fontes de tamanho \cs{tiny} e, se quiser, o pacote
+		\pkg{lipsum}.
+	\end{exercicio}
+%------------------------------------------------------------------------------
+	\begin{exercicio}
+		Refaça o exercício anterior usando mini-páginas.
+	\end{exercicio}
+%------------------------------------------------------------------------------
+	\begin{exercicio}
+		O espaço adicional que precede a primeira linha de um parágrafo, também
+		conhecido por \textbf{e}ndentação, tem comprimento parametrizado por
+		\cs{parindent} (\foreign{paragraph indentation}).
+		
+		Como você pôde ver nos dois exercícios anteriores, este comprimento é zero
+		nas caixas de parágrafo (em qualquer caixa, na verdade). Seu trabalho 
+		é modificar isso: introduza alguma endentação no texto dessas caixas.
+	\end{exercicio}
+%------------------------------------------------------------------------------
+	\begin{exercicio}
+	Para colocar uma moldura numa expressão matemática em estilo de exibição, 
+	você deve antes colocá-la dentro de uma caixa de parágrafo. Faça isso:
+	reproduza o resultado abaixo.
+			
+	\medskip
+	
+	\noindent\framebox[\columnwidth]{%
+		\parbox{\columnwidth}{%
+			\[
+				\int\limits_0^{2\pi} \sin(nx)\sin(mx)\, dx = \delta_{nm}
+			\]}}
+	\end{exercicio}
+	
+\end{document}

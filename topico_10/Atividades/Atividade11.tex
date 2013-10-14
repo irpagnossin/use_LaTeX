@@ -1,0 +1,57 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}	
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	\usepackage{calc}
+	\input{minhasconfiguracoes}
+	
+	% O pacote tabularx calcula automaticamente a largura das colunas de modo a satisfazer a extensão horizontal da tabela requerida.
+	\usepackage{tabularx}
+	
+	
+	\newcommand\tablecontent{%
+		\hline
+		Uma célula & Outra célula \tabularnewline
+		\hline
+		Mai uma    & ... e outra  \tabularnewline
+		\hline
+	}
+	
+\begin{document}
+
+	Como você pôde perceber, o \LaTeX\ ajusta automaticamente o tamanho da tabela ao conteúdo dela. Esta solução é geralmente suficiente, mas eventualmente você quererá definir a extensão horizontal da tabela. Para isso existe o ambiente \ambiente{tabular*}, que recebe um argumento a mais, a largura da tabela:	
+	
+	\medskip
+	\noindent
+	\begin{tabular*}{\textwidth}{|l|l|}
+		\tablecontent
+	\end{tabular*}
+	\smallskip
+	
+	Mas isto não influi na largura das \emph{células}, conforme ilustra o exemplo acima. De fato, para produzir o resultado desejado é preciso definir também a largura de cada uma das células, através da opção \texttt{p\{\textrm{\textit{comp}}\}}, e isto requer alguns cálculos envolvendo comprimentos parametrizados da tabela, como \comando{tabcolsep} (a meia-distância entre duas células) e \comando{arrayrulewidth} (a largura das linhas verticais), além da quantidade de colunas da tabela:
+	
+	\newlength\colwidth
+	\setlength\colwidth{0.5\textwidth-2\tabcolsep-1.5\arrayrulewidth}
+	
+	\medskip
+	\noindent
+	\begin{tabular*}{\textwidth}{|p{\colwidth}|p{\colwidth}|}
+		\tablecontent
+	\end{tabular*}
+	\smallskip
+	
+	Obviamente preocupar-se com essas contas é desagradável e pode tornar-se complicado se as larguras das colunas não forem iguais.
+	
+	Felizmente você não precisa se preocupar com isso... basta usar o pacote \pacote{tabularx}, que define o ambiente \ambiente{tabularx}. Sua sintaxe é exatamente a mesma do \ambiente{tabular*}:
+	
+	\medskip
+	\noindent
+	\begin{tabularx}{\textwidth}{|X|X|}
+		\tablecontent
+	\end{tabularx}
+	\smallskip
+
+	A diferença é a opção \texttt{X}: ao usá-la o \LaTeX\ calculará automaticamente a largura das colunas. Na verdade, \texttt{X} equivale a \texttt{p\{\textrm{\textit{comp}}\}}, só que agora \textit{comp} é calculado automaticamente.
+
+\end{document}

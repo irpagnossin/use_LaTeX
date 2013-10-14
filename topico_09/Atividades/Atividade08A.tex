@@ -1,0 +1,22 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}	
+	\usepackage[brazil]{babel}
+	\usepackage{graphicx}
+	
+	% O pacote psfrag permite a substituição de fontes numa figura EPS por fontes do documento LaTeX (Computer Modern Roman, por exemplo).
+	\usepackage{psfrag}
+	
+	\graphicspath{{Figuras/EPS/}}
+	
+	\input{minhasconfiguracoes}
+\begin{document}
+
+	\begin{figure}
+		\centering
+		\psfrag{Texto na figura}[][]{$\displaystyle\Gamma(z) = \int_0^\infty \lambda^{z-1} e^{-\lambda}\, d\lambda$}
+		\includegraphics[width=0.5\textwidth]{Tei-Gi.eps}
+		\caption{a substituição de texto só funciona com figuras EPS (\foreign{encapsulated PostScript}), o que significa que, ao optar por este recurso, você deve compilar seu documento para PS (\foreign{PostScript}). Mas é possível produzir um documento PDF através do perfil de compilação \LaTeX\ => PS => PDF.}
+	\end{figure}
+
+\end{document}

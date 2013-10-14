@@ -1,0 +1,21 @@
+\documentclass[a4paper,12pt]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage{lipsum}
+	\usepackage[latin]{babel} % <-- Carrega os padrões de separação silábica do LATIN
+\begin{document}
+
+	% Aqui estamos definindo a caixa (minipage). Note que a largura da caixa é ligeiramente menor que 1/3 da largura da linha para que possamos colocar três delas em seqüência.
+	\newsavebox{\minhacaixa}
+	\savebox{\minhacaixa}{% <-- Para que serve este comentário?
+		\begin{minipage}{0.3\textwidth}
+			\tiny\lipsum[1-2]
+		\end{minipage}}
+			
+	% Aqui estamos usando a mesma caixa três vezes.
+	\noindent % <-- Experimente comentar esta linha. O que acontece? Por quê?
+	\usebox{\minhacaixa}\hfill
+	\usebox{\minhacaixa}\hfill
+	\usebox{\minhacaixa}
+		
+\end{document}
