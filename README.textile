@@ -1,6 +1,6 @@
 h3. Usando LaTeX; pensando em TeX
 
-Curso de LaTeX com ênfase na prática e com sólida base teórica. Atualmente este curso é oferecido gratuitamente pela Superintendência de Tecnologia da Informação (STI) da Universidade de São Paulo (USP) "neste endereço":http://moodle.stoa.usp.br/course/view.php?id=104.
+Curso de LaTeX baseado em atividades, mas com sólida base conceitual. Atualmente ele é oferecido gratuitamente pela Superintendência de Tecnologia da Informação (STI) da Universidade de São Paulo (USP) "neste endereço":http://moodle.stoa.usp.br/course/view.php?id=104.
 
 h3. Ementa
 
