@@ -1,0 +1,182 @@
+\documentclass[a4paper,10pt,twocolumn,landscape]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	\usepackage{calc}
+	\usepackage{wallpaper}
+	\usepackage[margin=2cm]{geometry}
+	\usepackage{SIunits}
+	\usepackage{amsmath}
+	\usepackage{paralist}
+	\usepackage{enumerate}
+	\usepackage{ifthen}
+
+	% Minhas definições
+	\input{defs}
+
+	% Papel de parede
+	\CenterWallPaper{1}{../Figuras/leao-pensador-wattermark.png}
+
+	% Configuração extra: espaço entre as colunas.
+	\setlength{\columnsep}{2cm}
+	
+\begin{document}
+
+	
+	\newcommand{\contador}[1]{\textit{#1}}
+	\newcommand{\pacote}[1]{\textcolor{orange}{#1}}
+	\newcommand{\etc}{\textsl{et cetera}} % Exercício 1
+	
+	%\newcommand{\foreign}[1]{\textsl{#1}} % Exercício 2
+	\newcommand{\cs}[1]{\texttt{\textbackslash #1}} % Exercício 3
+	\renewcommand{\etc}{\foreign{et cetera}}
+	\renewcommand{\cs}[2][\null]{%
+		\ifthenelse{\equal{#1}{\null}}%
+		{\texttt{\textbackslash #2}}%
+		{\texttt{\textbackslash #2\{#1\}}}%
+	}
+
+	\begin{center}\includegraphics[width=0.8\columnwidth]{../Figuras/LogotipoCursoLaTeX_v2}\end{center}
+
+	\section*{Comandos personalizados, listas e contadores}
+
+	Monte um grupo de 2 ou 3 colegas e responda as questões abaixo. Envie o 
+	arquivo \texttt{tex} com as respostas para o professor, informando os nomes
+	dos integrantes do grupo como um comentário no arquivo de instruções.
+
+	\bigskip
+
+	% -----------
+	% EXERCÍCIO 1
+	% -----------
+	\begin{exercicio}
+	Crie o comando \cs{etc}, que imprime \foreign{et cetera} na fonte com forma
+	inclinada (\foreign{slanted}), exatamente como aqui. Depois, teste o seu
+	comando.
+	\end{exercicio}
+	
+	% -----------
+	% EXERCÍCIO 2
+	% -----------
+	\begin{exercicio}
+	Às vezes é útil destacar levemente palavras que não fazem parte do idioma
+	utilizado num texto. \foreign{C'est la vie}, por exemplo. Crie o comando
+	\cs{foreign} (do inglês, ``estrangeiro''), que imprime seu argumento na
+	fonte de forma inclinada (\foreign{slanted}).
+	\end{exercicio}
+		
+	% -----------
+	% EXERCÍCIO 3
+	% -----------
+	\begin{exercicio}
+	\foreign{Et cetera} também não faz parte do português. Logo, é recomendado
+	que o próprio comando \cs{etc} seja definido em termos de \cs{foreign}. Faça
+	isso: \emph{redefina} o comando \cs{etc} utilizando \cs{foreign} em sua
+	definição.
+	\end{exercicio}
+	
+	% -----------
+	% EXERCÍCIO 4
+	% -----------
+	\begin{exercicio}
+	Embora a barra-invertida não seja muito utilizada, ainda assim é bastante 
+	chato ficar escrevendo \cs{textbackslash}. Isto é
+	especialmente verdadeiro num curso de \LaTeX, onde é preciso imprimir os
+	comandos --- com a barra-invertida --- diversas vezes. Ajude-me, então: crie
+	o comando \cs{cs} (de \foreign{control sequence}) que recebe como seu único
+	argumento o nome do comando. Como resultado, este comando deve imprimir a
+	barra-invertida e o nome do comando, utilizando as fontes da família	
+	{\ttfamily Computer Modern Typewriter}. Por exemplo, o comando \cs[emph]{cs}
+	deve imprimir \cs{emph}.
+	\end{exercicio}
+	
+	% -----------
+	% EXERCÍCIO 5
+	% -----------
+	\begin{exercicio}	
+	\textbf{Re}defina o comando \cs{cs} para que ele possa representar os 
+	comandos
+	com um argumento obrigatório. Isto é, redefina-o de modo que seu primeiro 
+	argumento seja o nome do comando e o segundo, o argumento dele. Por exemplo,
+	o comando \verb|\cs{color}{red}| deve imprimir \cs[red]{color}.
+	\end{exercicio}
+	
+	% -----------
+	% EXERCÍCIO 6
+	% -----------
+	\begin{exercicio}
+	Imagine-se como o autor de um livro sobre o \LaTeX, no qual você utiliza
+	intensa --- e sabiamente --- o comando \cs{cs}. Mas ocorre que na metade do
+	trabalho, por alguma razão você decide que convém escrever o \emph{nome} dos
+	comandos em azul (a barra-invertida, chaves e argumentos devem permanecer em
+	preto). Pois bem: redefina \cs{cs} para fazer isso (não se esqueça do pacote
+	\pacote{color} ou \pacote{xcolor}).
+	
+	\renewcommand{\cs}[2][\null]{
+		\ifthenelse{\equal{#1}{\null}}
+		{\texttt{\textbackslash{\color{blue} #2}}}
+		{\texttt{\textbackslash{\color{blue} #2}\{#1\}}}
+	}
+	
+	eg: \verb|\cs{color}{red}| deve imprimir \cs[red]{color}.	
+	\end{exercicio}
+	%\renewcommand{\cs}[2]{\texttt{\textbackslash{\color{blue}#1}\{#2\}}}
+	%\cs{begin}{enumerate}
+
+	% -----------
+	% EXERCÍCIO 7
+	% -----------
+	\begin{exercicio}
+	Saber buscar informações sobre um pacote e aplicá-las é uma tarefa rotineira
+	no \TeX, \LaTeX\ e outros. E é isso que você praticará nesta tarefa: procure 
+	na Internet as informações necessárias para utilizar o \emph{pacote}
+	\pacote{enumerate}, que agrega melhorias à \emph{lista} ``enumerate.'' 
+	Utilize-o para montar a lista abaixo (atenção aos números que precedem cada
+	item, que devem ser reproduzidos fielmente):
+	
+	\begin{enumerate}[(i)] % <------------------------
+		\item Maçã é vermelha
+		\item Uva é roxa
+		\item Banana é amarela
+		\item Laranja é\dots\ laranja!
+	\end{enumerate}	
+	\end{exercicio}
+
+	% -----------
+	% EXERCÍCIO 8
+	%
+	% Criando sua própria lista.
+	% --------------------------
+	\begin{exercicio}
+	Para terminar, crie uma lista de nome \texttt{ENUMERATE} que produz 	
+	exatamente a mesma lista do exercício anterior, mas sem utilizar o pacote
+	\pacote{enumerate}. Ou seja, defina uma lista genérica (ambiente ``list'') 
+	com o comando \cs{newenvironment} cujos números que precedem os ítens são
+	(i), (ii), \etc.
+	
+	\textbf{obs.:} você não precisa criar um contador para esta lista. Ao invés
+	disso, use o próprio \contador{enumi} (da lista ``enumerate''). Depois sim:
+	tente criar seu próprio contador para esta lista.
+	\end{exercicio}
+	% --------
+	% RESPOSTA
+	% --------
+%	\newenvironment{ENUMERATE}{%
+%		\begin{list}{%
+%			(\roman{ENUMI})% <----------------------------
+%		}{
+%			\newcounter{ENUMI}
+%			\usecounter{ENUMI}
+%		}
+%	}{\end{list}}
+%
+%	\begin{ENUMERATE}
+%		\item Maçã é vermelha
+%		\item Uva é roxa
+%		\item Banana é amarela
+%		\item Laranja é\dots\ laranja!
+%	\end{ENUMERATE}
+	 
+		
+\end{document}

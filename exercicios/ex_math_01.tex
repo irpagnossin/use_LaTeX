@@ -1,0 +1,213 @@
+\documentclass[a4paper,10pt,twocolumn,landscape]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	\usepackage{calc}
+	\usepackage{wallpaper}
+	\usepackage[margin=2cm]{geometry}
+	\usepackage{SIunits}
+	\usepackage{amsmath}
+	\usepackage{paralist}
+
+	% Minhas definições
+	\input{defs}
+
+	% Papel de parede
+	\CenterWallPaper{1}{../Figuras/leao-pensador-wattermark.png}
+
+	% Configuração extra: espaço entre as colunas.
+	\setlength{\columnsep}{2cm}
+
+	\DeclareMathOperator{\sen}{sen}
+
+	\hyphenation{de-ter-mi-na-ram}
+
+\begin{document}
+
+\begin{center}\includegraphics[width=0.8\columnwidth]{../Figuras/LogotipoCursoLaTeX_v2}\end{center}
+
+	\section*{Expressões matemáticas no \LaTeX\ --- Série 1}
+
+	Reproduza todas as expressões matemáticas abaixo num arquivo \LaTeX\ e, quando terminado, envie-o para o professor através do moodle. Você pode utilizar qualquer comando ou caráter especial para alternar entre os modos parágrafo e matemático, mas atenção para o fato de que algumas expressões têm números (ou nomes?), o que limita a sua escolha nesses casos.
+	
+	\bigskip
+	
+	%---------------------------------------------------------
+	\begin{exercicio}
+	
+		\[
+		\left(a + b\right)^3 = a^3 + 3 a^2 b + 3 a b^2 + b^3
+		\]	
+	\end{exercicio}
+	
+	%---------------------------------------------------------
+	\begin{exercicio}
+	
+		\begin{equation}\label{prod:notavel}
+		ax^2 + bx + c = \left(x - x_0\right)\left(x - x_1\right)
+		\end{equation}
+	\end{exercicio}
+	
+
+	%---------------------------------------------------------
+	\begin{exercicio}
+	
+		\[
+		\frac{a^2 - b^2}{a + b} = a - b
+		\]
+	\end{exercicio}
+	
+
+	%---------------------------------------------------------
+	\begin{exercicio}
+	
+		\[
+		\frac{1}{1 + \frac{1}{1 + \frac{1}{1 + \cdots}}}
+		\]
+	\end{exercicio}
+	
+	
+	%---------------------------------------------------------
+	\begin{exercicio}
+	
+		\[
+		\sqrt{2xy - x^2 - y^2} = i(x-y)
+		\]
+	\end{exercicio}
+	
+	
+	%---------------------------------------------------------
+	\begin{exercicio}
+	
+		\[
+		\sqrt{a^2 + \sqrt{a^2 + \sqrt{a^2 + \cdots}}}
+		\]
+	\end{exercicio}
+	
+	
+	%---------------------------------------------------------
+	\begin{exercicio}	
+	
+		\[
+		\int\limits_{-1}^2 x^4\, dx = \left.\frac{x^5}{5}\right|_{-1}^2 = \frac{33}{5}
+		\]
+	
+	\bigskip		
+	\noindent	obs.: utilize \verb|\left.| e \verb!\right|! para produzir a barra vertical.
+	\end{exercicio}
+
+	%---------------------------------------------------------
+
+	
+	\hspace*{\stretch{1}}\rule{0.5\columnwidth}{0.1pt}\hspace*{\stretch{1}}
+	\medskip
+
+	Para fazer os próximos exercícios você precisará consultar a lista de símbolos matemáticos do livro \textit{Introdução ao \LaTeXe}, páginas 62--68. Além disso, tenha em mente o seguinte:
+	\begin{compactitem}
+		\item ``\(\cos\)'' é produzido com \verb|\cos|;
+		\item ``\(\sen\)'' é produzido com \verb|\sen| (não use \verb|\sin|);
+		\item ``\(\ln\)'' é produzido com \verb|\ln|.
+	\end{compactitem}
+
+	\bigskip
+	%---------------------------------------------------------
+	\begin{exercicio} Construa a seguinte frase:
+	
+		\centering A área do círculo de raio \(r\) é \(\pi r^2\) e seu perímetro, \(2\pi r\).
+	\end{exercicio}
+	
+	
+	%---------------------------------------------------------
+	\begin{exercicio}\label{ex:cos}
+	
+		\[
+		\cos\left(\frac{\pi}{4}\right) = \frac{\sqrt{2}}{2}
+		\]
+	\end{exercicio}
+	
+
+	%---------------------------------------------------------
+	\begin{exercicio}\label{ex:sin}
+	
+		\begin{equation}\label{eq:sen(A+B)}
+		\sen\left(\theta+\varphi\right) = \sen\theta \cos\varphi + \cos\theta \sen\varphi
+		\end{equation}
+	\end{exercicio}
+	
+		
+	%---------------------------------------------------------
+	\begin{exercicio}	
+	
+		\[
+		\sen^2 \phi + \cos^2 \phi = 1
+		\]		
+	\end{exercicio}
+	
+	
+	%---------------------------------------------------------
+	\begin{exercicio}
+	
+		\[
+		e^{i\theta} = \cos(\theta) + i\cdot\sen(\theta)
+		\]
+	\end{exercicio}
+	
+	
+	%---------------------------------------------------------
+	\begin{exercicio} \textbf{A fórmula de Báscara.}
+	
+		A equação~\ref{eq:bascara} determina as abscissas $x_+$ e $x_-$ para as quais a parábola \(y = a x^2 + bx + c\), com \(a \ne 0\), cruza o eixo $y = 0$. Isto é, \eqref{eq:bascara} determina as raizes dessa equação:
+		\begin{equation}\label{eq:bascara}
+		x_\pm = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.
+		\end{equation}
+		
+	\bigskip	
+	\noindent obs. 1: você deve gerar as referências à equação com \verb|\label| e \verb|\ref|.\\
+	obs. 2: não se esqueça do ponto-final após a equação.
+	\end{exercicio}
+	
+	
+	%---------------------------------------------------------
+	\begin{exercicio} \textbf{A fórmula de Euler.}
+	
+		\[
+		\sum_{n = 1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6}
+		\]
+	\end{exercicio}
+	
+	
+	%---------------------------------------------------------
+	\begin{exercicio}\label{ex:ln}
+	
+		\[
+		\ln (1 + x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots, \qquad -1 < x \le 1
+		\]
+		
+	\bigskip
+	\noindent obs.: utilize \verb|\qquad| após a reticências.
+	\end{exercicio}
+	
+	
+	%---------------------------------------------------------
+	\begin{exercicio} Reproduza o exercício de Física abaixo, tomando o cuidado de integrar corretamente o texto com as expressões. Atenção especial deve ser dada às unidades de medidas: reproduza-as fielmente.
+	
+		\bigskip
+	
+		\begin{quotation}
+			\noindent
+			\textbf{Enunciado:}
+			\begin{slshape}
+				engenheiros da força aérea, em 1946, determinaram a distância Terra-Lua usando um radar. Se o feixe do radar levou \unit{2,56}{\second} para completar a viagem total Terra-Lua-Terra, qual a distância Terra-Lua em \kilo\metre? A velocidade das ondas do radar é \unit{3\times 10^{8}}{\metre\per\second}.
+			\end{slshape}
+			
+			\noindent\textbf{Resposta:} sabendo-se a velocidade das ondas de rádio (\(v\)) e o tempo gasto por elas no percurso (\(\Delta t\)), podemos determinar facilmente a distância Terra-Lua através da definição de velocidade: \(v = \Delta s/\Delta t\).
+			
+			O tempo gasto pelas ondas de rádio para ir da Terra à Lua é igual a metade do tempo medido, que corresponde ao percurso de ida e volta. Isto é, \(\Delta t = 2,56/2 = \unit{1,28}{\second}\). E como \(v = \unit{3 \times 10^{8}}{\metre\per\second}\), a distância Terra-Lua é
+			\[
+			\Delta s = v \,\Delta t = 3\times 10^{8} \cdot 1,28 = \unit{3,84 \times 10^{5}}{\kilo\metre}.
+			\]
+		\end{quotation}
+	\end{exercicio}
+
+\end{document}                                       

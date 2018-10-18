@@ -1,0 +1,81 @@
+\documentclass[a4paper,10pt,twocolumn,landscape]{article}
+	\usepackage[ansinew]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}
+	\usepackage{xcolor}
+	\usepackage{calc}
+	\usepackage{wallpaper}
+	\usepackage[margin=2cm]{geometry}
+	\usepackage{SIunits}
+	\usepackage{amsmath}
+	\usepackage{listings}
+
+
+% Configurações personalizadas do código LaTeX.	
+\lstnewenvironment{LaTeXcode}{
+	\setlength{\abovecaptionskip}{0pt}
+	\lstset{language=[LaTeX]TeX}
+	\lstset{emph={&},emphstyle={\textcolor{red}}}
+	\lstset{%
+		basicstyle=\footnotesize\ttfamily,  % Global
+		keywordstyle=\color{blue}\bfseries, % Comandos
+		identifierstyle=,                   % Texto
+		stringstyle=,                       % Strings 
+		commentstyle=\color{gray},          % Comentários
+		showstringspaces=false,             % Espaços
+		rulecolor=\color{gray},             % Linha da caixa
+	}
+}% Abrindo o ambiente.
+{}% Fechando o ambiente.
+	
+\newcommand{\pkg}[1]{{\normalfont\sffamily\color{orange}#1}}
+\newcommand{\env}[1]{{\normalfont\sffamily\color{green!50!black}#1}}
+
+	% Papel de parede
+	\CenterWallPaper{1}{../Figuras/leao-pensador-wattermark.png}
+
+	% Configuração extra: espaço entre as colunas.
+	\setlength{\columnsep}{2cm}
+
+	\newcommand\vetor[1]{\mathbf{#1}}
+
+\begin{document}
+
+\begin{center}\includegraphics[width=0.8\columnwidth]{../Figuras/LogotipoCursoLaTeX_v2}\end{center}
+
+	O pacote \pkg{amsmath} define os ambientes \env{align} e \env{align*} (o asterísco faz parte do nome do ambiente), que lhe permitem alinhar várias expressões verticalmente. Por exemplo, a expressão
+	\begin{align*}
+	I_a &= I_b + M \left(\mathbf{R} \times \mathbf{n}\right)^2\\
+		 &= I_b + M R^2 \sin^2\theta
+	\end{align*}
+é produzida da seguinte forma:
+	\begin{LaTeXcode}
+\begin{align*}
+I_a &= I_b + M \left(\mathbf{R} \times \mathbf{n}\right)^2 \\
+    &= I_b + M R^2 \sin^2\theta
+\end{align*}
+	\end{LaTeXcode}
+
+	A novidade aqui são as instruções \verb|&| e \verb|\\|. A primeira marca a posição do alinhamento: imediatamente antes do sinal de igual. A segunda, como você já deve ter imaginado, provoca a mudança de linha.
+
+	A diferença entre \env{align} e \env{align*} é que o primeiro insere automaticamente um número a cada linha da expressão, independentemente de você ter ou não atribuido um nome (\verb|\label|) a ela. Inversamente, \env{align*} \emph{não} insere números.
+
+	Com essas informações, produza a seguinte expressão:
+	\begin{align}
+		\int_{\vetor r_0}^{\vetor r_1} \vetor\nabla \varphi \cdot d\vetor l 
+				&= \varphi(\vetor{r}_2) - \varphi(\vetor{r}_1)\label{eq:calc} \\
+		\int_S \vetor\nabla \times \vetor F \cdot \vetor n\, d\vetor a
+				&= \oint_C \vetor F \cdot d\vetor l\label{eq:Stokes} \\
+		\int_V \vetor\nabla \cdot \vetor F \, dv
+				&= \oint_S \vetor F \cdot \vetor n\, da.\label{eq:divergente}
+	\end{align}
+
+	A equação \ref{eq:calc} é o teorema fundamental do cálculo, \eqref{eq:Stokes} é o teorema de Stokes e \eqref{eq:divergente}, o do divergente.
+
+	Atenção para os símbolos em negrito, que representam grandezas vetoriais, produzidos com o comando \verb|\mathbf|. Por falar nisso, responda: por que não utilizar \verb|\textbf|? 
+
+	Você já sabe que no \LaTeX\ devemos sempre procurar definir a função dos elementos do texto (ou das expressões matemáticas). No entanto, \verb|\mathbf| define a forma (ou leiaute), à imagem de \verb|\textit|. Considerando o que vimos na atividade 8 e na sua discussão com seus colegas \TeX starters na tarefa conjunta, como você poderia resolver este impasse? Você não precisa \emph{fazer} isso, mas apenas explicar.
+
+	Responda essas perguntas e produza a expressão matemática acima num arquivo \LaTeX\ e envie-o para o professor/tutor.
+
+\end{document}
